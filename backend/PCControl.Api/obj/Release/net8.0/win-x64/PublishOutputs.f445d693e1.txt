@@ -1,0 +1,3 @@
+G:\Programacion\Remote control PC\backend\PCControl.Api\publish\appsettings.json
+G:\Programacion\Remote control PC\backend\PCControl.Api\publish\PCControl.Api.pdb
+G:\Programacion\Remote control PC\backend\PCControl.Api\publish\PCControl.Api.exe
