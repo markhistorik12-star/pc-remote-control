@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeAll, beforeEach, afterEach, afterAll } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, afterAll } from 'vitest';
 import { setupServer } from 'msw/node';
 import { http, HttpResponse } from 'msw';
 import { shutdown, restart, lock, openApp, closeApp } from '../api';
@@ -58,7 +58,7 @@ const server = setupServer(
   })
 );
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+beforeEach(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
@@ -136,3 +136,4 @@ describe('api.ts - fetch wrapper with auth', () => {
     });
   });
 });
+
