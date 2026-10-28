@@ -57,11 +57,11 @@ const server = setupServer(
     return HttpResponse.json({ success: false, message: `Application '${body.appName}' not found` }, { status: 404 });
   })
 );
-
-beforeEach(() => server.listen());
+ 
+beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
-
+ 
 describe('api.ts - fetch wrapper with auth', () => {
   describe('shutdown', () => {
     it('posts to /api/shutdown with Bearer token', async () => {
