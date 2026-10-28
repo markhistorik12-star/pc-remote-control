@@ -1,83 +1,110 @@
-# React + TypeScript + Vite
+# PC Remote - Control de PC desde Android
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicación móvil para controlar una PC de forma remota mediante comandos HTTP seguros.
 
-Currently, two official plugins are available:
+## 🚀 Inicio Rápido
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 1. Instalar Backend en Windows
+```powershell
+# Clonar proyecto
+git clone <repositorio>
+cd backend/PCControl.Api
 
-## React Compiler
+# Configurar token (se genera automáticamente)
+dotnet run --project .
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-            }
-  }
-}
+# Instalar como servicio Windows
+./InstallService.ps1
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### 2. Configurar Frontend
+```bash
+# Instalar dependencias
+npm ci
 
-## Build and Release
+# Iniciar servidor de desarrollo
+npm run dev
+```
 
-### Release APK Build
+## 📱 Compilar e Instalar APK
 
-To build a signed release APK:
+### Requisitos previos
+- Java 17+ instalado
+- Android SDK configurado (`./gradlew` disponible)
 
-1. **Generate keystore** (requires Java installed):
-   ```bash
-   # Set environment variables first
-   export KEYSTORE_PASSWORD="your_secure_password"
-   export KEY_PASSWORD="your_secure_password"
-   
-   # Generate keystore
-   keytool -genkey -v \
-     -keystore release.keystore \
-     -alias pcremote \
-     -keyalg RSA \
-     -keysize 2048 \
-     -validity 10000 \
-     -storepass $KEYSTORE_PASSWORD \
-     -keypass $KEY_PASSWORD \
-     -dname "CN=PC Remote, OU=Development, O=PC Remote, L=City, ST=State, C=US"
-   ```
+### Paso a paso
+```bash
+# 1. Configurar variables de entorno (PowerShell)
+$env:KEYSTORE_PASSWORD = "TU_CONTRASEÑA_SEGURA"
+$env:KEY_PASSWORD = "TU_CONTRASEÑA_SEGURA"
 
-2. **Configure environment variables** (PowerShell):
-   ```powershell
-   $env:KEYSTORE_PASSWORD = "your_secure_password"
-   $env:KEY_PASSWORD = "your_secure_password"
-   ```
+# 2. Generar keystore (solo una vez)
+keytool -genkey -v -keystore release.keystore -alias pcremote -keyalg RSA -keysize 2048 -validity 10000 -storepass $env:KEYSTORE_PASSWORD -keypass $env:KEY_PASSWORD -dname "CN=PC Remote, OU=Development, O=PC Remote, L=City, ST=State, C=US"
 
-3. **Build signed APK**:
-   ```bash
-   ./gradlew assembleRelease
-   ```
+# 3. Construir APK firmado
+./gradlew assembleRelease
 
-4. **Verify signature**:
-   ```bash
-   jarsigner -verify -verbose release.apk
-   ```
+# 4. Instalar en dispositivo
+adb install -r android/app/build/outputs/apk/release/app-release.apk
+```
 
-> **Important**: Never commit `release.keystore` to version control. Add it to `.gitignore`.
+## 🔧 Configuración de la App
 
-### Environment Variables
+1. Abrir app → ingresar IP de PC y token
+2. Token se muestra en consola del backend al iniciar servicio
+3. Guardar configuración en la app
 
-Required for Android build:
-- `KEYSTORE_PASSWORD`: Password for the keystore
-- `KEY_PASSWORD`: Password for the private key
+## ⚡ Funcionalidades
 
-These should be set in your CI/CD secrets or local environment.
+| Comando | Acción | Endpoint |
+|---------|--------|----------|
+| Apagar | Shutdown PC | `POST /api/shutdown` |
+| Reiniciar | Reiniciar PC | `POST /api/restart` |
+| Bloquear | Bloquear sesión | `POST /api/lock` |
+| Abrir App | Iniciar aplicación | `POST /api/apps/open` |
+| Cerrar App | Cerrar aplicación | `POST /api/apps/close` |
+
+## 🔐 Seguridad
+
+- **Token**: 6 caracteres alfanuméricos, generado automáticamente
+- **Auth**: `Authorization: Bearer <token>` en cada petición
+- **Red**: Solo usar en LAN de confianza (HTTP plano)
+- **Keystore**: Nunca commitear, guardar en ubicación segura
+
+## 📋 Variables de Entorno
+
+| Variable | Descripción | Ejemplo |
+|----------|-------------|---------|
+| `KEYSTORE_PASSWORD` | Contraseña del keystore | `marciogonzalez1` |
+| `KEY_PASSWORD` | Contraseña de la clave privada | `marciogonzalez1` |
+
+## 🛠️ Desarrollo
+
+### Backend
+```bash
+dotnet run --project backend/PCControl.Api
+# Ver token en consola: "Token generado: FKALFV"
+```
+
+### Frontend
+```bash
+npm run dev  # Desarrollo local
+npm run build  # Construir para producción
+npx cap sync android  # Actualizar Android
+```
+
+## 🐛 Pruebas
+
+```bash
+# Pruebas unitarias
+dotnet test backend
+
+# Pruebas de integración
+npm run test:e2e
+```
+
+## 📄 Licencia
+
+Proyecto bajo licencia MIT. Ver archivo LICENSE.
+
+> **⚠️ Importante**: `release.keystore` está en `.gitignore`. No incluir en commits. Guardar en carpeta segura fuera del repositorio.
