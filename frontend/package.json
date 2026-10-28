@@ -9,7 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:e2e": "start-server-and-test \"dotnet run --project ../backend/PCControl.Api\" http://localhost:5000 \"cypress run\""
+    "test:e2e": "start-server-and-test \"..\\backend\\PCControl.Api\\publish\\PCControl.Api.exe\" http://localhost:5000 \"cypress run\""
   },
   "dependencies": {
     "@capacitor/android": "^8.5.3",

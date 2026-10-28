@@ -1,6 +1,5 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import '@testing-library/jest-dom';
 import SettingsModal from '../SettingsModal';
 import type { Settings } from '../../hooks/useSettings';
 
@@ -21,10 +20,10 @@ describe('SettingsModal', () => {
       <SettingsModal isOpen onClose={vi.fn()} settings={defaultSettings} onSave={vi.fn()} />
     );
 
-    expect(screen.getByPlaceholderText('192.168.1.100')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('6-character token')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('192.168.1.100')).toHaveValue('192.168.1.100');
-    expect(screen.getByPlaceholderText('6-character token')).toHaveValue('ABC123');
+    expect(screen.getByPlaceholderText('192.168.1.100')).not.toBeNull();
+    expect(screen.getByPlaceholderText('6-character token')).not.toBeNull();
+    expect((screen.getByPlaceholderText('192.168.1.100') as HTMLInputElement).value).toBe('192.168.1.100');
+    expect((screen.getByPlaceholderText('6-character token') as HTMLInputElement).value).toBe('ABC123');
   });
 
   it('calls onSave with ip and token when Save is clicked', () => {

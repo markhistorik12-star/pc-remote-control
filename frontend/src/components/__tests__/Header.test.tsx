@@ -1,6 +1,5 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import '@testing-library/jest-dom';
 import Header from '../Header';
 
 afterEach(() => cleanup());
@@ -10,8 +9,8 @@ describe('Header', () => {
     const onSettingsClick = vi.fn();
     render(<Header onSettingsClick={onSettingsClick} />);
 
-    expect(screen.getByText('PC Remote')).toBeInTheDocument();
-    expect(screen.getByLabelText('Settings')).toBeInTheDocument();
+    expect(screen.getByText('PC Remote')).not.toBeNull();
+    expect(screen.getByLabelText('Settings')).not.toBeNull();
   });
 
   it('calls onSettingsClick when settings button is clicked', () => {
