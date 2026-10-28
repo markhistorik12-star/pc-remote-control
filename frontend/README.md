@@ -25,8 +25,59 @@ If you are developing a production application, we recommend enabling type-aware
   "rules": {
     "react/rules-of-hooks": "error",
     "react/only-export-components": ["warn", { "allowConstantExport": true }]
+            }
   }
 }
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Build and Release
+
+### Release APK Build
+
+To build a signed release APK:
+
+1. **Generate keystore** (requires Java installed):
+   ```bash
+   # Set environment variables first
+   export KEYSTORE_PASSWORD="your_secure_password"
+   export KEY_PASSWORD="your_secure_password"
+   
+   # Generate keystore
+   keytool -genkey -v \
+     -keystore release.keystore \
+     -alias pcremote \
+     -keyalg RSA \
+     -keysize 2048 \
+     -validity 10000 \
+     -storepass $KEYSTORE_PASSWORD \
+     -keypass $KEY_PASSWORD \
+     -dname "CN=PC Remote, OU=Development, O=PC Remote, L=City, ST=State, C=US"
+   ```
+
+2. **Configure environment variables** (PowerShell):
+   ```powershell
+   $env:KEYSTORE_PASSWORD = "your_secure_password"
+   $env:KEY_PASSWORD = "your_secure_password"
+   ```
+
+3. **Build signed APK**:
+   ```bash
+   ./gradlew assembleRelease
+   ```
+
+4. **Verify signature**:
+   ```bash
+   jarsigner -verify -verbose release.apk
+   ```
+
+> **Important**: Never commit `release.keystore` to version control. Add it to `.gitignore`.
+
+### Environment Variables
+
+Required for Android build:
+- `KEYSTORE_PASSWORD`: Password for the keystore
+- `KEY_PASSWORD`: Password for the private key
+
+These should be set in your CI/CD secrets or local environment.

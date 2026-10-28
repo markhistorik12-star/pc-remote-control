@@ -6,7 +6,7 @@ const config: CapacitorConfig = {
   webDir: 'dist',
   android: {
     buildOptions: {
-      keystorePath: 'release.keystore',
+      keystorePath: 'release.keystore', // Path relative to project root
       keystoreAlias: 'pcremote',
       // Keystore passwords should be set via environment variables:
       // KEYSTORE_PASSWORD and KEY_PASSWORD
