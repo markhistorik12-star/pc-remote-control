@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { useSettings } from '../useSettings';
 
 const STORAGE_KEY = 'pcRemoteSettings';
@@ -7,12 +7,6 @@ const STORAGE_KEY = 'pcRemoteSettings';
 describe('useSettings', () => {
   beforeEach(() => {
     localStorage.removeItem(STORAGE_KEY);
-    vi.stubGlobal('localStorage', {
-      ...localStorage,
-      getItem: vi.fn((key: string) => localStorage.getItem(key)),
-      setItem: vi.fn((key: string, value: string) => localStorage.setItem(key, value)),
-      removeItem: vi.fn((key: string) => localStorage.removeItem(key)),
-    });
   });
 
   it('returns empty settings initially', () => {
