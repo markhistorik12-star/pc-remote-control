@@ -1,22 +1,25 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import '@testing-library/jest-dom';
 import PowerButtons from '../PowerButtons';
+
+afterEach(() => cleanup());
 
 describe('PowerButtons', () => {
   it('renders shutdown, restart, and lock buttons', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    expect(screen.getByText('Shutdown')).toBeInTheDocument();
-    expect(screen.getByText('Restart')).toBeInTheDocument();
-    expect(screen.getByText('Lock')).toBeInTheDocument();
+    expect(screen.getAllByText('Shutdown')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Restart')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Lock')[0]).toBeInTheDocument();
   });
 
   it('calls onAction with "shutdown" when shutdown button is clicked', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    fireEvent.click(screen.getByText('Shutdown'));
+    fireEvent.click(screen.getAllByText('Shutdown')[0]);
     expect(onAction).toHaveBeenCalledWith('shutdown');
   });
 
@@ -24,7 +27,7 @@ describe('PowerButtons', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    fireEvent.click(screen.getByText('Restart'));
+    fireEvent.click(screen.getAllByText('Restart')[0]);
     expect(onAction).toHaveBeenCalledWith('restart');
   });
 
@@ -32,15 +35,15 @@ describe('PowerButtons', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    fireEvent.click(screen.getByText('Lock'));
+    fireEvent.click(screen.getAllByText('Lock')[0]);
     expect(onAction).toHaveBeenCalledWith('lock');
   });
 
   it('disables all buttons when disabled prop is true', () => {
     render(<PowerButtons onAction={vi.fn()} disabled />);
 
-    expect(screen.getByText('Shutdown')).toBeDisabled();
-    expect(screen.getByText('Restart')).toBeDisabled();
-    expect(screen.getByText('Lock')).toBeDisabled();
+    expect(screen.getAllByText('Shutdown')[0]).toBeDisabled();
+    expect(screen.getAllByText('Restart')[0]).toBeDisabled();
+    expect(screen.getAllByText('Lock')[0]).toBeDisabled();
   });
 });

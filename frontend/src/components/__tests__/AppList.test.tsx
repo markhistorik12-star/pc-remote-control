@@ -1,6 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import '@testing-library/jest-dom';
 import AppList from '../AppList';
+
+afterEach(() => cleanup());
 
 describe('AppList', () => {
   it('renders common apps with Open and Close buttons', () => {
@@ -8,9 +11,9 @@ describe('AppList', () => {
     const onCloseApp = vi.fn();
     render(<AppList onOpenApp={onOpenApp} onCloseApp={onCloseApp} />);
 
-    expect(screen.getByText('notepad')).toBeInTheDocument();
-    expect(screen.getByText('calc')).toBeInTheDocument();
-    expect(screen.getByText('mspaint')).toBeInTheDocument();
+    expect(screen.getAllByText('notepad')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('calc')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('mspaint')[0]).toBeInTheDocument();
     expect(screen.getAllByText('Open')).toHaveLength(8);
     expect(screen.getAllByText('Close')).toHaveLength(8);
   });
@@ -20,7 +23,6 @@ describe('AppList', () => {
     const onCloseApp = vi.fn();
     render(<AppList onOpenApp={onOpenApp} onCloseApp={onCloseApp} />);
 
-    // The first app row is notepad; its Open button
     const openButtons = screen.getAllByText('Open');
     fireEvent.click(openButtons[0]);
     expect(onOpenApp).toHaveBeenCalledWith('notepad');

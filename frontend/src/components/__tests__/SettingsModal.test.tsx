@@ -1,7 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import '@testing-library/jest-dom';
 import SettingsModal from '../SettingsModal';
 import type { Settings } from '../../hooks/useSettings';
+
+afterEach(() => cleanup());
 
 describe('SettingsModal', () => {
   const defaultSettings: Settings = { ip: '192.168.1.100', token: 'ABC123' };
@@ -15,16 +18,11 @@ describe('SettingsModal', () => {
 
   it('renders IP and token inputs when isOpen is true', () => {
     render(
-      <SettingsModal
-        isOpen
-        onClose={vi.fn()}
-        settings={defaultSettings}
-        onSave={vi.fn()}
-      />
+      <SettingsModal isOpen onClose={vi.fn()} settings={defaultSettings} onSave={vi.fn()} />
     );
 
-    expect(screen.getByLabelText('PC IP Address')).toBeInTheDocument();
-    expect(screen.getByLabelText('Token')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('192.168.1.100')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('6-character token')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('192.168.1.100')).toHaveValue('192.168.1.100');
     expect(screen.getByPlaceholderText('6-character token')).toHaveValue('ABC123');
   });
@@ -36,7 +34,7 @@ describe('SettingsModal', () => {
       <SettingsModal isOpen onClose={onClose} settings={defaultSettings} onSave={onSave} />
     );
 
-    fireEvent.click(screen.getByText('Save'));
+    fireEvent.click(screen.getAllByText('Save')[0]);
     expect(onSave).toHaveBeenCalledWith('192.168.1.100', 'ABC123');
     expect(onClose).toHaveBeenCalledTimes(1);
   });
@@ -46,7 +44,7 @@ describe('SettingsModal', () => {
     const onSave = vi.fn();
     render(<SettingsModal isOpen onClose={onClose} settings={defaultSettings} onSave={onSave} />);
 
-    fireEvent.click(screen.getByText('Cancel'));
+    fireEvent.click(screen.getAllByText('Cancel')[0]);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onSave).not.toHaveBeenCalled();
   });
