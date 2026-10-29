@@ -1,0 +1,33 @@
+
+1. Ver estructura general
+cd G:\Programacion\Remote control PC
+Get-ChildItem -Recurse -Directory | Where-Object { $_.Name -notmatch 'node_modules|bin|obj|\.git' }
+2. Backend - Tests y Build
+backend\PCControl.Api.Tests
+dotnet test
+✅ Debe mostrar: 16 passed
+
+backend\PCControl.Api
+dotnet build
+✅ Compilación correcta
+
+3. Frontend - Tests unitarios
+frontend
+npm test
+✅ Debe mostrar: 30 passed (6 test files)
+
+4. Frontend - Build de producción
+npm run build
+✅ Crea carpeta dist/ con assets optimizados
+
+5. Frontend - Tests E2E (Cypress + Backend real)
+npm run test:e2e
+✅ Debe mostrar: 8 passing (5 UI + 3 integración) ⚠️ Tarda ~30-60 seg — levanta backend + frontend + Cypress
+
+6. Frontend - Servidor de desarrollo (para ver en navegador)
+npm run dev
+Abre en navegador: http://localhost:5173
+
+7. Android (Capacitor)
+npx cap sync android
+npx cap open android

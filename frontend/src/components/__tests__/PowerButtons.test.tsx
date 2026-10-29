@@ -5,20 +5,20 @@ import PowerButtons from '../PowerButtons';
 afterEach(() => cleanup());
 
 describe('PowerButtons', () => {
-  it('renders shutdown, restart, and lock buttons', () => {
+  it('renders apagar, reiniciar, and bloquear buttons', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    expect(screen.getAllByText('Shutdown')[0]).not.toBeNull();
-    expect(screen.getAllByText('Restart')[0]).not.toBeNull();
-    expect(screen.getAllByText('Lock')[0]).not.toBeNull();
+    expect(screen.getAllByText('Apagar')[0]).not.toBeNull();
+    expect(screen.getAllByText('Reiniciar')[0]).not.toBeNull();
+    expect(screen.getAllByText('Bloquear')[0]).not.toBeNull();
   });
 
   it('calls onAction with "shutdown" when shutdown button is clicked', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    fireEvent.click(screen.getAllByText('Shutdown')[0]);
+    fireEvent.click(screen.getAllByText('Apagar')[0]);
     expect(onAction).toHaveBeenCalledWith('shutdown');
   });
 
@@ -26,7 +26,7 @@ describe('PowerButtons', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    fireEvent.click(screen.getAllByText('Restart')[0]);
+    fireEvent.click(screen.getAllByText('Reiniciar')[0]);
     expect(onAction).toHaveBeenCalledWith('restart');
   });
 
@@ -34,7 +34,7 @@ describe('PowerButtons', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
-    fireEvent.click(screen.getAllByText('Lock')[0]);
+    fireEvent.click(screen.getAllByText('Bloquear')[0]);
     expect(onAction).toHaveBeenCalledWith('lock');
   });
 

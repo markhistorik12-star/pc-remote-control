@@ -21,29 +21,29 @@ describe('SettingsModal', () => {
     );
 
     expect(screen.getByPlaceholderText('192.168.1.100')).not.toBeNull();
-    expect(screen.getByPlaceholderText('6-character token')).not.toBeNull();
+    expect(screen.getByPlaceholderText('ABC123')).not.toBeNull();
     expect((screen.getByPlaceholderText('192.168.1.100') as HTMLInputElement).value).toBe('192.168.1.100');
-    expect((screen.getByPlaceholderText('6-character token') as HTMLInputElement).value).toBe('ABC123');
+    expect((screen.getByPlaceholderText('ABC123') as HTMLInputElement).value).toBe('ABC123');
   });
 
-  it('calls onSave with ip and token when Save is clicked', () => {
+  it('calls onSave with ip and token when Guardar is clicked', () => {
     const onSave = vi.fn();
     const onClose = vi.fn();
     render(
       <SettingsModal isOpen onClose={onClose} settings={defaultSettings} onSave={onSave} />
     );
 
-    fireEvent.click(screen.getAllByText('Save')[0]);
+    fireEvent.click(screen.getAllByText('Guardar')[0]);
     expect(onSave).toHaveBeenCalledWith('192.168.1.100', 'ABC123');
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('calls onClose when Cancel is clicked', () => {
+  it('calls onClose when Cancelar is clicked', () => {
     const onClose = vi.fn();
     const onSave = vi.fn();
     render(<SettingsModal isOpen onClose={onClose} settings={defaultSettings} onSave={onSave} />);
 
-    fireEvent.click(screen.getAllByText('Cancel')[0]);
+    fireEvent.click(screen.getAllByText('Cancelar')[0]);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onSave).not.toHaveBeenCalled();
   });

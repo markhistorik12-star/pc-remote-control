@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PCControl.Api.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1258f61a9804655bcd11f8a260e4a36fac8d9d6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+02c9b4b3b3728762a6a2415bec0054f7816665b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("PCControl.Api.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PCControl.Api.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

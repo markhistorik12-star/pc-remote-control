@@ -6,36 +6,46 @@ using PCControl.Api.Endpoints;
 using PCControl.Api.Middleware;
 using PCControl.Api.Models;
 using PCControl.Api.Services;
+using System.Runtime.CompilerServices;
 
-var builder = WebApplication.CreateBuilder(args);
+[assembly: InternalsVisibleTo("PCControl.Api.Tests")]
 
-builder.Host.UseWindowsService();
-
-builder.Services.Configure<HostOptions>(options =>
+namespace PCControl.Api
 {
-    options.ShutdownTimeout = TimeSpan.FromSeconds(10);
-});
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<ITokenService, TokenService>();
-builder.Services.AddSingleton<IProcessService, ProcessService>();
+            builder.Host.UseWindowsService();
 
-var app = builder.Build();
+            builder.Services.Configure<HostOptions>(options =>
+            {
+                options.ShutdownTimeout = TimeSpan.FromSeconds(10);
+            });
 
-app.UseMiddleware<TokenAuthMiddleware>();
+            builder.Services.AddSingleton<ITokenService, TokenService>();
+            builder.Services.AddSingleton<IProcessService, ProcessService>();
 
-app.MapGet("/", () => Results.Ok(new ApiResponse(true, "PC Control API is running")));
-app.MapGet("/health", () => Results.Ok(new ApiResponse(true, "Healthy")));
+            var app = builder.Build();
 
-app.MapPowerEndpoints();
-app.MapAppEndpoints();
+            app.UseMiddleware<TokenAuthMiddleware>();
 
-var port = builder.Configuration.GetValue<int>("Port", 5000);
-app.Urls.Add($"http://0.0.0.0:{port}");
+            app.MapGet("/", () => Results.Ok(new ApiResponse(true, "PC Control API is running")));
+            app.MapMethods("/health", ["GET", "HEAD"], () => Results.Ok(new ApiResponse(true, "Healthy")));
 
-var tokenService = app.Services.GetRequiredService<ITokenService>();
-Console.WriteLine($"PC Control API started on port {port}");
-Console.WriteLine($"Token: {tokenService.GetToken()}");
+            app.MapPowerEndpoints();
+            app.MapAppEndpoints();
 
-app.Run();
+            var port = builder.Configuration.GetValue<int>("Port", 5000);
+            app.Urls.Add($"http://0.0.0.0:{port}");
 
-public partial class Program { }
+            var tokenService = app.Services.GetRequiredService<ITokenService>();
+            Console.WriteLine($"PC Control API started on port {port}");
+            Console.WriteLine($"Token: {tokenService.GetToken()}");
+
+            app.Run();
+        }
+    }
+}
