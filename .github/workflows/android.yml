@@ -1,4 +1,5 @@
-﻿name: Android Release Build
+$yaml = @"
+name: Android Release Build
 
 on:
   push:
@@ -41,9 +42,9 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('frontend/android/**/*.gradle*', 'frontend/android/gradle/wrapper/gradle-wrapper.properties') }}
+          key: \${{ runner.os }}-gradle-\${{ hashFiles('frontend/android/**/*.gradle*', 'frontend/android/gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            \${{ runner.os }}-gradle-
 
       - name: Install dependencies
         working-directory: ./frontend
@@ -60,14 +61,14 @@ jobs:
       - name: Decode keystore
         if: env.KEYSTORE_BASE64 != ''
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > frontend/release.keystore
+          echo "\${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > frontend/release.keystore
         shell: bash
 
       - name: Build Release APK
         working-directory: ./frontend/android
         env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEYSTORE_PASSWORD: \${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: \${{ secrets.KEY_PASSWORD }}
         run: |
           ./gradlew assembleRelease
 
@@ -85,4 +86,5 @@ jobs:
           files: frontend/android/app/build/outputs/apk/release/app-release.apk
           generate_release_notes: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+"@
