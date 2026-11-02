@@ -1,0 +1,15 @@
+# Ignore .NET compiled files
+/bin/
+/obj/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore environment variables
+.env
+
+# Ignore Log files
+*.log
+
+# Ignore ROSA generated files
+*.rosaproj.user
