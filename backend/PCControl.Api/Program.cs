@@ -28,12 +28,24 @@ namespace PCControl.Api
             builder.Services.AddSingleton<ITokenService, TokenService>();
             builder.Services.AddSingleton<IProcessService, ProcessService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
+
+            app.UseCors("AllowFrontend");
 
             app.UseMiddleware<TokenAuthMiddleware>();
 
             app.MapGet("/", () => Results.Ok(new ApiResponse(true, "PC Control API is running")));
-            app.MapMethods("/health", ["GET", "HEAD"], () => Results.Ok(new ApiResponse(true, "Healthy")));
+            app.MapMethods("/health", ["GET", "HEAD", "POST"], () => Results.Ok(new ApiResponse(true, "Healthy")));
 
             app.MapPowerEndpoints();
             app.MapAppEndpoints();
