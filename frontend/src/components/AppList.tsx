@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PlayIcon, XIcon, AppIcon, ChevronDownIcon, FileTextIcon, TerminalIcon, MonitorIcon, ShieldIcon } from './ui/Icons';
-import { colors, spacing, borderRadius } from './ui/Theme';
+
 
 interface AppListProps {
   onOpenApp: (appName: string) => void;

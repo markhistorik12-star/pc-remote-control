@@ -1,5 +1,5 @@
 import { PowerIcon, RestartIcon, LockIcon } from './ui/Icons';
-import { colors, spacing, borderRadius } from './ui/Theme';
+
 
 interface PowerButtonsProps {
   onAction: (action: 'shutdown' | 'restart' | 'lock') => void;

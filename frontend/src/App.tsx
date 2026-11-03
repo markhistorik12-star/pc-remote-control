@@ -4,7 +4,7 @@ import PowerButtons from './components/PowerButtons';
 import AppList from './components/AppList';
 import SettingsModal from './components/SettingsModal';
 import { useSettings } from './hooks/useSettings';
-import { shutdown, restart, lock, openApp, closeApp } from './services/api';
+import { shutdown, restart, lock, openApp, closeApp, testConnection } from './services/api';
 import { AlertTriangleIcon, CheckCircleIcon } from './components/ui/Icons';
 
 function App() {
@@ -15,6 +15,12 @@ function App() {
   const showToast = (message: string, type: 'success' | 'error') => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 4000);
+  };
+
+  const handleSaveSettings = async (ip: string, token: string) => {
+    saveSettings(ip, token);
+    const result = await testConnection(ip, token);
+    showToast(result.message, result.success ? 'success' : 'error');
   };
 
   const handlePowerAction = async (action: 'shutdown' | 'restart' | 'lock') => {
@@ -67,7 +73,7 @@ function App() {
           isOpen={showSettings}
           onClose={() => setShowSettings(false)}
           settings={settings}
-          onSave={saveSettings}
+          onSave={handleSaveSettings}
         />
 
         {toast && (

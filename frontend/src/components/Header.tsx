@@ -1,5 +1,5 @@
 import { SettingsIcon } from './ui/Icons';
-import { colors } from './ui/Theme';
+
 
 interface HeaderProps {
   onSettingsClick: () => void;
