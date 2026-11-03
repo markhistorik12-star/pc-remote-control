@@ -1,59 +1,60 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
+  darkMode: ['class'],
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.jsx",
+    "src/**/*.js",
+    "*.ts",
+    "*.tsx",
+    "*.js",
+    "*.jsx"
   ],
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#6366F1',
-          foreground: '#000000',
-        },
-        secondary: {
-          DEFAULT: '#818CF8',
-          foreground: '#0F172A',
-        },
-        accent: {
-          DEFAULT: '#059669',
-          foreground: '#000000',
-        },
-        destructive: {
-          DEFAULT: '#DC2626',
-          foreground: '#FFFFFF',
-        },
-        background: '#F5F3FF',
-        foreground: '#312E81',
-        card: '#FFFFFF',
-        'card-foreground': '#312E81',
-        muted: '#EBEFF9',
-        'muted-foreground': '#475569',
-        border: '#E0E7FF',
-        ring: '#6366F1',
-      },
-      fontFamily: {
-        heading: ['Outfit', 'sans-serif'],
-        body: ['Work Sans', 'sans-serif'],
-      },
-      spacing: {
-        '4.5': '1.125rem',
-        '5.5': '1.375rem',
-      },
-      boxShadow: {
-        'subtle': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-        'card': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-        'card-hover': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+        border: 'hsl(var(--color-border))',
+        input: 'hsl(var(--color-input))',
+        ring: 'hsl(var(--color-ring))',
+        background: 'hsl(var(--color-background))',
+        foreground: 'hsl(var(--color-foreground))',
+        card: 'hsl(var(--color-card))',
+        'card-foreground': 'hsl(var(--color-card-foreground))',
+        popover: 'hsl(var(--color-popover))',
+        'popover-foreground': 'hsl(var(--color-popover-foreground))',
+        primary: 'hsl(var(--color-primary))',
+        'primary-foreground': 'hsl(var(--color-primary-foreground))',
+        secondary: 'hsl(var(--color-secondary))',
+        'secondary-foreground': 'hsl(var(--color-secondary-foreground))',
+        muted: 'hsl(var(--color-muted))',
+        'muted-foreground': 'hsl(var(--color-muted-foreground))',
+        accent: 'hsl(var(--color-accent))',
+        'accent-foreground': 'hsl(var(--color-accent-foreground))',
+        destructive: 'hsl(var(--color-destructive))',
+        'destructive-foreground': 'hsl(var(--color-destructive-foreground))',
       },
       borderRadius: {
-        'xl': '1rem',
-        '2xl': '1.5rem',
+        lg: 'var(--border-radius)',
+        DEFAULT: 'var(--border-radius)',
+        sm: 'calc(var(--border-radius) * 0.75)',
       },
-      transitionDuration: {
-        '200': '200ms',
-        '250': '250ms',
+      spacing: {
+        '1': '0.25rem',
+        '2': '0.5rem',
+        '3': '0.75rem',
+        '4': '1rem',
+        '5': '1.5rem',
+        '6': '2rem',
+      },
+      fontSize: {
+        xs: ['0.75rem', { lineHeight: '1.5' }],
+        sm: ['0.875rem', { lineHeight: '1.5' }],
+        base: ['1rem', { lineHeight: '1.5' }],
+        lg: ['1.125rem', { lineHeight: '1.5' }],
+        xl: ['1.25rem', { lineHeight: '1.5' }],
       },
     },
   },
-  plugins: [],
+  plugins: ["@tailwindcss/forms", "@tailwindcss/typography"],
 }

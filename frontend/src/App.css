@@ -1,184 +1,89 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* Base dark theme variables - applies by default */
+:root {
+  /* Color palette - accessible dark mode */
+  --color-background: hsl(240 10% 3.9%);
+  --color-foreground: hsl(210 40% 98%);
+  --color-card: hsl(240 10% 4%);
+  --color-card-foreground: hsl(210 40% 98%);
+  --color-popover: hsl(240 10% 4%);
+  --color-popover-foreground: hsl(210 40% 98%);
+  --color-primary: hsl(262.1 83.3% 57.8%);
+  --color-primary-foreground: hsl(210 40% 98%);
+  --color-secondary: hsl(210 40% 10%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+  --color-muted: hsl(210 40% 8%);
+  --color-muted-foreground: hsl(210 40% 70%);
+  --color-accent: hsl(210 40% 12%);
+  --color-accent-foreground: hsl(210 40% 98%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-border: hsl(210 40% 12%);
+  --color-input: hsl(210 40% 15%);
+  --color-ring: hsl(262.1 83.3% 57.8%);
+  
+  /* Typography and spacing */
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-xs: 0.75rem;
+  --border-radius: 0.75rem;
+  --spacing-unit: 0.5rem;
+  
+  /* CSS variables for components */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 8px 12px -3px rgb(0 0 0 / 0.15), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+/* Override for light mode if user prefers it */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: hsl(210 40% 98%);
+    --color-foreground: hsl(240 10% 3.9%);
+    --color-card: hsl(210 40% 96%);
+    --color-border: hsl(210 40% 80%);
+    --color-muted: hsl(210 40% 94%);
+    --color-primary: hsl(262.1 83.3% 57.8%);
+    --color-destructive: hsl(0 84.2% 60.2%);
   }
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+/* Ensure high contrast for all text */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
+/* Utility classes for spacing */
+.mb-4 { margin-bottom: var(--spacing-unit) * 2; }
+.mb-6 { margin-bottom: var(--spacing-unit) * 3; }
+.gap-3 { gap: var(--spacing-unit) * 1.5; }
+.gap-4 { gap: var(--spacing-unit) * 2; }
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+/* Custom scrollbar for dark mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+::-webkit-scrollbar-track {
+  background: var(--color-background);
 }
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 4px;
+  border: 2px solid var(--color-background);
 }

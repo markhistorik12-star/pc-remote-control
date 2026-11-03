@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "AYHUyhAqNGg=",
+  "success": true,
+  "projectFilePath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Acer\\.nuget\\packages\\microsoft.extensions.hosting.windowsservices\\10.0.0\\microsoft.extensions.hosting.windowsservices.10.0.0.nupkg.sha512",
+    "C:\\Users\\Acer\\.nuget\\packages\\system.serviceprocess.servicecontroller\\10.0.0\\system.serviceprocess.servicecontroller.10.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
