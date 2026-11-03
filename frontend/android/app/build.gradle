@@ -4,7 +4,7 @@ android {
     // Add signing configuration for release builds
     signingConfigs {
         release {
-            storeFile file('release.keystore')
+            storeFile file('../release.keystore')
             storePassword System.getenv('KEYSTORE_PASSWORD')
             keyAlias 'pcremote'
             keyPassword System.getenv('KEY_PASSWORD')
@@ -26,13 +26,10 @@ android {
         }
     }
     buildTypes {
-    release {
-        minifyEnabled false
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        signingConfig signingConfigs.release
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -63,5 +60,5 @@ try {
         apply plugin: 'com.google.gms.google-services'
     }
 } catch(Exception e) {
-    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
-}
+        logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+    }
