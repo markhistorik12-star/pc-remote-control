@@ -52,6 +52,10 @@ export async function lock(ip: string, token: string): Promise<ApiResponse> {
   return fetchWithAuth(ip, token, '/api/lock');
 }
 
+export async function suspend(ip: string, token: string): Promise<ApiResponse> {
+  return fetchWithAuth(ip, token, '/api/suspend');
+}
+
 export async function openApp(ip: string, token: string, appName: string): Promise<ApiResponse> {
   return fetchWithAuth(ip, token, '/api/apps/open', { appName });
 }

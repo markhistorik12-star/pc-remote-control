@@ -5,13 +5,22 @@ import PowerButtons from '../PowerButtons';
 afterEach(() => cleanup());
 
 describe('PowerButtons', () => {
-  it('renders apagar, reiniciar, and bloquear buttons', () => {
+  it('renders apagar, reiniciar, suspender, and bloquear buttons', () => {
     const onAction = vi.fn();
     render(<PowerButtons onAction={onAction} />);
 
     expect(screen.getAllByText('Apagar')[0]).not.toBeNull();
     expect(screen.getAllByText('Reiniciar')[0]).not.toBeNull();
+    expect(screen.getAllByText('Suspender')[0]).not.toBeNull();
     expect(screen.getAllByText('Bloquear')[0]).not.toBeNull();
+  });
+
+  it('calls onAction with "suspend" when suspend button is clicked', () => {
+    const onAction = vi.fn();
+    render(<PowerButtons onAction={onAction} />);
+
+    fireEvent.click(screen.getAllByText('Suspender')[0]);
+    expect(onAction).toHaveBeenCalledWith('suspend');
   });
 
   it('calls onAction with "shutdown" when shutdown button is clicked', () => {
@@ -42,7 +51,7 @@ describe('PowerButtons', () => {
     render(<PowerButtons onAction={vi.fn()} disabled />);
 
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(3);
+    expect(buttons).toHaveLength(4);
     buttons.forEach((btn) => expect((btn as HTMLButtonElement).disabled).toBe(true));
   });
 });

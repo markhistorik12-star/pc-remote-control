@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Lucide-inspired SVG icons for the app
  * All icons are 24x24 viewBox, stroke-based for consistency
  */
@@ -94,6 +94,25 @@ export function LockIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVG
   );
 }
 
+export function MoonIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+      aria-hidden="true"
+    >
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  );
+}
+
 export function PlayIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -129,6 +148,110 @@ export function XIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVG
     >
       <line x1="18" y1="6" x2="6" y2="18" />
       <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  );
+}
+
+// Custom icons for specific apps
+export function NotepadIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+      aria-hidden="true"
+    >
+      <rect x="3" y="4" width="18" height="16" rx="2" ry="2" />
+      <line x1="7" y1="8" x2="17" y2="8" />
+      <line x1="7" y1="12" x2="17" y2="12" />
+      <line x1="7" y1="16" x2="13" y2="16" />
+    </svg>
+  );
+}
+
+export function CalcIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+      aria-hidden="true"
+    >
+      <rect x="3" y="4" width="18" height="16" rx="2" ry="2" />
+      <line x1="7" y1="8" x2="17" y2="8" />
+      <line x1="7" y1="12" x2="17" y2="12" />
+      <line x1="7" y1="16" x2="17" y2="16" />
+    </svg>
+  );
+}
+
+export function PaintIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+      aria-hidden="true"
+    >
+      <path d="M4 22v-5a9 9 0 0118 0v5" />
+      <path d="M2 2h20v6H2z" />
+    </svg>
+  );
+}
+
+export function SteamIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 6v6l4 2" />
+    </svg>
+  );
+}
+
+export function BraveIcon({ className = 'w-5 h-5', ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+      aria-hidden="true"
+    >
+      <polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8" />
     </svg>
   );
 }

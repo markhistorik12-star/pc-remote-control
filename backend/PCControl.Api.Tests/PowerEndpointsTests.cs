@@ -72,6 +72,20 @@ public class PowerEndpointsTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
+    public async Task SuspendEndpoint_WithValidToken_ReturnsSuccess()
+    {
+        var client = _factory.CreateClient();
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "VALID123");
+        
+        var response = await client.PostAsJsonAsync("/api/suspend", new { });
+        
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        var result = await response.Content.ReadFromJsonAsync<ApiResponse>();
+        Assert.NotNull(result);
+        Assert.True(result.Success);
+    }
+
+    [Fact]
     public async Task ShutdownEndpoint_WithoutToken_ReturnsUnauthorized()
     {
         var client = _factory.CreateClient();
@@ -91,6 +105,7 @@ public class PowerEndpointsTests : IClassFixture<WebApplicationFactory<Program>>
         public void Shutdown() { }
         public void Restart() { }
         public void LockWorkstation() { }
+        public void Suspend() { }
         public bool StartApp(string appName) => true;
         public bool CloseApp(string appName) => true;
     }

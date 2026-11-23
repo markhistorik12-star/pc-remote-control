@@ -45,5 +45,18 @@ public static class PowerEndpoints
                 return Results.Problem(ex.Message);
             }
         });
+
+        app.MapPost("/api/suspend", (IProcessService processService) =>
+        {
+            try
+            {
+                processService.Suspend();
+                return Results.Ok(new ApiResponse(true, "Suspend initiated"));
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        });
     }
 }

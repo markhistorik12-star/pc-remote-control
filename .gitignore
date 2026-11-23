@@ -1,15 +1,39 @@
-# Ignore .NET compiled files
+# Ignore everything in the repository root except essential project files and folders
+/*
+# Keep the scripts folder (it contains useful helper scripts)
+!/scripts/
+# Keep the backend source (including publish output) and any source folders
+!/backend/
+!/src/
+# Keep key configuration and source files
+!/README.md
+!/appsettings.json
+!/TokenVerifier.cs
+# Keep any other directories that contain code (e.g., TokenVerifier folder if exists)
+!/TokenVerifier/
+# Keep .gitignore itself
+!.gitignore
+# Keep .gitattributes if present (optional)
+!.gitattributes
+# Keep any hidden configuration files you may need (e.g., .env)
+!.env
+# Keep VS Code settings if you want them tracked (optional)
+!.vscode/
+# Keep typical .NET build artefacts ignored already
 /bin/
 /obj/
-
-# Ignore VS Code settings
-.vscode/
-
-# Ignore environment variables
-.env
-
-# Ignore Log files
+# Ignore log files
 *.log
+# Ignore generated binaries and packages
+*.apk
+*.exe
+# Ignore node_modules and other dependency directories
+node_modules/
+# Ignore other temporary files
+*.tmp
+*.bak
 
-# Ignore ROSA generated files
-*.rosaproj.user
+# Hide text and markdown files (except README)
+*.txt
+*.md
+!README.md

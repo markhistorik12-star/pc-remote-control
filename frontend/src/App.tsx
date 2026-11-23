@@ -4,7 +4,7 @@ import PowerButtons from './components/PowerButtons';
 import AppList from './components/AppList';
 import SettingsModal from './components/SettingsModal';
 import { useSettings } from './hooks/useSettings';
-import { shutdown, restart, lock, openApp, closeApp, testConnection } from './services/api';
+import { shutdown, restart, lock, suspend, openApp, closeApp, testConnection } from './services/api';
 import { AlertTriangleIcon, CheckCircleIcon } from './components/ui/Icons';
 
 export default function App() {
@@ -56,7 +56,7 @@ export default function App() {
     }
   };
 
-  const handlePowerAction = async (action: 'shutdown' | 'restart' | 'lock') => {
+  const handlePowerAction = async (action: 'shutdown' | 'restart' | 'lock' | 'suspend') => {
     if (!settings.ip || !settings.token) {
       showToast('Configura IP y Token primero', 'error');
       setShowSettings(true);
@@ -73,6 +73,9 @@ export default function App() {
         break;
       case 'lock':
         result = await lock(settings.ip, settings.token);
+        break;
+      case 'suspend':
+        result = await suspend(settings.ip, settings.token);
         break;
     }
     showToast(result?.message || 'Acción completada', result?.success ? 'success' : 'error');
@@ -122,7 +125,7 @@ export default function App() {
             </div>
             <button
               onClick={() => checkConnection(settings.ip, settings.token)}
-              className="text-primary hover:underline font-medium"
+              className="text-primary font-medium"
             >
               {connectionStatus === 'connected'
                 ? 'Conectado'

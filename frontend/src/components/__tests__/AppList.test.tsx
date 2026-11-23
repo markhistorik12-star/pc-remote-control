@@ -13,9 +13,11 @@ describe('AppList', () => {
     expect(screen.getAllByText('Bloc de notas')[0]).not.toBeNull();
     expect(screen.getAllByText('Calculadora')[0]).not.toBeNull();
     expect(screen.getAllByText('Paint')[0]).not.toBeNull();
-    // 8 common apps, each with Abrir and Cerrar
-    expect(screen.getAllByText('Abrir')).toHaveLength(8);
-    expect(screen.getAllByText('Cerrar')).toHaveLength(8);
+    expect(screen.getAllByText('Steam')[0]).not.toBeNull();
+    expect(screen.getAllByText('Brave')[0]).not.toBeNull();
+    // 10 common apps, each with Abrir and Cerrar
+    expect(screen.getAllByText('Abrir')).toHaveLength(10);
+    expect(screen.getAllByText('Cerrar')).toHaveLength(10);
   });
 
   it('calls onOpenApp when Abrir button for an app is clicked', () => {

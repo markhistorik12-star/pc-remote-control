@@ -1,22 +1,22 @@
 import { SettingsIcon } from './ui/Icons';
 
-
 interface HeaderProps {
   onSettingsClick: () => void;
 }
 
 export default function Header({ onSettingsClick }: HeaderProps) {
   return (
-    <header className="flex justify-between items-center mb-6 sm:mb-8">
-      <h1 className="text-2xl sm:text-3xl font-heading font-semibold text-foreground/90 tracking-tight">
-        PC Remote
-      </h1>
+    <header className="flex justify-between items-end mb-6 pt-2">
+      <div>
+        <p className="text-[11px] uppercase tracking-[0.18em] text-primary mb-0.5">Control remoto</p>
+        <h1 className="text-3xl font-bold text-foreground tracking-tight">PC Remote</h1>
+      </div>
       <button
         onClick={onSettingsClick}
-        className="p-3 rounded-xl bg-card/80 border border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="w-11 h-11 flex items-center justify-center rounded-xl border border-border bg-card active:bg-muted"
         aria-label="Configuración"
       >
-        <SettingsIcon className="w-5 h-5 text-muted-foreground/80" />
+        <SettingsIcon className="w-5 h-5 text-muted-foreground" />
       </button>
     </header>
   );

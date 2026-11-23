@@ -64,11 +64,3 @@ G:\Programacion\Remote control PC\backend\PCControl.Api\obj\Release\net8.0\win-x
 G:\Programacion\Remote control PC\backend\PCControl.Api\obj\Release\net8.0\win-x64\ref\PCControl.Api.dll
 G:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\appsettings.Development.json
 G:\Programacion\Remote control PC\backend\PCControl.Api\obj\Release\net8.0\win-x64\PCControl.Api.sourcelink.json
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\publish\web.config
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\web.config
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\appsettings.Development.json
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\appsettings.json
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\PCControl.Api.staticwebassets.endpoints.json
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\publish\appsettings.Development.json
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\publish\appsettings.json
-g:\Programacion\Remote control PC\backend\PCControl.Api\bin\Release\net8.0\win-x64\publish2\publish\PCControl.Api.staticwebassets.endpoints.json

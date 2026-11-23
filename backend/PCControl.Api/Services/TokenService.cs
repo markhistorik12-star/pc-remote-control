@@ -17,9 +17,8 @@ public class TokenService : ITokenService
 
     public TokenService(IConfiguration configuration)
     {
-        // Apuntar al archivo appsettings.json original, no al de bin/
-        _configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "appsettings.json");
-        _configPath = Path.GetFullPath(_configPath);
+        // Apuntar al archivo appsettings.json junto al ejecutable
+        _configPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
         
         var tokenFromConfig = configuration["Token"];
         if (!string.IsNullOrEmpty(tokenFromConfig))

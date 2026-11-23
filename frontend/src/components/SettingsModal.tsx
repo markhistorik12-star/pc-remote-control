@@ -128,7 +128,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
                 autoComplete="off"
                 spellCheck={false}
                 className={`
-                  w-full pl-11 pr-4 py-3 rounded-xl border bg-white dark:bg-slate-900
+                  w-full pl-11 pr-4 py-3 rounded-xl border bg-input
                   text-foreground placeholder:text-muted-foreground
                   transition-all duration-200
                   focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:border-transparent
@@ -160,7 +160,7 @@ export default function SettingsModal({ isOpen, onClose, settings, onSave }: Set
                 autoComplete="off"
                 spellCheck={false}
                 className={`
-                  w-full pl-11 pr-12 py-3 rounded-xl border bg-white dark:bg-slate-900
+                  w-full pl-11 pr-12 py-3 rounded-xl border bg-input
                   text-foreground placeholder:text-muted-foreground
                   transition-all duration-200
                   focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:border-transparent

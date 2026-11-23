@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj": {}
+    "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj": {}
   },
   "projects": {
-    "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj": {
+    "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
+        "projectUniqueName": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
         "projectName": "PCControl.Api.Tests",
-        "projectPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
+        "projectPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\obj\\",
+        "outputPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -27,8 +27,8 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {
-                "projectPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj"
+              "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {
+                "projectPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj"
               }
             }
           }
@@ -117,14 +117,14 @@
         }
       }
     },
-    "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {
+    "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
+        "projectUniqueName": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
         "projectName": "PCControl.Api",
-        "projectPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
+        "projectPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\obj\\",
+        "outputPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"

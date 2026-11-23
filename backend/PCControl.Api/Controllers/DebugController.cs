@@ -51,8 +51,8 @@ namespace PCControl.Api.Controllers
             }
             
             // Log for debugging
-            Console.WriteLine($"[DEBUG] Token received: {token}");
-            Console.WriteLine($"[DEBUG] Token expected: FKALFV");
+            // Console.WriteLine($"[DEBUG] Token received: {token}");
+            // Console.WriteLine($"[DEBUG] Token expected: FKALFV");
             
             if (token == "FKALFV")
             {

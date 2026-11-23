@@ -127,6 +127,7 @@ public class AppEndpointsTests : IClassFixture<WebApplicationFactory<Program>>
         public void Shutdown() { }
         public void Restart() { }
         public void LockWorkstation() { }
+        public void Suspend() { }
         
         public bool StartApp(string appName) 
         {
