@@ -19,8 +19,8 @@ public class TokenAuthMiddleware
     {
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
         
-        // Skip auth for health check or root
-        if (path == "/" || path == "/health")
+        // Skip auth for health check, root, and debug endpoints
+        if (path == "/" || path == "/health" || path.StartsWith("/api/debug/"))
         {
             await _next(context);
             return;

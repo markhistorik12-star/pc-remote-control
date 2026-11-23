@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.13.0'
+        classpath 'com.android.tools.build:gradle:8.9.1'
         classpath 'com.google.gms:google-services:4.4.4'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -21,6 +21,13 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+    }
+    
+    // Force Java 21 for all JavaCompile tasks
+    tasks.withType(JavaCompile).configureEach {
+        options.fork = true
+        options.forkOptions.executable = "C:/Users/Acer/jdk-21.0.5_11/jdk-21.0.5+11/bin/javac.exe"
+        options.compilerArgs << "-source" << "21" << "-target" << "21"
     }
 }
 

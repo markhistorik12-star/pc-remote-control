@@ -1,0 +1,69 @@
+# 📱 APK Build Final - PC Remote
+
+## 🚀 Requisitos Previos
+- [ ] Java 17+ instalado (verificado)
+- [ ] Android SDK configurado (local.properties creado)
+- [ ] Variables de entorno seteadas
+
+## 🔧 Paso 1: Configurar Entorno
+```powershell
+# 1. Setear variables de entorno (PowerShell)
+$env:KEYSTORE_PASSWORD = "marciogonzalez1"
+$env:KEY_PASSWORD = "marciogonzalez1"
+
+# 2. Verificar variables
+sete | findstr KEYSTORE_PASSWORD
+
+# 3. Navegar a carpeta Android
+cd frontend/android
+
+# 4. Verificar archivos clave
+ls -la app/src/main/res/xml/
+```
+
+## 🚀 Paso 2: Construir APK
+```powershell
+# 1. Limpiar builds anteriores
+./gradlew clean
+
+# 2. Construir APK release
+./gradlew assembleRelease --stacktrace
+
+# 3. Verificar salida
+ls -la app/build/outputs/apk/release/
+
+# 4. Verificar firma
+jarsigner -verify -verbose app/build/outputs/apk/release/app-release.apk
+```
+
+## 📱 Paso 3: Instalar en Celular
+```powershell
+# 1. Instalar APK
+adb install -r app/build/outputs/apk/release/app-release.apk
+
+# 2. Abrir app en celular
+# Desconectar/reconectar USB si es necesario
+```
+
+## 🔍 Solución Network Security (Ya Implementada)
+- Network config ahora incluye timestamp único por build
+- Soluciona problema de actualizaciones en Android
+- Permite tráfico claro solo para IP local (192.168.0.10)
+
+## 📋 Si Algo Falla
+```powershell
+# Recrear keystore si es necesario
+keytool -genkey -v -keystore release.keystore -storetype JKS -keyalg RSA -keysize 2048 -storepass $env:KEYSTORE_PASSWORD -keypass $env:KEY_PASSWORD -validity 36500 -dname "CN=PC Remote, OU=Remote Control, O=PCControl, L=Remote, ST=Control, C=ES"
+
+# Borrar builds anteriores
+delete /q "app/build"
+
+# Reconstruir
+./gradlew assembleRelease
+```
+
+## 🎯 Resultado Esperado
+- APK: `app-release.apk` (~15MB)
+- Firma: SHA256 con RSA
+- Network: Config dinámico funcionando
+- App lista para uso diario

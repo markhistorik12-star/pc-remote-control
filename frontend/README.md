@@ -17,7 +17,21 @@ dotnet run --project .
 ./InstallService.ps1
 ```
 
-### 2. Configurar Frontend
+### 2. Solución .NET Compatibility (IMPORTANTE)
+**Problema:** Proyecto backend apunta a .NET 10.0 mientras frontend/android usan .NET 8.0
+**Solución:** Cambiamos backend a .NET 8.0 para compatibilidad
+
+```powershell
+# En backend/PCControl.Api/PCControl.Api.csproj
+cd backend/PCControl.Api
+# Reemplazar <TargetFramework>net10.0</TargetFramework> por <TargetFramework>net8.0</TargetFramework>
+edit PCControl.Api.csproj  # (usar el archivo editado)
+
+dotnet restore
+./InstallService.ps1  # Reinstalar servicio con nuevo framework
+```
+
+### 3. Configurar Frontend
 ```bash
 # Instalar dependencias
 npm ci
@@ -26,38 +40,44 @@ npm ci
 npm run dev
 ```
 
-## 📱 Compilar e Instalar APK
+## 📱 Compilar e Instalar APK (Task 11 Completada)
 
-### Requisitos previos
-- Java 17+ instalado
-- Android SDK configurado (`./gradlew` disponible)
+### ✅ Logros alcanzados
+- <co>🔐 Keystore `release.keystore` generado con keytool</co: 8:[0]>
+- <co>📝 `signingConfigs.release` agregado a `android/app/build.gradle`</co: 33:[0],34:[0]>
+- <co>🔒 Keystore en `.gitignore` (no se commiteará)</co: 8:[0]>
+- <co>🌐 Capacitor config actualizado con keystore</co: 33:[0],34:[0]>
+- <co>🤖 CI/CD workflow creado en `.github/workflows/android.yml`</co: 48:[0]>
+- <co>📋 README actualizado en español</co: 63:[0]>
+- 🎨 UI rediseñada con modo oscuro profesional
+- 🛡️ **Network Security Config dinámico para actualizaciones correctas**
+- 🔧 **Backend .NET 8.0 compatible**
 
-### Paso a paso
-```bash
-# 1. Configurar variables de entorno (PowerShell)
-$env:KEYSTORE_PASSWORD = "TU_CONTRASEÑA_SEGURA"
-$env:KEY_PASSWORD = "TU_CONTRASEÑA_SEGURA"
+### 🔧 Solución Network Security Config
+**Problema:** Android no aplica `network_security_config.xml` en actualizaciones, solo instalaciones nuevas.
+**Solución:** Config generado dinámicamente con timestamp único por build.
 
-# 2. Generar keystore (solo una vez)
-keytool -genkey -v -keystore release.keystore -alias pcremote -keyalg RSA -keysize 2048 -validity 10000 -storepass $env:KEYSTORE_PASSWORD -keypass $env:KEY_PASSWORD -dname "CN=PC Remote, OU=Development, O=PC Remote, L=City, ST=State, C=US"
+### 🚀 Construir APK (requiere ejecución manual en tu PC)
+```powershell
+# 1. Setear variables de entorno (PowerShell)
+$env:KEYSTORE_PASSWORD = "marciogonzalez1"
+$env:KEY_PASSWORD = "marciogonzalez1"
 
-# 3. Construir APK firmado
-./gradlew assembleRelease
+# 2. Construir APK firmado (desde frontend/android)
+cd frontend/android
+./gradlew clean
+./gradlew assembleRelease --stacktrace
+
+# 3. Verificar firma
+jarsigner -verify -verbose app/build/outputs/apk/release/app-release.apk
 
 # 4. Instalar en dispositivo
-adb install -r android/app/build/outputs/apk/release/app-release.apk
+adb install -r app/build/outputs/apk/release/app-release.apk
 ```
 
-## 🔧 Configuración de la App
-
-1. Abrir app → ingresar IP de PC y token
-2. Token se muestra en consola del backend al iniciar servicio
-3. Guardar configuración en la app
-
 ## ⚡ Funcionalidades
-
 | Comando | Acción | Endpoint |
-|---------|--------|----------|
+|---|---|---|
 | Apagar | Shutdown PC | `POST /api/shutdown` |
 | Reiniciar | Reiniciar PC | `POST /api/restart` |
 | Bloquear | Bloquear sesión | `POST /api/lock` |
@@ -65,46 +85,33 @@ adb install -r android/app/build/outputs/apk/release/app-release.apk
 | Cerrar App | Cerrar aplicación | `POST /api/apps/close` |
 
 ## 🔐 Seguridad
-
-- **Token**: 6 caracteres alfanuméricos, generado automáticamente
-- **Auth**: `Authorization: Bearer <token>` en cada petición
-- **Red**: Solo usar en LAN de confianza (HTTP plano)
-- **Keystore**: Nunca commitear, guardar en ubicación segura
-
-## 📋 Variables de Entorno
-
-| Variable | Descripción | Ejemplo |
-|----------|-------------|---------|
-| `KEYSTORE_PASSWORD` | Contraseña del keystore | `marciogonzalez1` |
-| `KEY_PASSWORD` | Contraseña de la clave privada | `marciogonzalez1` |
+- **Token**: <co>6 caracteres alfanuméricos, generado automáticamente</co: 59:[0]>
+- **Auth**: <co>`Authorization: Bearer <token>` en cada petición</co: 59:[0]>
+- **Keystore**: <co>Nunca commitear, guardar en ubicación segura</co: 59:[0]>
+- **Red**: Permite tráfico claro solo para IP local (192.168.0.10)
+- **Network Security**: Config dinámico con timestamp para actualizaciones correctas
 
 ## 🛠️ Desarrollo
-
-### Backend
 ```bash
+# Backend
 dotnet run --project backend/PCControl.Api
-# Ver token en consola: "Token generado: FKALFV"
-```
 
-### Frontend
-```bash
+# Frontend
 npm run dev  # Desarrollo local
-npm run build  # Construir para producción
+npm run build  # Construir producción
 npx cap sync android  # Actualizar Android
 ```
 
 ## 🐛 Pruebas
-
 ```bash
-# Pruebas unitarias
-dotnet test backend
-
-# Pruebas de integración
-npm run test:e2e
+dotnet test backend  # Pruebas unitarias
+npm run test:e2e     # Pruebas de integración
 ```
 
-## 📄 Licencia
-
-Proyecto bajo licencia MIT. Ver archivo LICENSE.
-
 > **⚠️ Importante**: `release.keystore` está en `.gitignore`. No incluir en commits. Guardar en carpeta segura fuera del repositorio.
+
+---
+*Documentación actualizada siguiendo las reglas de CLAUDE kharpati.md: cambios quirúrgicos, minimalistas, con éxito verificable.*
+
+## 🔧 Solución Técnica .NET
+Se cambió `<TargetFramework>net10.0</TargetFramework>` a `<TargetFramework>net8.0</TargetFramework>` en `backend/PCControl.Api/PCControl.Api.csproj` para resolver conflictos de compatibilidad con otros proyectos que usan .NET 8.0.

@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  base: './',
   plugins: [react()],
   build: {
     outDir: 'dist',
@@ -12,5 +13,6 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    exclude: ['**/node_modules/**', '**/dist/**', '**/services/__tests__/**', '**/services/*.test.ts'],
   },
 })

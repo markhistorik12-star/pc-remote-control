@@ -11,6 +11,8 @@ async function fetchWithAuth(
 ): Promise<ApiResponse> {
   const url = `http://${ip}:5000${endpoint}`;
   
+  console.log('[API] Request:', { url, method: 'POST', endpoint, hasBody: !!body });
+  
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -21,14 +23,19 @@ async function fetchWithAuth(
       body: body ? JSON.stringify(body) : undefined,
     });
 
+    console.log('[API] Response:', { status: response.status, ok: response.ok, url });
+
     const data = await response.json() as ApiResponse;
+    
+    console.log('[API] Response data:', data);
     
     if (!response.ok) {
       return { success: false, message: data.message || `HTTP ${response.status}` };
     }
 
     return data;
-  } catch {
+  } catch (error) {
+    console.error('[API] Error:', error);
     return { success: false, message: 'No se pudo conectar con el PC. Verifica que esté encendido y en la misma red.' };
   }
 }

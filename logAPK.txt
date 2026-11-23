@@ -1,0 +1,557 @@
+estConnection"
+11-05 15:16:42.430  1344  3204 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:16:44.214  1344  3204 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:17:06.653  1344  4708 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:17:09.791  1344  3204 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:17:22.806  1344  2685 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:17:27.258  1344  3204 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:17:44.807  1344  5340 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:17:50.117  1344  1391 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:18:08.360  1344  3204 W ActivityTaskManager: callingPackage for (uid=-1, pid=-1) has no WPC
+11-05 15:32:38.157  1344  1578 W ActivityTaskManager: callingPackage for (uid=-1, pid=0) has no WPC
+11-05 15:32:39.842  1344  1578 W ActivityTaskManager: callingPackage for (uid=-1, pid=0) has no WPC
+11-05 15:34:45.587  4618  4618 I SDHMS:PowerAnomaly:d: MSG_TYPE_FOREGROUND_APP:: "VER":2,"IDX":31,"PCK":["com.instagram.android","com.google.android.youtube","com.twitter.android","com.sec.android.app.sbrowser","com.sec.android.app.launcher","com.brave.browser","ANDROID_SYSTEM","com.google.android.googlequicksearchbox","com.android.chrome","Null","com.google.android.packageinstaller","com.sec.android.app.myfiles","Null","com.facebook.katana","com.discord","com.whatsapp","Null","Null","Null","com.google.android.gm","com.sec.android.app.clockpackage","Null","com.android.settings.intelligence","com.android.vending","com.sec.android.gallery3d","com.google.android.permissioncontroller","com.android.intentresolver","com.samsung.android.app.smartcapture","Null","Null","com.spotify.music"],"PVER":["454.0.0.54.77","21.43.523","12.39.0-prod.01","30.0.5.27","17.5.05.29","1.98.63","None","17.70.11.ve.arm64","156.0.8078.79","None","17-15481065","15.6.03.3","None","585.0.0.47.54","348.10 - Stable","2.26.42.74","None","None","None","2026.10.19.1005695425.Release","12.5.60.27","None","16","53.8.11-34 [0] [PR] 1005778592","15.8.00.84","aml_372527060","2021-11","6.1.80.31","None","None","9.1.94.1929"],"TPWR":[2151906,589142,381761,293479,142870,95817,45071,65946,45553,27709,10776,14095,10525,27577,7686,9939,12900,5933,6763,14881,2171,8075,2470,1037,3163,189,2330,247,3748,3294,2671],"APWR":[332,271,246,243,302,265,302,545,567,449,408,422,217,675,532,361,516,485,286,892,488,807,296,414,813,680,762,444,674,539,1201],"BRN":[94,55,71,71,72,85,74,77,75,77,77,78,77,114,77,74,78,60,77,80,56,77,56,77,77,75,77,77,77,80,92],"DUR":[23313,7799,5566,4343,1702,1299,537,435,289,222,95,120,174,147,52,99,90,44,85,60,16,36,30,9,14,1,11,2,20,22,8]
+11-05 15:38:41.089  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:38:41.101  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:38:41.102  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1648, captureOrientation = 1
+11-05 15:38:41.175  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:38:41.175  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:39:11.177  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:39:11.190  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:39:11.191  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1649, captureOrientation = 1
+11-05 15:39:11.263  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:39:11.263  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:39:41.265  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:39:41.277  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:39:41.277  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1650, captureOrientation = 1
+11-05 15:39:41.349  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:39:41.349  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:40:11.351  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:40:11.371  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:40:11.371  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1651, captureOrientation = 1
+11-05 15:40:11.435  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:40:11.435  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:40:41.437  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:40:41.457  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:40:41.457  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1652, captureOrientation = 1
+11-05 15:40:41.520  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:40:41.520  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:41:11.522  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:41:11.533  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:41:11.533  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1653, captureOrientation = 1
+11-05 15:41:11.604  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:41:11.604  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:41:41.607  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:41:41.632  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:41:41.632  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 88, count = 1654, captureOrientation = 0
+11-05 15:41:41.706  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:41:41.706  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:41:47.596 25069 25069 I [PASS][SPAF]PolicyUtil: getAutofillPolicy - AUTOFILL_APC version : 1790641255218
+11-05 15:41:47.618 25069 25149 I [PASS][SPAF]AutofillService: Personal info detection by APC lib is currently turned off
+11-05 15:41:49.384   929  4713 I audio_hw_proxy2: deep_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D103p
+11-05 15:41:49.444   929  4713 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 15:41:49.444   929  4713 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:41:49.445   929  4713 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:41:49.475   929  4713 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:41:49.476   929  4713 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:42:04.614   929 31003 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:42:04.615   929 31003 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:42:04.618   929 31003 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:42:04.618   929 31003 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:42:04.702   929 31003 I audio_hw_proxy_route: proxy-enable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) with SR(48000) PF(0) CC(2)                     PdSz(480) PdCnt(4) stop-thrsld(0xffffffff) is opened & written (pd-sz 1920 x cnt 4)
+11-05 15:42:04.706   929 31003 I audio_hw_proxy2: deep_out-proxy_open_playback_stream: The opened PCM Device is /dev/snd/pcmC0D103p with Sampling_Rate(48000) PCM_Format(3)  PCM_start-threshold(960) PCM_stop-threshold(3840), use_mmap(false)
+11-05 15:42:11.709  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:42:11.724  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:42:11.724  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1655, captureOrientation = 1
+11-05 15:42:11.795  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:42:11.795  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:42:41.799  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:42:41.817  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:42:41.817  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1656, captureOrientation = 1
+11-05 15:42:41.894  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:42:41.894  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:43:11.896  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:43:11.919  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:43:11.919  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1657, captureOrientation = 1
+11-05 15:43:11.990  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:43:11.990  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:43:41.993  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:43:42.014  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:43:42.014  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1658, captureOrientation = 1
+11-05 15:43:42.087  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:43:42.087  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:44:12.090  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:44:12.106  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:44:12.106  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1659, captureOrientation = 1
+11-05 15:44:12.168  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:44:12.169  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:44:41.522   929  4713 I audio_hw_proxy2: deep_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D103p
+11-05 15:44:41.590   929  4713 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 15:44:41.591   929  4713 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:44:41.592   929  4713 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:44:41.624   929  4713 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:44:41.627   929  4713 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:44:42.171  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:44:42.184  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:44:42.184  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1660, captureOrientation = 1
+11-05 15:44:42.228  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:44:42.228  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:44:43.513   929 31003 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:44:43.514   929 31003 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:44:43.518   929 31003 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:44:43.518   929 31003 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:44:43.593   929 31003 I audio_hw_proxy_route: proxy-enable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) with SR(48000) PF(0) CC(2)                     PdSz(480) PdCnt(4) stop-thrsld(0xffffffff) is opened & written (pd-sz 1920 x cnt 4)
+11-05 15:44:43.595   929 31003 I audio_hw_proxy2: deep_out-proxy_open_playback_stream: The opened PCM Device is /dev/snd/pcmC0D103p with Sampling_Rate(48000) PCM_Format(3)  PCM_start-threshold(960) PCM_stop-threshold(3840), use_mmap(false)
+11-05 15:45:12.231  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:45:12.258  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:45:12.258  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1661, captureOrientation = 1
+11-05 15:45:12.353  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:45:12.353  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:45:42.355  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:45:42.386  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:45:42.386  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1662, captureOrientation = 1
+11-05 15:45:42.463  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:45:42.463  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:46:12.466  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:46:12.481  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:46:12.481  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1663, captureOrientation = 1
+11-05 15:46:12.553  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:46:12.553  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:46:42.555  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:46:42.569  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:46:42.569  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1664, captureOrientation = 1
+11-05 15:46:42.642  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:46:42.642  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:47:12.644  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:47:12.655  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:47:12.655  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1665, captureOrientation = 1
+11-05 15:47:12.722  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:47:12.723  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:47:42.724  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:47:42.748  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:47:42.748  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 88, count = 1666, captureOrientation = 0
+11-05 15:47:42.807  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:47:42.807  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:47:47.015   929  1845 I audio_hw_proxy2: deep_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D103p
+11-05 15:47:47.076   929  1845 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 15:47:47.077   929  1845 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:47:47.077   929  1845 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:47:47.110   929  1845 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:47:47.113   929  1845 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:47:53.381   929 31003 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:47:53.382   929 31003 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:47:53.383   929 31003 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:47:53.383   929 31003 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:47:53.466   929 31003 I audio_hw_proxy_route: proxy-enable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) with SR(48000) PF(0) CC(2)                     PdSz(480) PdCnt(4) stop-thrsld(0xffffffff) is opened & written (pd-sz 1920 x cnt 4)
+11-05 15:47:53.467   929 31003 I audio_hw_proxy2: deep_out-proxy_open_playback_stream: The opened PCM Device is /dev/snd/pcmC0D103p with Sampling_Rate(48000) PCM_Format(3)  PCM_start-threshold(960) PCM_stop-threshold(3840), use_mmap(false)
+11-05 15:47:57.172  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263675485, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:57.326  3033 24679 I ResultDataManager: Results: keys=SUGGESTED_APPS(ql=0)(r=2), SUGGESTED_TAG(ql=0)(r=4), SUGGESTED_DIRECTORY(ql=0)(r=6), HISTORY_KEYWORD(ql=0)(r=7)score=[{SUGGESTED_APPS=0, SUGGESTED_TIPCARD=0, HOT_WORDS=0, SUGGESTED_DIRECTORY=0, HISTORY_KEYWORD=0, SUGGESTED_TAG=0}]
+11-05 15:47:57.640  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263676463, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:57.670  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263676525, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:57.715  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263676687, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:57.824  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263677040, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:58.234  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263678403, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:58.799  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263680818, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:58.817  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263680850, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:47:58.842  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 263680905, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:48:12.808  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:48:12.822  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:48:12.822  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1667, captureOrientation = 1
+11-05 15:48:12.887  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:48:12.887  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:48:28.592   929  4713 I audio_hw_proxy2: deep_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D103p
+11-05 15:48:28.659   929  4713 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 15:48:28.663   929  4713 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:48:28.664   929  4713 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:48:28.692   929  4713 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:48:28.693   929  4713 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:48:32.507   929 31003 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:48:32.508   929 31003 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:48:32.510   929 31003 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:48:32.510   929 31003 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:48:32.603   929 31003 I audio_hw_proxy_route: proxy-enable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) with SR(48000) PF(0) CC(2)                     PdSz(480) PdCnt(4) stop-thrsld(0xffffffff) is opened & written (pd-sz 1920 x cnt 4)
+11-05 15:48:32.604   929 31003 I audio_hw_proxy2: deep_out-proxy_open_playback_stream: The opened PCM Device is /dev/snd/pcmC0D103p with Sampling_Rate(48000) PCM_Format(3)  PCM_start-threshold(960) PCM_stop-threshold(3840), use_mmap(false)
+11-05 15:48:42.889  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:48:42.900  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:48:42.900  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1668, captureOrientation = 1
+11-05 15:48:42.970  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:48:42.970  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:49:12.974  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:49:12.992  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:49:12.992  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1669, captureOrientation = 1
+11-05 15:49:13.049  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:49:13.049  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:49:35.010 29249 29249 I [PASS][SPAF]PolicyUtil: getAutofillPolicy - AUTOFILL_APC version : 1790641255218
+11-05 15:49:35.036 29249 29270 I [PASS][SPAF]AutofillService: Personal info detection by APC lib is currently turned off
+11-05 15:49:41.771   929 22906 I audio_hw_proxy2: deep_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D103p
+11-05 15:49:41.834   929 22906 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 15:49:41.835   929 22906 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:49:41.836   929 22906 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:49:41.865   929 22906 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:49:41.868   929 22906 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:49:43.050  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:49:43.065  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:49:43.065  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 88, count = 1670, captureOrientation = 0
+11-05 15:49:43.112  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:49:43.112  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:49:48.140   929 31003 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:49:48.141   929 31003 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:49:48.145   929 31003 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:49:48.145   929 31003 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:49:48.241   929 31003 I audio_hw_proxy_route: proxy-enable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) with SR(48000) PF(0) CC(2)                     PdSz(480) PdCnt(4) stop-thrsld(0xffffffff) is opened & written (pd-sz 1920 x cnt 4)
+11-05 15:49:48.243   929 31003 I audio_hw_proxy2: deep_out-proxy_open_playback_stream: The opened PCM Device is /dev/snd/pcmC0D103p with Sampling_Rate(48000) PCM_Format(3)  PCM_start-threshold(960) PCM_stop-threshold(3840), use_mmap(false)
+11-05 15:49:54.270   929  1000 I audio_hw_proxy2: deep_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D103p
+11-05 15:49:54.334   929  1000 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 15:49:54.334   929  1000 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:49:54.335   929  1000 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:49:54.367   929  1000 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:49:54.369   929  1000 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:49:56.079   929 31003 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 15:49:56.081   929 31003 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 15:49:56.089   929 31003 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 15:49:56.089   929 31003 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 15:49:56.195   929 31003 I audio_hw_proxy_route: proxy-enable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) with SR(48000) PF(0) CC(2)                     PdSz(480) PdCnt(4) stop-thrsld(0xffffffff) is opened & written (pd-sz 1920 x cnt 4)
+11-05 15:49:56.202   929 31003 I audio_hw_proxy2: deep_out-proxy_open_playback_stream: The opened PCM Device is /dev/snd/pcmC0D103p with Sampling_Rate(48000) PCM_Format(3)  PCM_start-threshold(960) PCM_stop-threshold(3840), use_mmap(false)
+11-05 15:50:13.115  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:50:13.128  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:50:13.129  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1671, captureOrientation = 1
+11-05 15:50:13.194  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:50:13.194  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:50:43.199  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:50:43.214  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:50:43.214  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1672, captureOrientation = 1
+11-05 15:50:43.273  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:50:43.273  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:51:13.275  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:51:13.293  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:51:13.293  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1673, captureOrientation = 1
+11-05 15:51:13.366  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:51:13.366  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:51:43.369  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:51:43.385  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:51:43.385  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1674, captureOrientation = 1
+11-05 15:51:43.456  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:51:43.456  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:52:13.458  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:52:13.480  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:52:13.480  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1675, captureOrientation = 1
+11-05 15:52:13.552  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:52:13.552  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:52:43.554  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:52:43.571  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:52:43.571  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1676, captureOrientation = 1
+11-05 15:52:43.642  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:52:43.642  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:53:13.644  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:53:13.661  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:53:13.661  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1677, captureOrientation = 1
+11-05 15:53:13.733  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:53:13.733  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:53:34.589   948  2321 E libbinder.IPCThreadState: binder thread pool (1 threads) starved for 124 ms
+11-05 15:53:43.736  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:53:43.764  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:53:43.764  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1678, captureOrientation = 1
+11-05 15:53:43.828  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:53:43.828  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:54:13.832  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:54:13.855  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:54:13.855  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1679, captureOrientation = 1
+11-05 15:54:13.926  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:54:13.926  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:54:43.928  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:54:43.947  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:54:43.947  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1680, captureOrientation = 1
+11-05 15:54:44.019  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:54:44.019  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:55:14.022  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:55:14.045  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:55:14.045  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1681, captureOrientation = 1
+11-05 15:55:14.118  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:55:14.118  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:55:44.121  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:55:44.139  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:55:44.141  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1682, captureOrientation = 1
+11-05 15:55:44.202  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:55:44.202  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:56:14.205  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:56:14.226  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:56:14.226  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1683, captureOrientation = 1
+11-05 15:56:14.304  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:56:14.304  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:56:44.306  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:56:44.321  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:56:44.321  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1684, captureOrientation = 1
+11-05 15:56:44.396  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:56:44.396  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:57:00.458  3033 27032 I ResultDataManager: Results: keys=SUGGESTED_APPS(ql=0)(r=2), SUGGESTED_TAG(ql=0)(r=4), SUGGESTED_DIRECTORY(ql=0)(r=6), HISTORY_KEYWORD(ql=0)(r=7)score=[{SUGGESTED_APPS=0, SUGGESTED_TIPCARD=0, HOT_WORDS=0, SUGGESTED_DIRECTORY=0, HISTORY_KEYWORD=0, SUGGESTED_TAG=0}]
+11-05 15:57:14.399  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:57:14.418  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:57:14.418  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1685, captureOrientation = 1
+11-05 15:57:14.482  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:57:14.482  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:57:44.485  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:57:44.504  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:57:44.504  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1686, captureOrientation = 1
+11-05 15:57:44.575  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:57:44.575  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:58:14.577  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:58:14.594  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:58:14.594  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1687, captureOrientation = 1
+11-05 15:58:14.668  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:58:14.668  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:58:44.684  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:58:44.699  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:58:44.699  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1688, captureOrientation = 1
+11-05 15:58:44.753  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:58:44.754  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:58:55.244  1152 17902 E libbinder.IPCThreadState: attemptIncStrongHandle(12): Not supported
+11-05 15:58:55.244  1152 17907 E libbinder.IPCThreadState: attemptIncStrongHandle(13): Not supported
+11-05 15:58:59.518 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264119630, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.532 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264119646, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.533 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264119647, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.538 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264119651, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.544 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264119658, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.555 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264119671, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.737 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120873, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120876, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120880, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120881, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120883, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120884, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120886, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120888, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.738 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120890, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.739 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120891, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.739 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120893, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.739 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264120894, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121096, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121098, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121099, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121100, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121101, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121102, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121104, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121106, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121107, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:58:59.767 17691 30574 E libbinder.IPCThreadState: Binder transaction failure. id: 264121108, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 15:59:01.335  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264127615, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 15:59:14.759  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:59:14.775  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:59:14.775  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1689, captureOrientation = 1
+11-05 15:59:14.843  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:59:14.843  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 15:59:44.845  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 15:59:44.864  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 15:59:44.864  1344  7218 D mAFPC_ABC: [READ] w = 2340, h = 1080, s = 28, f = 4, s_size = 10229760, luminance = 88, count = 1690, captureOrientation = 1
+11-05 15:59:44.936  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 15:59:44.937  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:00:14.939  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:00:14.956  1344  7218 D mAFPC_ABC: [READ] luminance = 88
+11-05 16:00:14.956  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 88, count = 1691, captureOrientation = 0
+11-05 16:00:15.032  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:00:15.032  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:00:37.821  1344  1578 W ActivityTaskManager: callingPackage for (uid=-1, pid=0) has no WPC
+11-05 16:00:39.905   929 26205 I audio_hw_proxy2: deep_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D103p
+11-05 16:00:39.967   929 26205 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 16:00:39.970   929 26205 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 16:00:39.971   929 26205 V audio_route: ctl : Skip to set : "Left Digital PCM Volume" value "817"
+11-05 16:00:39.997   929 26205 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 16:00:39.998   929 26205 V audio_route: ctl : Skip to set : "Left PCM Source" value "DSP"
+11-05 16:00:57.408  2586  2956 I VoIpEngineProxy: GetNetworkInfo:Sending IPC_IMS_GET_NET_INFO
+11-05 16:00:57.409  2586  2956 I OemIpcHandler: IPC counter[16]
+11-05 16:00:57.454  2586  2956 I VoIpEngineProxy: NotiInfo:Sending IPC_IMS_INFO Noti
+11-05 16:00:57.454  2586  2956 I OemIpcHandler: ImsNotiInfo ImsNoti send IPC :
+11-05 16:00:57.455  2586  2956 I VoIpEngineProxy: Sending IPC_IMS_SIGNALLING
+11-05 16:00:57.455  2586  2956 I DefaultOemIPCHandler: ImsSignalingInfo: SendIpc.
+11-05 16:00:57.455  2586  2956 I OemIpcHandler: IPC counter[17]
+11-05 16:00:57.764  2586  2958 I VoIpEngineProxy: NotiInfo:Sending IPC_IMS_INFO Noti
+11-05 16:00:57.764  2586  2958 I OemIpcHandler: ImsNotiInfo ImsNoti send IPC :
+11-05 16:00:57.766  2586  2958 I VoIpEngineProxy: NotiInfo:Sending IPC_IMS_INFO Noti
+11-05 16:00:57.766  2586  2958 I OemIpcHandler: ImsNotiInfo ImsNoti send IPC :
+11-05 16:00:57.884  2586  2956 I VoIpEngineProxy: NotiInfo:Sending IPC_IMS_INFO Noti
+11-05 16:00:57.884  2586  2956 I OemIpcHandler: ImsNotiInfo ImsNoti send IPC :
+11-05 16:00:57.886  2586  2956 I VoIpEngineProxy: Sending IPC_IMS_SIGNALLING
+11-05 16:00:57.886  2586  2956 I DefaultOemIPCHandler: ImsSignalingInfo: SendIpc.
+11-05 16:00:57.886  2586  2956 I OemIpcHandler: IPC counter[18]
+11-05 16:00:57.942  2586  2586 I IpcDispatcher<1>: [Tx]: (M)IPC_IIL_CMD (S)IPC_IIL_REGISTRATION (T)NOTI l:0
+11-05 16:00:57.966  2586  2586 I IpcDispatcher<1>: [Tx]: (M)IPC_IIL_CMD (S)IPC_IIL_PREFERENCE (T)NOTI l:0
+11-05 16:00:57.971  2586  2956 I VoIpEngineProxy: Sending IPC_IMS_SIGNALLING
+11-05 16:00:57.971  2586  2956 I DefaultOemIPCHandler: ImsSignalingInfo: SendIpc.
+11-05 16:00:57.972  2586  2956 I OemIpcHandler: IPC counter[19]
+11-05 16:04:26.888   950  1146 E libbinder.IPCThreadState: binder thread pool (1 threads) starved for 114 ms
+11-05 16:04:26.893  2459  2459 D KeyguardSecSecurityContainer:   com.android.internal.widget.LockPatternUtils$WrappedCallback.$r8$lambda$vHTgf8S9M2pPCSX4meIcb9gNLK8:0
+11-05 16:04:31.677 29249 29249 I [PASS][SPAF]PolicyUtil: getAutofillPolicy - AUTOFILL_APC version : 1790641255218
+11-05 16:04:31.732  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264237706, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:04:31.734 29249 29266 I [PASS][SPAF]AutofillService: Personal info detection by APC lib is currently turned off
+11-05 16:04:39.396  1344  1578 W ActivityTaskManager: callingPackage for (uid=-1, pid=0) has no WPC
+11-05 16:10:23.885  2459  3502 I NowBarCardEffectManager: Complete state -> id:1107 Status: UPCOMING, Bayer Leverkusen vs Olympique de Marsella, startTeam=[upcoming] endTeam=[upcoming] ST[ FOL=false, GS=->, RE=false, VW=false->false, LST=0 ], ET[ FOL=true, GS=->, RE=false, VW=false->false, LST=0 ], UE=true, EM=64, EMC=64, TS=1793905823885, doc id: ambientData:sportsScore:/g/11zx6h2hv1
+11-05 16:10:24.239  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:10:24.240  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:10:24.240  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:10:24.241  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:10:24.241  2459  2459 I SportsViewDecorator: handleExpandViewAttr gameId 1107 gameEffects 64 tag OA tagValues {"gameId":1107,"status":"UPCOMING"}
+11-05 16:10:24.250  2459  2459 I SportsViewDecorator: startSportVIEffect gameId 1107 tag OA status UPCOMING gameEffects 64
+11-05 16:17:08.770  3033   768 I ResultDataManager: Results: keys=SUGGESTED_APPS(ql=0)(r=2), SUGGESTED_TAG(ql=0)(r=4), SUGGESTED_DIRECTORY(ql=0)(r=6), HISTORY_KEYWORD(ql=0)(r=7)score=[{SUGGESTED_APPS=0, SUGGESTED_TIPCARD=0, HOT_WORDS=0, SUGGESTED_DIRECTORY=0, HISTORY_KEYWORD=0, SUGGESTED_TAG=0}]
+11-05 16:17:25.959  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264264296, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:17:25.991  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264264402, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:22:52.700   929 30004 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 16:22:52.701   929 30004 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 16:22:52.768   929 30004 I audio_hw_proxy_route: proxy-enable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) with SR(48000) PF(0) CC(2)                     PdSz(480) PdCnt(4) stop-thrsld(0xffffffff) is opened & written (pd-sz 1920 x cnt 4)
+11-05 16:22:52.771   929 30004 I audio_hw_proxy2: fast_out-proxy_open_playback_stream: The opened PCM Device is /dev/snd/pcmC0D6p with Sampling_Rate(48000) PCM_Format(0)  PCM_start-threshold(384) PCM_stop-threshold(768), use_mmap(true)
+11-05 16:22:53.136   803  1458 D MtpDatabase: setDeviceProperty.d406=Windows/10.0.26300 MTPClassDriver/10.0.26100.0
+11-05 16:22:54.558 17691  1554 W FacsCacheGmsModule: kjvu: UNKNOWN: missing GRPC status in response
+11-05 16:22:56.354  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.354  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.354  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.355  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.355  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.370  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.370  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.370  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.370  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.370  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.370  2459  2459 I SportsViewDecorator: handleExpandViewAttr gameId 1107 gameEffects 64 tag NowBar tagValues {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:56.371  2459  2459 I SportsViewDecorator: startSportVIEffect gameId 1107 tag NowBar status UPCOMING gameEffects 64
+11-05 16:22:56.412   929 22906 I audio_hw_proxy2: fast_out-proxy_close_playback_stream: closed PCM Device /dev/snd/pcmC0D6p
+11-05 16:22:56.419  2459  2459 I NowBarAppSearchCardView@221: startSportVIEffectOnLockscreen gameId=1107 status=UPCOMING isExpanded=false effectsToPlay=64
+11-05 16:22:56.455   929 22906 I audio_hw_proxy_route: proxy-disable_loop_pcmnode: SPK Mute PCM Device(/dev/snd/pcmC0D107p) is stopped & closed!
+11-05 16:22:56.455   929 22906 V audio_route: ctl : Skip to set : "Right Digital PCM Volume" value "817"
+11-05 16:22:56.481   929 22906 V audio_route: ctl : Skip to set : "Right PCM Source" value "DSP"
+11-05 16:22:56.522  2123  2166 E SPPClientService: ShipBuild Binary : True
+11-05 16:22:56.536  2123  2123 E SPPClientServiceS: [SppEosChecker] Already SPP EOSed. do nothing...
+11-05 16:22:56.546  2123  2169 E SPPClientServiceS: [c] getAccountSignIn. signIn : true
+11-05 16:22:56.546  2123  2123 E SPPClientServiceS: [d] dbsc available : false - account sign-in
+11-05 16:22:56.546  2123  2123 E SPPClientServiceS: [SmpcInterface] optin: true
+11-05 16:22:56.560  2123  2193 E SPPClientServiceS: [c] getAccountSignIn. signIn : true
+11-05 16:22:56.581  2123  2201 E SPPClientServiceS: [c] getAccountSignIn. signIn : true
+11-05 16:22:56.581  2123  2123 E SPPClientServiceS: [d] dbsc available : false - account sign-in
+11-05 16:22:56.581  2123  2123 E SPPClientServiceS: [SmpcInterface] optin: true
+11-05 16:22:56.593  2123  2228 E SPPClientServiceS: [c] getAccountSignIn. signIn : true
+11-05 16:22:59.222   950  1146 E libbinder.IPCThreadState: binder thread pool (1 threads) starved for 112 ms
+11-05 16:22:59.249  2459  2459 D KeyguardSecSecurityContainer:   com.android.internal.widget.LockPatternUtils$WrappedCallback.$r8$lambda$vHTgf8S9M2pPCSX4meIcb9gNLK8:0
+11-05 16:22:59.652  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:59.652  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:59.652  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:59.653  2459  2459 I NowBarUtils: getTagValuesFromSportsCardView = {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:59.653  2459  2459 I SportsViewDecorator: handleExpandViewAttr gameId 1107 gameEffects 64 tag ENR tagValues {"gameId":1107,"status":"UPCOMING"}
+11-05 16:22:59.653  2459  2459 I SportsViewDecorator: startSportVIEffect gameId 1107 tag ENR status UPCOMING gameEffects 64
+11-05 16:23:00.506  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:00.508  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:00.664  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:00.664  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:00.665  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:00.666  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:00.667  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:03.493  3932  3932 I GoogleRestoreEndpoint: Created gRPC endpoint for service class com.google.android.apps.restore.backup.photos.apiservice.PhotosBackupApiEndpointService
+11-05 16:23:03.531  6962  7045 I Moneta::Preference-SocialDataProvider: [call] GET_UPCOMING_CONTACT_PERSON size: 0
+11-05 16:23:04.294  4089  4318 W oid.apps.photos: ClassLoaderContext classpath element checksum mismatch. expected=2587602534, found=2133853871 (DLC[];PCL[base.apk*2587602534]{PCL[/system/framework/org.apache.http.legacy.jar*3558608148]#PCL[/system/system_ext/framework/org.carconnectivity.android.digitalkey.rangingintent.jar*560278203]#PCL[/system/system_ext/framework/org.carconnectivity.android.digitalkey.secureelement.jar*3277496667]#PCL[/system/framework/com.android.location.provider.jar*1880069816]#PCL[/system/framework/com.android.media.remotedisplay.jar*1838754544]#PCL[/system_ext/framework/com.android.extensions.appfunctions.jar*1527718805]#PCL[/system_ext/framework/androidx.window.extensions.jar*3568414278]#PCL[/system_ext/framework/androidx.window.sidecar.jar*1234091387]} | DLC[];PCL[/data/app/~~RKxJ_2rMjzQc4LxQXa-e7Q==/com.google.android.apps.photos-UNaHnyEHNs-dnw9Ehnuf6g==/base.apk*2133853871]{PCL[/system/framework/org.apache.http.legacy.jar*3558608148]#PCL[/system/framework/sec_camerax_impl.jar*2884831707]#PCL[/system_ext/framework/androidx.window.extensions.jar*3568414278]#PCL[/system_ext/framework/androidx.window.sidecar.jar*1234091387]})
+11-05 16:23:05.498  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:05.500  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:05.501  1182  3339 D wrapperGPS: onUnsol: Undefined IPC sub id: 01
+11-05 16:23:06.489   950  1146 E libbinder.IPCThreadState: binder thread pool (1 threads) starved for 108 ms
+11-05 16:23:07.226   803  4424 D MtpDatabase: setDeviceProperty.d406=Windows/10.0.26300 MTPClassDriver/10.0.26100.0
+11-05 16:23:26.311  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:23:26.354  1344  7218 D mAFPC_ABC: [READ] luminance = 46
+11-05 16:23:26.354  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 46, count = 1692, captureOrientation = 0
+11-05 16:23:26.418  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:23:26.418  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:23:56.422  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:23:56.437  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:23:56.437  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1693, captureOrientation = 0
+11-05 16:23:56.487  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:23:56.487  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:24:09.071 17691 18662 I libbinder.IPCThreadState: oneway function results for code 2 on binder at 0xb400007df482fd40 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-05 16:24:09.071  3932  4300 I libbinder.IPCThreadState: oneway function results for code 2 on binder at 0xb400007df46c9510 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-05 16:24:09.073 17691 30889 I libbinder.IPCThreadState: oneway function results for code 2 on binder at 0xb400007df47cddf0 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-05 16:24:09.073 17691 19297 I libbinder.IPCThreadState: oneway function results for code 2 on binder at 0xb400007df4789de0 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-05 16:24:09.082 17691 18662 I libbinder.IPCThreadState: oneway function results for code 2 on binder at 0xb400007df47f4dc0 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-05 16:24:26.492  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:24:26.507  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:24:26.507  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1694, captureOrientation = 0
+11-05 16:24:26.555  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:24:26.555  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:24:56.559  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:24:56.586  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:24:56.586  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1695, captureOrientation = 0
+11-05 16:24:56.637  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:24:56.637  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:25:25.968   948  2321 E libbinder.IPCThreadState: binder thread pool (1 threads) starved for 103 ms
+11-05 16:25:26.641  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:25:26.674  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:25:26.675  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1696, captureOrientation = 0
+11-05 16:25:26.723  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:25:26.723  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:25:56.725  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:25:56.757  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:25:56.757  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1697, captureOrientation = 0
+11-05 16:25:56.808  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:25:56.808  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:26:17.768   948  2321 E libbinder.IPCThreadState: binder thread pool (1 threads) starved for 118 ms
+11-05 16:26:19.568  1344  1578 W ActivityTaskManager: callingPackage for (uid=-1, pid=0) has no WPC
+11-05 16:26:23.761  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264366327, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:26:23.973  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264367387, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:26:24.208  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264369588, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:26:24.523  1344  3378 E libbinder.IPCThreadState: Binder transaction failure. id: 264371086, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:26:25.595  3033  6175 I ResultDataManager: Results: keys=SUGGESTED_APPS(ql=0)(r=2), SUGGESTED_TAG(ql=0)(r=4), SUGGESTED_DIRECTORY(ql=0)(r=6), HISTORY_KEYWORD(ql=0)(r=7)score=[{SUGGESTED_APPS=0, SUGGESTED_TIPCARD=0, HOT_WORDS=0, SUGGESTED_DIRECTORY=0, HISTORY_KEYWORD=0, SUGGESTED_TAG=0}]
+11-05 16:26:25.624  5427  5466 I Finsky  : [1722] Monetization gRPC call timeout resolved: 30000 ms (dynamic: 4000 ms, base: 30000 ms)
+11-05 16:26:25.626  5427  5468 I Finsky  : [1724] Monetization gRPC call timeout resolved: 30000 ms (dynamic: 4000 ms, base: 30000 ms)
+11-05 16:26:25.717  5427  5468 I Finsky  : [1724] Monetization gRPC call timeout resolved: 30000 ms (dynamic: 4000 ms, base: 30000 ms)
+11-05 16:26:26.809  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:26:26.816  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:26:26.816  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1698, captureOrientation = 0
+11-05 16:26:26.857  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:26:26.857  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:26:28.327  1344  1578 E libbinder.IPCThreadState: Binder transaction failure. id: 264387938, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:26:28.335  1344  1587 E libbinder.IPCThreadState: Binder transaction failure. id: 264388002, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:26:28.345  1113 21928 E libbinder.IPCThreadState: Binder transaction failure. id: 264388076, cmd: BR_DEAD_REPLY (29189), error: -3 (No such process)
+11-05 16:26:28.434  1344  2023 E libbinder.IPCThreadState: Binder transaction failure. id: 264388547, cmd: BR_DEAD_REPLY (29189), error: -22 (Invalid argument)
+11-05 16:26:31.759  3033  3451 I ResultDataManager: Results: keys=SUGGESTED_APPS(ql=0)(r=2), SUGGESTED_TAG(ql=0)(r=4), SUGGESTED_DIRECTORY(ql=0)(r=6), HISTORY_KEYWORD(ql=0)(r=7)score=[{SUGGESTED_APPS=0, SUGGESTED_TIPCARD=0, HOT_WORDS=0, SUGGESTED_DIRECTORY=0, HISTORY_KEYWORD=0, SUGGESTED_TAG=0}]
+11-05 16:26:56.860  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:26:56.888  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:26:56.888  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1699, captureOrientation = 0
+11-05 16:26:56.940  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:26:56.940  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:27:18.625  7378  7378 D nativeloader: Configuring clns-9 for other apk /data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/lib/arm64:/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/jp.pxv.android
+11-05 16:27:18.732  7378  7378 D nativeloader: Load /data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a/libdatastore_shared_counter.so using class loader ns clns-9 (caller=/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk): ok
+11-05 16:27:18.749  7378  7378 D nativeloader: Load /data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a/libcrashlytics.so using class loader ns clns-9 (caller=/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!classes3.dex): ok
+11-05 16:27:18.813  7447  7447 I InternalPPController: [#GPP#] InternalPPController Construct
+11-05 16:27:18.915  7547  7547 I InternalPPController: [#GPP#] InternalPPController Construct
+11-05 16:27:19.038  7344  7648 I [SC][DEPENDENCY][LIB][Internet][RPC]: contentUri: content://com.sec.android.app.sbrowser.sync.setting.provider
+11-05 16:27:19.044  7344  7648 I [SC][DEPENDENCY][LIB][Contact][RPC]: contentUri: content://com.samsung.contacts.samsungcloudprovider
+11-05 16:27:19.049  7344  7648 I [SC][DEPENDENCY][LIB][Calendar][RPC]: contentUri: content://com.samsung.android.calendar.rpc.sync.setting.provider
+11-05 16:27:19.052  7344  7648 I [SC][DEPENDENCY][LIB][Bluetooth][RPC]: contentUri: content://com.samsung.bt.btservice.btsettingsproviderforv2
+11-05 16:27:19.053  7344  7648 I [SC][DEPENDENCY][LIB][Wi-Fi][RPC]: contentUri: content://com.android.settings.wifiprofilesetting
+11-05 16:27:19.057  7344  7648 I [SC][DEPENDENCY][LIB][ArEmoji][RPC]: contentUri: content://com.samsung.android.aremoji.home.sync
+11-05 16:27:19.061  7344  7648 I [SC][DEPENDENCY][LIB][SamsungPass][RPC]: contentUri: content://com.samsung.android.spass.sync.setting.library
+11-05 16:27:19.324  7378  7841 D vulkan  : searching for layers in '/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/lib/arm64'
+11-05 16:27:19.325  7378  7841 D vulkan  : searching for layers in '/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a'
+11-05 16:27:19.980  1152 17946 E libbinder.IPCThreadState: attemptIncStrongHandle(13): Not supported
+11-05 16:27:19.980  1152 17945 E libbinder.IPCThreadState: attemptIncStrongHandle(12): Not supported
+11-05 16:27:19.980  1152 17907 E libbinder.IPCThreadState: attemptIncStrongHandle(11): Not supported
+11-05 16:27:20.570  3033 29489 I ResultDataManager: Results: keys=SUGGESTED_APPS(ql=0)(r=2), SUGGESTED_TAG(ql=0)(r=4), SUGGESTED_DIRECTORY(ql=0)(r=6), HISTORY_KEYWORD(ql=0)(r=7)score=[{SUGGESTED_APPS=0, SUGGESTED_TIPCARD=0, HOT_WORDS=0, SUGGESTED_DIRECTORY=0, HISTORY_KEYWORD=0, SUGGESTED_TAG=0}]
+11-05 16:27:20.823  7378  7730 D nativeloader: Load /data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a/libtt_ugen_layout.so using class loader ns clns-9 (caller=/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!classes2.dex): ok
+11-05 16:27:20.870  7378  7730 D nativeloader: Load /data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a/libnms.so using class loader ns clns-9 (caller=/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!classes4.dex): ok
+11-05 16:27:21.849  7378  8228 D nativeloader: Load /data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a/libpglarmor.so using class loader ns clns-9 (caller=/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!classes2.dex): ok
+11-05 16:27:22.905  7378  7730 D nativeloader: Load /data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk!/lib/arm64-v8a/libapminsighta.so using class loader ns clns-9 (caller=/data/app/~~TjhdL_AUfKEQa0ABnc6vlA==/jp.pxv.android-RNsPC5lSS3XTKyqXHns2lA==/base.apk): ok
+11-05 16:27:26.942  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:27:26.965  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:27:26.965  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1700, captureOrientation = 0
+11-05 16:27:27.013  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:27:27.013  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
+11-05 16:27:27.375  1344  1578 W ActivityTaskManager: callingPackage for (uid=-1, pid=0) has no WPC
+11-05 16:27:29.429  5427  6284 I libbinder.IPCThreadState: oneway function results for code 2 on binder at 0xb400007df46d5e10 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-05 16:27:29.904  3033  3033 I HoneySpace.IconView: start dim animation : PC Remote
+11-05 16:27:29.919  3033  3033 I HoneySpace.IconView: end dim animation : PC Remote
+11-05 16:27:29.967  3033  3033 I HoneySpace.IconView: setIconVisible : visible-false, currentForceHideBadge-false, label-PC Remote, itemId-6086
+11-05 16:27:29.967  3033  3033 I HoneySpace.IconView: updateInvisibleState false APP_CLOSING current:0 new:2 label:PC Remote itemId:6086
+11-05 16:27:30.617  3033  3033 I HoneySpace.IconView: setIconVisible : visible-true, currentForceHideBadge-true, label-PC Remote, itemId-6086
+11-05 16:27:30.617  3033  3033 I HoneySpace.IconView: updateInvisibleState true APP_CLOSING current:2 new:0 label:PC Remote itemId:6086
+11-05 16:27:32.661  8590  8590 I [PASS][SPAF]PolicyUtil: getAutofillPolicy - AUTOFILL_APC version : 1790641255218
+11-05 16:27:32.693  8590  8681 I [PASS][SPAF]AutofillService: Personal info detection by APC lib is currently turned off
+11-05 16:27:32.866  4507  4507 I SSS:AugmentedAutofillService: onFillRequest hint: {smsOTPCode}
+11-05 16:27:33.889  4507  4507 I SSS:AugmentedAutofillService: onFillRequest hint: {smsOTPCode}
+11-05 16:27:57.015  1344  7218 D mAFPC_ABC: [READ] Start nativeDataRead : size : 1
+11-05 16:27:57.035  1344  7218 D mAFPC_ABC: [READ] luminance = 118
+11-05 16:27:57.035  1344  7218 D mAFPC_ABC: [READ] w = 1080, h = 2340, s = 8, f = 4, s_size = 10183680, luminance = 118, count = 1701, captureOrientation = 0
+11-05 16:27:57.082  1344  7218 E mAFPC_ABC: [READ] [TYPE : 0] saProcess : 0
+11-05 16:27:57.082  1344  7218 D mAFPC_ABC: [READ] END nativeDataRead
