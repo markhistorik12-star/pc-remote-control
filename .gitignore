@@ -19,6 +19,12 @@
 !.env
 # Keep VS Code settings if you want them tracked (optional)
 !.vscode/
+# Explicitly hide personal APK frontend and build/signing artifacts from GitHub
+/frontend/
+**/bin/
+**/obj/
+*.keystore
+
 # Keep typical .NET build artefacts ignored already
 /bin/
 /obj/
