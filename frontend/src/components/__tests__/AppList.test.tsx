@@ -15,9 +15,10 @@ describe('AppList', () => {
     expect(screen.getAllByText('Paint')[0]).not.toBeNull();
     expect(screen.getAllByText('Steam')[0]).not.toBeNull();
     expect(screen.getAllByText('Brave')[0]).not.toBeNull();
-    // 10 common apps, each with Abrir and Cerrar
-    expect(screen.getAllByText('Abrir')).toHaveLength(10);
-    expect(screen.getAllByText('Cerrar')).toHaveLength(10);
+    expect(screen.getAllByText('Spotify')[0]).not.toBeNull();
+    // 11 common apps, each with Abrir and Cerrar
+    expect(screen.getAllByText('Abrir')).toHaveLength(11);
+    expect(screen.getAllByText('Cerrar')).toHaveLength(11);
   });
 
   it('calls onOpenApp when Abrir button for an app is clicked', () => {

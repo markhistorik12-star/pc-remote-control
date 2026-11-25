@@ -52,6 +52,8 @@ namespace PCControl.Api
 
             builder.Services.AddSingleton<ITokenService, TokenService>();
             builder.Services.AddSingleton<IProcessService, ProcessService>();
+            builder.Services.AddSingleton<IBrowserService, BrowserService>();
+            builder.Services.AddSingleton<ISteamService, SteamService>();
 
             builder.Services.AddCors(options =>
             {
@@ -74,6 +76,8 @@ namespace PCControl.Api
 
             app.MapPowerEndpoints();
             app.MapAppEndpoints();
+            app.MapBrowserEndpoints();
+            app.MapSteamEndpoints();
 
             // Endpoints de debug
             app.MapGet("/api/debug/health", () => {

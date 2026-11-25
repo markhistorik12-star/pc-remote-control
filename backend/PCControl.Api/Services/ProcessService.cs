@@ -63,6 +63,7 @@ public class ProcessService : IProcessService
             {
                 "steam" => "steam://open/main",
                 "brave" => "brave.exe",
+                "spotify" => ResolveSpotifyPath(),
                 _ => appName
             };
 
@@ -83,17 +84,113 @@ public class ProcessService : IProcessService
     {
         try
         {
-            var processes = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(appName));
-            var anyClosed = false;
-            foreach (var process in processes)
+            var normalized = Path.GetFileNameWithoutExtension(appName).Trim().ToLowerInvariant();
+            if (string.IsNullOrEmpty(normalized))
             {
-                if (process.CloseMainWindow())
+                return false;
+            }
+
+            if (normalized is "explorer" or "control")
+            {
+                return CloseExplorerWindows();
+            }
+
+            var processNames = normalized switch
+            {
+                "calc" => new[] { "CalculatorApp", "Calculator", "calc" },
+                _ => new[] { Path.GetFileNameWithoutExtension(appName).Trim() }
+            };
+
+            var forceKill = normalized is "steam" or "spotify" or "cmd" or "powershell";
+            var matched = processNames
+                .SelectMany(Process.GetProcessesByName)
+                .ToList();
+
+            if (matched.Count == 0)
+            {
+                return false;
+            }
+
+            var anyClosed = false;
+
+            if (!forceKill)
+            {
+                foreach (var process in matched)
                 {
-                    anyClosed = true;
+                    try
+                    {
+                        if (process.MainWindowHandle != IntPtr.Zero && process.CloseMainWindow())
+                        {
+                            anyClosed = true;
+                        }
+                    }
+                    catch
+                    {
+                        // Ignore individual process access/exit errors
+                    }
                 }
+            }
+
+            if (!anyClosed)
+            {
+                foreach (var process in matched)
+                {
+                    try
+                    {
+                        if (!process.HasExited)
+                        {
+                            process.Kill(entireProcessTree: true);
+                            anyClosed = true;
+                        }
+                    }
+                    catch
+                    {
+                        // Ignore individual process access/exit errors
+                    }
+                }
+            }
+
+            foreach (var process in matched)
+            {
                 process.Dispose();
             }
+
             return anyClosed;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static string ResolveSpotifyPath()
+    {
+        var storeAlias = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "Microsoft", "WindowsApps", "Spotify.exe");
+        if (File.Exists(storeAlias)) return storeAlias;
+
+        var win32Path = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "Spotify", "Spotify.exe");
+        if (File.Exists(win32Path)) return win32Path;
+
+        return "Spotify.exe";
+    }
+
+    private static bool CloseExplorerWindows()
+    {
+        try
+        {
+            using var proc = Process.Start(new ProcessStartInfo
+            {
+                FileName = "powershell.exe",
+                Arguments = "-NoProfile -Command \"$w = (New-Object -ComObject Shell.Application).Windows(); $c = $w.Count; foreach ($win in @($w)) { $win.Quit() }; if ($c -gt 0) { exit 0 } else { exit 1 }\"",
+                UseShellExecute = false,
+                CreateNoWindow = true
+            });
+            proc?.WaitForExit(5000);
+            return proc?.ExitCode == 0;
         }
         catch
         {

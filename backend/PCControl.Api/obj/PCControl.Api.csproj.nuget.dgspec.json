@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {}
+    "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {}
   },
   "projects": {
-    "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {
+    "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
+        "projectUniqueName": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
         "projectName": "PCControl.Api",
-        "projectPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
+        "projectPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\PCControl.Api.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\obj\\",
+        "outputPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,12 +49,6 @@
             "Microsoft.Extensions.Hosting.WindowsServices": {
               "target": "Package",
               "version": "[10.0.0, )"
-            },
-            "Microsoft.NET.ILLink.Tasks": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[8.0.28, )",
-              "autoReferenced": true
             }
           },
           "imports": [
@@ -74,10 +68,6 @@
               "version": "[8.0.28, 8.0.28]"
             },
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.28, 8.0.28]"
-            },
-            {
               "name": "Microsoft.NETCore.App.Host.win-x64",
               "version": "[8.0.28, 8.0.28]"
             },
@@ -86,15 +76,7 @@
               "version": "[8.0.28, 8.0.28]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.28, 8.0.28]"
-            },
-            {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
               "version": "[8.0.28, 8.0.28]"
             }
           ],
@@ -107,11 +89,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yPWW7b2NTOo=",
+  "dgSpecHash": "6HUMYGyHhIs=",
   "success": false,
-  "projectFilePath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
+  "projectFilePath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Acer\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\microsoft.aspnetcore.mvc.testing\\8.0.0\\microsoft.aspnetcore.mvc.testing.8.0.0.nupkg.sha512",
@@ -65,9 +65,9 @@
     {
       "code": "NU1605",
       "level": "Error",
-      "message": "Advertencia como error: Degradación del paquete detectada: Microsoft.Extensions.Hosting.WindowsServices de 10.0.0 a 8.0.0. Haga referencia al paquete directamente desde el proyecto para seleccionar una versión diferente. \r\n PCControl.Api.Tests -> PCControl.Api -> Microsoft.Extensions.Hosting.WindowsServices (>= 10.0.0) \r\n PCControl.Api.Tests -> Microsoft.Extensions.Hosting.WindowsServices (>= 8.0.0)",
-      "projectPath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
-      "filePath": "g:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.Hosting.WindowsServices from 10.0.0 to 8.0.0. Reference the package directly from the project to select a different version. \r\n PCControl.Api.Tests -> PCControl.Api -> Microsoft.Extensions.Hosting.WindowsServices (>= 10.0.0) \r\n PCControl.Api.Tests -> Microsoft.Extensions.Hosting.WindowsServices (>= 8.0.0)",
+      "projectPath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
+      "filePath": "G:\\Programacion\\Remote control PC\\backend\\PCControl.Api.Tests\\PCControl.Api.Tests.csproj",
       "libraryId": "Microsoft.Extensions.Hosting.WindowsServices",
       "targetGraphs": [
         "net8.0",

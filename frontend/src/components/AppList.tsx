@@ -1,12 +1,13 @@
 import type { ComponentType } from 'react';
 import {
   NotepadTile, CalcTile, PaintTile, CmdTile, PowerShellTile,
-  ExplorerTile, TaskMgrTile, ControlTile, SteamTile, BraveTile,
+  ExplorerTile, TaskMgrTile, ControlTile, SteamTile, BraveTile, SpotifyTile,
 } from './ui/AppIcons';
 
 interface AppListProps {
   onOpenApp: (appName: string) => void;
   onCloseApp: (appName: string) => void;
+  onOpenBrowserRemote?: () => void;
   disabled?: boolean;
 }
 
@@ -21,9 +22,10 @@ const commonApps: { name: string; label: string; icon: ComponentType<{ className
   { name: 'control', label: 'Panel de control', icon: ControlTile },
   { name: 'steam', label: 'Steam', icon: SteamTile },
   { name: 'brave', label: 'Brave', icon: BraveTile },
+  { name: 'spotify', label: 'Spotify', icon: SpotifyTile },
 ];
 
-export default function AppList({ onOpenApp, onCloseApp, disabled }: AppListProps) {
+export default function AppList({ onOpenApp, onCloseApp, onOpenBrowserRemote, disabled }: AppListProps) {
   return (
     <section>
       <h2 className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-3 px-1">
@@ -32,9 +34,20 @@ export default function AppList({ onOpenApp, onCloseApp, disabled }: AppListProp
 
       <ul className="rounded-2xl border border-border bg-card divide-y divide-border overflow-hidden">
         {commonApps.map(({ name, label, icon: Icon }) => (
-          <li key={name} className="flex items-center gap-3 pl-3 pr-2 py-2.5">
+          <li key={name} className="flex items-center gap-2.5 pl-3 pr-2 py-2.5">
             <Icon className="w-10 h-10 flex-shrink-0" />
             <span className="text-[15px] text-foreground flex-1 truncate">{label}</span>
+            {name === 'brave' && onOpenBrowserRemote && (
+              <button
+                type="button"
+                onClick={onOpenBrowserRemote}
+                disabled={disabled}
+                aria-label="Control de Brave"
+                className="px-2.5 h-9 rounded-lg text-xs font-medium border border-border bg-muted/50 text-foreground/90 active:bg-muted disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                Control
+              </button>
+            )}
             <button
               onClick={() => onOpenApp(name)}
               disabled={disabled}

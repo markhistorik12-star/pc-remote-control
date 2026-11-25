@@ -14,7 +14,11 @@ export function useSettings() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       try {
-        setSettings(JSON.parse(stored));
+        const parsed = JSON.parse(stored);
+        setSettings({
+          ip: parsed.ip || '',
+          token: parsed.token || '',
+        });
       } catch {
         // Ignore parse errors
       }

@@ -34,7 +34,7 @@ describe('SettingsModal', () => {
     );
 
     fireEvent.click(screen.getAllByText('Guardar')[0]);
-    expect(onSave).toHaveBeenCalledWith('192.168.1.100', 'ABC123');
+    expect(onSave).toHaveBeenCalledWith('192.168.1.100', 'ABC123', expect.any(String));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
