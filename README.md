@@ -1,243 +1,46 @@
-# PC Remote Control
-
-A minimal-architecture solution for remotely controlling a Windows PC from an Android device over the local network.
-
-## Architecture
-
-- **Backend**: .NET 8 Minimal API running as a Windows Service
-- **Frontend**: React 18 + Vite + Tailwind CSS, wrapped with Capacitor for Android
-
-## Features
-
-- Shutdown / Restart / Lock workstation
-- Open / Close applications by name
-- Secure token-based authentication
-- Works on local network (LAN) - no internet required
-
-## Prerequisites
-
-### Backend (Windows PC)
-- Windows 10/11
-- .NET 8 SDK (for building) or .NET 8 Runtime (for running published app)
-
-### Frontend (Development)
-- Node.js 20+
-- Android Studio (for building APK)
-
-### Frontend (End User)
-- Android 13+ (API 33+)
-
----
-
-## Quick Start
-
-### 1. Backend Setup (on the PC you want to control)
-
-```powershell
-# Clone and navigate to backend
-cd backend/PCControl.Api
-
-# Install as Windows Service (run as Administrator)
-.\InstallService.ps1
-```
-
-The script will:
-- Publish the app as a self-contained executable
-- Create and start a Windows service named "PCControl"
-- Output a **6-character token** - save this!
-
-The API will be available at `http://<PC-IP>:5000`
-
-### 2. Find your PC's IP address
-
-```powershell
-ipconfig | findstr IPv4
-```
-
-### 3. Frontend Setup (for development)
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-### 4. Configure the mobile app
-
-1. Open the app (or visit `http://localhost:5173` in browser)
-2. Tap the ⚙️ settings icon
-3. Enter:
-   - **PC IP Address**: Your PC's LAN IP (e.g., `192.168.1.100`)
-   - **Token**: The 6-character token from backend startup
-4. Tap Save
-
-### 5. Build Android APK
-
-```bash
-cd frontend
-npm run build
-npx cap sync android
-# Open in Android Studio to build APK, or:
-cd android && ./gradlew assembleRelease
-```
-
-The APK will be at `frontend/android/app/build/outputs/apk/release/app-release.apk`
-
----
-
-## Backend Details
-
-### API Endpoints
-
-All endpoints require `Authorization: Bearer <token>` header.
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/shutdown` | Shutdown the PC |
-| POST | `/api/restart` | Restart the PC |
-| POST | `/api/lock` | Lock workstation |
-| POST | `/api/apps/open` | Open app (body: `{ "appName": "notepad" }`) |
-| POST | `/api/apps/close` | Close app (body: `{ "appName": "notepad" }`) |
-| GET | `/health` | Health check (no auth) |
-
-### Response Format
-
-```json
-{ "success": true, "message": "Shutdown initiated" }
-```
-
-### Error Responses
-
-| Status | Condition |
-|--------|-----------|
-| 400 | Missing appName in request body |
-| 401 | Missing or invalid token |
-| 404 | Application not found |
-| 500 | Internal server error |
-
-### Configuration
-
-Edit `backend/PCControl.Api/appsettings.json`:
-
-```json
-{
-  "Token": "A1B2C3",
-  "Port": 5000
-}
-```
-
-Token is auto-generated on first run if empty.
-
-### Manual Service Management
-
-```powershell
-# Start
-Start-Service -Name PCControl
-
-# Stop
-Stop-Service -Name PCControl
-
-# Restart
-Restart-Service -Name PCControl
-
-# Uninstall
-sc.exe delete PCControl
-```
-
-### View Logs
-
-```powershell
-# Event Viewer
-Get-WinEvent -LogName Application -ProviderName "PCControl.Api" -MaxEvents 20
-
-# Or check console output if running directly
-dotnet run --project backend/PCControl.Api
-```
-
----
-
-## Frontend Details
-
-### Project Structure
-
-```
-frontend/
-├── src/
-│   ├── components/     # Header, PowerButtons, AppList, SettingsModal
-│   ├── hooks/          # useSettings (localStorage persistence)
-│   ├── services/       # api.ts (fetch wrapper with auth)
-│   ├── App.tsx         # Main app component
-│   └── main.tsx        # Entry point
-├── android/            # Capacitor Android project
-├── cypress/            # E2E tests
-├── capacitor.config.ts
-├── vite.config.ts
-├── tailwind.config.js
-└── package.json
-```
-
-### Development Commands
-
-```bash
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Run E2E tests (requires backend running)
-npm run test:e2e
-
-# Open Android Studio
-npx cap open android
-
-# Sync web assets to Android
-npx cap sync android
-```
-
-### Settings Persistence
-
-Settings (IP + token) are stored in `localStorage` under key `pcRemoteSettings`.
-
----
-
-## Security Considerations
-
-- **Plain HTTP** - Only use on trusted LAN
-- **Token auth** - 6-char alphanumeric token, sent as Bearer token
-- **No encryption** - Traffic is visible on network
-- **No rate limiting** - Consider adding if exposed beyond LAN
-
-### For production use:
-- Add TLS with self-signed certs
-- Implement rate limiting
-- Consider VPN (Tailscale, WireGuard) for remote access
-
----
-
-## Troubleshooting
-
-### Backend won't start
-- Check port 5000 isn't in use: `netstat -ano | findstr :5000`
-- Run as Administrator (required for shutdown/restart)
-- Check Windows Firewall allows inbound on port 5000
-
-### Mobile app can't connect
-- Verify PC IP is correct (use `ipconfig`)
-- Ensure both devices on same network
-- Check Windows Firewall: `New-NetFirewallRule -DisplayName "PCControl" -Direction Inbound -LocalPort 5000 -Protocol TCP -Action Allow`
-
-### Token issues
-- Token is in `appsettings.json` and logged on startup
-- Regenerate by deleting `Token` value in `appsettings.json` and restarting service
-
-### Android build fails
-- Ensure Android SDK installed (API 34)
-- Set `ANDROID_HOME` environment variable
-- Accept licenses: `yes | sdkmanager --licenses`
-
----
-
-## License
-
-MIT License - feel free to use and modify.
+PC Remote Hub
+
+Controla tu PC con Windows desde tu teléfono Android a través de tu red Wi-Fi local — sin cuentas en la nube, sin configuraciones manuales de consola y con detección automática de todos tus programas y juegos instalados.
+
+✨ Características Principales
+⚡ Control de Energía: Apagar, Reiniciar, Suspender (con confirmación de seguridad) y Bloquear sesión con un toque.
+🧩 Detección Automática de Programas e Iconos Reales:
+Escanea automáticamente las aplicaciones instaladas en tu PC (escritorio, Microsoft Store y juegos de bibliotecas como Steam) y muestra sus iconos originales en alta definición en el teléfono.
+Catálogo interactivo con buscador, filtros por categoría (Apps, Juegos, Navegadores) y soporte para añadir ejecutables portables (.exe) manualmente.
+🌐 Control Universal del Navegador:
+Compatible con Google Chrome, Microsoft Edge, Brave, Mozilla Firefox y Opera.
+Incluye barra para abrir URLs o buscar en Google, accesos rápidos (YouTube, Google, Twitch, Netflix), navegación (Atrás, Recargar, Adelante), gestión de pestañas (Anterior, Siguiente, Reabrir cerrada, Cerrar) y Zoom.
+🎮 Selector Dinámico de Cuentas de Steam:
+Si tienes Steam instalado con varias sesiones guardadas, permite elegir directamente desde el teléfono con qué perfil iniciar sin pasar por la pantalla "¿Quién está jugando?".
+📱 Vinculación Instantánea (Cero Consola):
+Autodescubrimiento en Wi-Fi: detecta automáticamente los equipos con PC Remote Hub activos en tu red local.
+Código QR: escanea el QR desde el icono junto al reloj de Windows para vincular IP, puerto y Token en segundos.
+🪶 Ultraligero y Silencioso:
+Se ejecuta en segundo plano en la bandeja del sistema de Windows (System Tray) con optimización automática de memoria y 0% de uso de CPU en reposo.
+🚀 Instalación Rápida (Para Usuarios)
+
+No necesitas instalar .NET ni abrir terminales. Solo descarga los 2 archivos desde la sección Releases:
+
+1. En tu PC (Windows 10 / 11 de 64 bits)
+Descarga y ejecuta PCRemote-Setup.exe.
+Acepta el permiso de instalación y pulsa "Instalar y Mostrar Código QR".
+El instalador configura automáticamente la regla del Firewall de Windows (puerto TCP 5050) y el inicio automático con Windows.
+Al finalizar se abrirá la ventana de PC Remote Hub junto al reloj de Windows mostrando tu Código QR y tu Token de 6 caracteres.
+2. En tu Teléfono (Android 7.0+)
+Descarga e instala PCRemote-Product.apk.
+Abre PC Remote Hub y toca "Vincular tu PC":
+Por Wi-Fi: selecciona tu PC detectado automáticamente e ingresa el Token de 6 caracteres.
+Por Código QR: cambia a la pestaña Código QR y apunta la cámara a la pantalla de tu PC.
+Toca "+ Editar / Agregar" en Mis Aplicaciones para marcar los programas, navegadores o juegos de tu PC que quieras tener en tu pantalla principal.
+🔒 Seguridad y Privacidad
+100% Red Local (LAN): toda la comunicación ocurre directamente entre tu teléfono y tu PC dentro de tu Wi-Fi local; ningún dato pasa por servidores externos.
+Token Único por Equipo: cada instalación genera criptográficamente un Token aleatorio de 6 caracteres. Puedes regenerarlo en cualquier momento haciendo clic en el icono de PC Remote Hub en la bandeja de Windows → Nuevo Token.
+🛠️ Gestión en Windows y Desinstalación
+Ver Código QR / Token: haz clic izquierdo sobre el icono de PC Remote Hub en la bandeja del sistema (junto al reloj de Windows).
+Activar o desactivar inicio con Windows: haz clic derecho sobre el icono de la bandeja → Iniciar automáticamente con Windows.
+Desinstalar por completo: abre el Menú Inicio de Windows → PC Remote Hub → Desinstalar PC Remote Hub (detiene el agente, elimina la regla del Firewall, quita el inicio automático y borra los archivos instalados).
+❓ Solución de Problemas
+Situación	Solución
+El teléfono no detecta el PC	Verifica que el teléfono y el PC estén conectados a la misma red Wi-Fi / router (evita redes Wi-Fi de invitados con aislamiento de clientes).
+Error al vincular con el Token	Haz clic en el icono de PC Remote Hub junto al reloj de Windows y verifica los 6 caracteres exactos, o usa la pestaña Manual ingresando la IP y puerto (5050) que muestra la ventana del PC.
+Quiero agregar un juego o app portable	En la app móvil entra a Editar / Agregar → botón + .exe arriba a la derecha y pega la ruta del ejecutable en tu PC (ej. D:\Juegos\MiJuego.exe).
