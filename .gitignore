@@ -1,45 +1,39 @@
-# Ignore everything in the repository root except essential project files and folders
+# 1. Ignorar todo en la raíz por defecto
 /*
-# Keep the scripts folder (it contains useful helper scripts)
-!/scripts/
-# Keep the backend source (including publish output) and any source folders
-!/backend/
-!/src/
-# Keep key configuration and source files
+
+# 2. Permitir archivos y carpetas esenciales en la raíz
+!.gitignore
+!.gitattributes
 !/README.md
 !/appsettings.json
 !/TokenVerifier.cs
-# Keep any other directories that contain code (e.g., TokenVerifier folder if exists)
+!/scripts/
+!/backend/
+!/src/
 !/TokenVerifier/
-# Keep .gitignore itself
-!.gitignore
-# Keep .gitattributes if present (optional)
-!.gitattributes
-# Keep any hidden configuration files you may need (e.g., .env)
-!.env
-# Keep VS Code settings if you want them tracked (optional)
-!.vscode/
-# Explicitly hide personal APK frontend and build/signing artifacts from GitHub
-/frontend/
+
+# Opcional: descomenta si quieres subir configuración de VS Code o plantilla env
+# !.vscode/
+# !.env.example
+
+# 3. Ignorar artefactos de compilación, dependencias y secretos dentro de las carpetas permitidas
 **/bin/
 **/obj/
+**/node_modules/
 *.keystore
-
-# Keep typical .NET build artefacts ignored already
-/bin/
-/obj/
-# Ignore log files
 *.log
-# Ignore generated binaries and packages
 *.apk
 *.exe
-# Ignore node_modules and other dependency directories
-node_modules/
-# Ignore other temporary files
 *.tmp
 *.bak
+.env
 
-# Hide text and markdown files (except README)
-*.txt
-*.md
-!README.md
+# 4. Ocultar notas, diagnósticos y archivos específicos dentro de cualquier subcarpeta
+*Ejecucion.txt
+*logAPK.txt
+*CLAUDE kharpati.md
+*CONNECTION_DIAGNOSTIC.md
+*Cargo.toml
+*Remote.md
+*simplest_solution.md
+*TokenVerefier.cs
