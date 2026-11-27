@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace PCRemote.Agent.Services;
 
@@ -60,27 +61,67 @@ public class UniversalBrowserService
         };
     }
 
+    public static string? BuildSafeTargetUrl(string? query)
+    {
+        var trimmed = (query ?? "").Trim();
+        if (string.IsNullOrEmpty(trimmed) || trimmed.Length > 2048)
+        {
+            return null;
+        }
+
+        // Reject embedded quotes or control chars that could tamper with browser CLI arguments
+        if (trimmed.Any(c => c is '"' or '\'' or '\r' or '\n' or '\0'))
+        {
+            // Treat as a Google search query instead of a raw URL if it contains quotes
+            if (!trimmed.Any(c => c is '\r' or '\n' or '\0'))
+            {
+                return "https://www.google.com/search?q=" + Uri.EscapeDataString(trimmed);
+            }
+            return null;
+        }
+
+        string candidate;
+        if (trimmed.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+            trimmed.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
+            candidate = trimmed;
+        }
+        else if (Regex.IsMatch(trimmed, @"^[a-zA-Z][a-zA-Z0-9+.-]*:(?!\d+($|/))"))
+        {
+            // Block any non-HTTP/HTTPS URI scheme (file:, javascript:, ms-msdt:, data:, etc.)
+            return null;
+        }
+        else if (!trimmed.Contains(' ') && (trimmed.Contains('.') || Regex.IsMatch(trimmed, @"^localhost:\d+(/.*)?$", RegexOptions.IgnoreCase)) && !trimmed.StartsWith('-'))
+        {
+            candidate = "https://" + trimmed;
+        }
+        else
+        {
+            return "https://www.google.com/search?q=" + Uri.EscapeDataString(trimmed);
+        }
+
+        if (!Uri.TryCreate(candidate, UriKind.Absolute, out var parsed) ||
+            (parsed.Scheme != Uri.UriSchemeHttp && parsed.Scheme != Uri.UriSchemeHttps) ||
+            string.IsNullOrWhiteSpace(parsed.Host))
+        {
+            return null;
+        }
+
+        return parsed.AbsoluteUri;
+    }
+
     public (bool Success, string Message) Navigate(string? browserId, string query)
     {
-        var trimmed = query.Trim();
+        var trimmed = (query ?? "").Trim();
         if (string.IsNullOrEmpty(trimmed))
         {
             return (false, "Ingresa una URL o búsqueda");
         }
 
-        string url;
-        if (trimmed.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
-            trimmed.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        var safeUrl = BuildSafeTargetUrl(trimmed);
+        if (safeUrl is null)
         {
-            url = trimmed;
-        }
-        else if (!trimmed.Contains(' ') && trimmed.Contains('.'))
-        {
-            url = "https://" + trimmed;
-        }
-        else
-        {
-            url = "https://www.google.com/search?q=" + Uri.EscapeDataString(trimmed);
+            return (false, "La dirección ingresada no es una URL HTTP/HTTPS válida");
         }
 
         var browserApp = !string.IsNullOrWhiteSpace(browserId)
@@ -89,27 +130,32 @@ public class UniversalBrowserService
 
         try
         {
-            if (browserApp != null)
+            if (browserApp != null && !string.IsNullOrWhiteSpace(browserApp.ExePath) && File.Exists(browserApp.ExePath))
             {
-                var exeToRun = !string.IsNullOrWhiteSpace(browserApp.ExePath) && File.Exists(browserApp.ExePath)
-                    ? browserApp.ExePath
-                    : InferBrowserProcessName(browserApp) is string p ? $"{p}.exe" : null;
-
-                if (exeToRun != null)
+                var psi = new ProcessStartInfo
                 {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = exeToRun,
-                        Arguments = $"\"{url}\"",
-                        UseShellExecute = true
-                    });
-                    return (true, $"Abriendo en {browserApp.Name}: {trimmed}");
-                }
+                    FileName = browserApp.ExePath,
+                    UseShellExecute = false
+                };
+                psi.ArgumentList.Add(safeUrl);
+                Process.Start(psi);
+                return (true, $"Abriendo en {browserApp.Name}: {trimmed}");
+            }
+
+            if (browserApp != null && InferBrowserProcessName(browserApp) is string procName)
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = $"{procName}.exe",
+                    Arguments = $"\"{safeUrl.Replace("\"", "%22")}\"",
+                    UseShellExecute = true
+                });
+                return (true, $"Abriendo en {browserApp.Name}: {trimmed}");
             }
 
             Process.Start(new ProcessStartInfo
             {
-                FileName = url,
+                FileName = safeUrl,
                 UseShellExecute = true
             });
             return (true, $"Abriendo {trimmed}");

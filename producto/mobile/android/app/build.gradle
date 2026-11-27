@@ -1,5 +1,17 @@
 apply plugin: 'com.android.application'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.withInputStream { keystoreProperties.load(it) }
+}
+
+def resolvedStoreFile = keystoreProperties.getProperty('storeFile')?.trim() ?: 'release.keystore'
+def resolvedStorePassword = (System.getenv('KEYSTORE_PASSWORD') ?: keystoreProperties.getProperty('storePassword') ?: '').trim()
+def resolvedKeyAlias = (System.getenv('KEY_ALIAS') ?: keystoreProperties.getProperty('keyAlias') ?: 'pcremote').trim()
+def resolvedKeyPassword = (System.getenv('KEY_PASSWORD') ?: keystoreProperties.getProperty('keyPassword') ?: '').trim()
+def hasReleaseSigning = file(resolvedStoreFile).exists() && !resolvedStorePassword.isEmpty() && !resolvedKeyPassword.isEmpty()
+
 android {
     namespace = "com.pcremote.product"
     compileSdk = 36
@@ -23,11 +35,12 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('release.keystore')
-            // Las claves se leen de variables de entorno (no se suben al repo)
-            storePassword System.getenv('KEYSTORE_PASSWORD') ?: ''
-            keyAlias 'pcremote'
-            keyPassword System.getenv('KEY_PASSWORD') ?: ''
+            if (hasReleaseSigning) {
+                storeFile file(resolvedStoreFile)
+                storePassword resolvedStorePassword
+                keyAlias resolvedKeyAlias
+                keyPassword resolvedKeyPassword
+            }
         }
     }
 
@@ -41,7 +54,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
         }
     }
 }

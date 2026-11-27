@@ -18,6 +18,7 @@ public interface ISteamService
     (bool Success, string Message) LaunchWithAccount(string accountName);
 }
 
+[System.Runtime.Versioning.SupportedOSPlatform("windows")]
 public class SteamService : ISteamService
 {
     private static readonly Regex UserBlockRegex = new(

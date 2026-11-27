@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using Microsoft.Win32;
 using PCRemote.Agent.Models;
@@ -17,11 +18,13 @@ public class AgentConfigService
 
     public event Action? ConfigChanged;
 
-    public AgentConfigService()
+    public AgentConfigService(string? customConfigDir = null)
     {
-        _configDir = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "PCRemoteHub");
+        _configDir = string.IsNullOrWhiteSpace(customConfigDir)
+            ? Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "PCRemoteHub")
+            : customConfigDir;
         Directory.CreateDirectory(_configDir);
         _configPath = Path.Combine(_configDir, "config.json");
         _data = LoadOrCreate();
@@ -66,7 +69,9 @@ public class AgentConfigService
     private void SaveInternal(AgentConfigData data)
     {
         var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(_configPath, json);
+        var tempPath = _configPath + ".tmp";
+        File.WriteAllText(tempPath, json);
+        File.Move(tempPath, _configPath, overwrite: true);
     }
 
     public string GetToken()
@@ -82,10 +87,17 @@ public class AgentConfigService
     public bool ValidateToken(string candidate)
     {
         if (string.IsNullOrWhiteSpace(candidate)) return false;
+        var cleanCandidate = candidate.Trim().ToUpperInvariant();
+        string expected;
         lock (_lock)
         {
-            return string.Equals(_data.Token, candidate.Trim(), StringComparison.OrdinalIgnoreCase);
+            expected = (_data.Token ?? "").Trim().ToUpperInvariant();
         }
+        if (expected.Length == 0) return false;
+
+        var expectedBytes = Encoding.UTF8.GetBytes(expected);
+        var candidateBytes = Encoding.UTF8.GetBytes(cleanCandidate);
+        return CryptographicOperations.FixedTimeEquals(expectedBytes, candidateBytes);
     }
 
     public string RegenerateToken()

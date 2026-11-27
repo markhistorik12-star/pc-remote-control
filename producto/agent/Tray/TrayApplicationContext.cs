@@ -9,6 +9,8 @@ public class TrayApplicationContext : ApplicationContext
     private readonly AgentConfigService _config;
     private readonly Icon _appIcon;
     private readonly NotifyIcon _notifyIcon;
+    private readonly ContextMenuStrip _menu;
+    private readonly Font _boldMenuFont;
     private readonly ToolStripMenuItem _autoStartItem;
     private readonly SynchronizationContext _uiContext;
     private PairingForm? _pairingForm;
@@ -17,6 +19,7 @@ public class TrayApplicationContext : ApplicationContext
     public TrayApplicationContext(
         AgentConfigService config,
         EventWaitHandle showEvent,
+        CancellationToken shutdownToken,
         bool showOnStartup,
         Action onShutdownRequested)
     {
@@ -25,11 +28,12 @@ public class TrayApplicationContext : ApplicationContext
         _uiContext = SynchronizationContext.Current ?? new WindowsFormsSynchronizationContext();
         _appIcon = AppIconFactory.CreateTrayIcon();
 
-        var menu = new ContextMenuStrip();
+        _menu = new ContextMenuStrip();
+        _boldMenuFont = new Font(_menu.Font, FontStyle.Bold);
 
         var pairItem = new ToolStripMenuItem("Vincular teléfono (Mostrar QR)")
         {
-            Font = new Font(menu.Font, FontStyle.Bold)
+            Font = _boldMenuFont
         };
         pairItem.Click += (_, _) => ShowPairingWindow();
 
@@ -48,17 +52,17 @@ public class TrayApplicationContext : ApplicationContext
         var exitItem = new ToolStripMenuItem("Salir de PC Remote Hub");
         exitItem.Click += (_, _) => ExitCleanly();
 
-        menu.Items.Add(pairItem);
-        menu.Items.Add(new ToolStripSeparator());
-        menu.Items.Add(_autoStartItem);
-        menu.Items.Add(new ToolStripSeparator());
-        menu.Items.Add(exitItem);
+        _menu.Items.Add(pairItem);
+        _menu.Items.Add(new ToolStripSeparator());
+        _menu.Items.Add(_autoStartItem);
+        _menu.Items.Add(new ToolStripSeparator());
+        _menu.Items.Add(exitItem);
 
         _notifyIcon = new NotifyIcon
         {
             Icon = _appIcon,
             Text = $"PC Remote Hub ({AgentConfigService.GetPrimaryLanIp()}:{_config.GetPort()})",
-            ContextMenuStrip = menu,
+            ContextMenuStrip = _menu,
             Visible = true
         };
         _notifyIcon.MouseClick += (_, e) =>
@@ -72,10 +76,18 @@ public class TrayApplicationContext : ApplicationContext
         // Listen for second-instance signal to pop open the QR window
         _ = Task.Run(() =>
         {
-            while (true)
+            var handles = new WaitHandle[] { showEvent, shutdownToken.WaitHandle };
+            while (!shutdownToken.IsCancellationRequested)
             {
-                showEvent.WaitOne();
-                _uiContext.Post(_ => ShowPairingWindow(), null);
+                var idx = WaitHandle.WaitAny(handles);
+                if (idx == 0 && !shutdownToken.IsCancellationRequested)
+                {
+                    _uiContext.Post(_ => ShowPairingWindow(), null);
+                }
+                else
+                {
+                    break;
+                }
             }
         });
 
@@ -124,6 +136,8 @@ public class TrayApplicationContext : ApplicationContext
         {
             _notifyIcon.Visible = false;
             _notifyIcon.Dispose();
+            _menu.Dispose();
+            _boldMenuFont.Dispose();
             _pairingForm?.Dispose();
             _appIcon.Dispose();
         }

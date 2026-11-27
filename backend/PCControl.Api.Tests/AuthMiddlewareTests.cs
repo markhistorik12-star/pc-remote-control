@@ -85,6 +85,7 @@ public class AuthMiddlewareTests : IClassFixture<WebApplicationFactory<Program>>
     {
         public void Shutdown() { }
         public void Restart() { }
+        public void Suspend() { }
         public void LockWorkstation() { }
         public bool StartApp(string appName) => true;
         public bool CloseApp(string appName) => true;

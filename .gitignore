@@ -4,8 +4,8 @@
 # 2. Permitir archivos y carpetas esenciales en la raíz
 !.gitignore
 !.gitattributes
+!.github/
 !/README.md
-!/appsettings.json
 !/TokenVerifier.cs
 !/scripts/
 !/backend/

@@ -32,7 +32,7 @@ public static class AgentEndpoints
             Results.Ok(new
             {
                 product = "PCRemoteHub",
-                version = "1.2.0",
+                version = "1.3.0",
                 hostname = Environment.MachineName,
                 ip = AgentConfigService.GetPrimaryLanIp(),
                 port = cfg.GetPort()
@@ -92,7 +92,7 @@ public static class AgentEndpoints
             {
                 return Results.NotFound();
             }
-            ctx.Response.Headers.CacheControl = "public, max-age=86400";
+            ctx.Response.Headers.CacheControl = "private, max-age=86400";
             return Results.File(png, "image/png");
         });
 

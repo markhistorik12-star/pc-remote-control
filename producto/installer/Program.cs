@@ -4,6 +4,8 @@ using System.Drawing.Drawing2D;
 using System.IO.Compression;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
@@ -178,19 +180,75 @@ internal static class Program
         }
 
         var installDir = GetInstallDir();
-        Process.Start(new ProcessStartInfo
+        var cleanPsi = new ProcessStartInfo
         {
             FileName = "cmd.exe",
-            Arguments = $"/c ping 127.0.0.1 -n 3 > nul & rmdir /s /q \"{installDir}\"",
+            Arguments = "/c ping 127.0.0.1 -n 3 > nul & rmdir /s /q \"%PCREMOTE_UNINSTALL_DIR%\"",
             UseShellExecute = false,
             CreateNoWindow = true
-        });
+        };
+        cleanPsi.Environment["PCREMOTE_UNINSTALL_DIR"] = installDir;
+        Process.Start(cleanPsi);
 
         MessageBox.Show(
             "PC Remote Hub fue desinstalado correctamente.",
             "Desinstalación completada",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
+    }
+
+    [ComImport]
+    [Guid("00021401-0000-0000-C000-000000000046")]
+    private class ShellLink
+    {
+    }
+
+    [ComImport]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [Guid("000214F9-0000-0000-C000-000000000046")]
+    private interface IShellLinkW
+    {
+        void GetPath([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, IntPtr pfd, int fFlags);
+        void GetIDList(out IntPtr ppidl);
+        void SetIDList(IntPtr pidl);
+        void GetDescription([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszName, int cchMaxName);
+        void SetDescription([MarshalAs(UnmanagedType.LPWStr)] string pszName);
+        void GetWorkingDirectory([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDir, int cchMaxPath);
+        void SetWorkingDirectory([MarshalAs(UnmanagedType.LPWStr)] string pszDir);
+        void GetArguments([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszArgs, int cchMaxPath);
+        void SetArguments([MarshalAs(UnmanagedType.LPWStr)] string pszArgs);
+        void GetHotkey(out short pwHotkey);
+        void SetHotkey(short wHotkey);
+        void GetShowCmd(out int piShowCmd);
+        void SetShowCmd(int iShowCmd);
+        void GetIconLocation([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszIconPath, int cchIconPath, out int piIcon);
+        void SetIconLocation([MarshalAs(UnmanagedType.LPWStr)] string pszIconPath, int iIcon);
+        void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string pszPathRel, int dwReserved);
+        void Resolve(IntPtr hwnd, int fFlags);
+        void SetPath([MarshalAs(UnmanagedType.LPWStr)] string pszFile);
+    }
+
+    private static void SaveShortcut(string lnkPath, string targetPath, string arguments, string? workingDirectory)
+    {
+        IShellLinkW? link = null;
+        try
+        {
+            link = (IShellLinkW)new ShellLink();
+            link.SetPath(targetPath);
+            link.SetArguments(arguments);
+            if (!string.IsNullOrWhiteSpace(workingDirectory))
+            {
+                link.SetWorkingDirectory(workingDirectory);
+            }
+            ((IPersistFile)link).Save(lnkPath, true);
+        }
+        finally
+        {
+            if (link != null && Marshal.IsComObject(link))
+            {
+                Marshal.ReleaseComObject(link);
+            }
+        }
     }
 
     private static void CreateStartMenuShortcuts(string targetExe, string uninstallerExe)
@@ -202,20 +260,17 @@ internal static class Program
                 "PC Remote Hub");
             Directory.CreateDirectory(folder);
 
-            var psScript =
-                $"$s=(New-Object -ComObject WScript.Shell).CreateShortcut('{Path.Combine(folder, "PC Remote Hub.lnk")}');" +
-                $"$s.TargetPath='{targetExe}';$s.Arguments='--show-qr';$s.WorkingDirectory='{Path.GetDirectoryName(targetExe)}';$s.Save();" +
-                $"$u=(New-Object -ComObject WScript.Shell).CreateShortcut('{Path.Combine(folder, "Desinstalar PC Remote Hub.lnk")}');" +
-                $"$u.TargetPath='{uninstallerExe}';$u.Arguments='--uninstall';$u.Save();";
+            SaveShortcut(
+                Path.Combine(folder, "PC Remote Hub.lnk"),
+                targetExe,
+                "--show-qr",
+                Path.GetDirectoryName(targetExe));
 
-            using var proc = Process.Start(new ProcessStartInfo
-            {
-                FileName = "powershell.exe",
-                Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{psScript}\"",
-                UseShellExecute = false,
-                CreateNoWindow = true
-            });
-            proc?.WaitForExit(5000);
+            SaveShortcut(
+                Path.Combine(folder, "Desinstalar PC Remote Hub.lnk"),
+                uninstallerExe,
+                "--uninstall",
+                Path.GetDirectoryName(uninstallerExe));
         }
         catch { }
     }
@@ -352,7 +407,7 @@ internal sealed class InstallerForm : Form
         {
             g.FillPath(verFill, verPath);
             g.DrawPath(verBorder, verPath);
-            g.DrawString("v1.0", verFont, verText, verRect.X + 11, verRect.Y + 3);
+            g.DrawString("v1.3", verFont, verText, verRect.X + 11, verRect.Y + 3);
         }
 
         using (var subFont = new Font("Segoe UI", 9f))

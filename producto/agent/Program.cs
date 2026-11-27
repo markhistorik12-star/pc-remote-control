@@ -81,7 +81,10 @@ public static class Program
         builder.Services.AddCors(options =>
         {
             options.AddDefaultPolicy(policy =>
-                policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                policy
+                    .SetIsOriginAllowed(IsTrustedClientOrigin)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
         });
 
         var webApp = builder.Build();
@@ -128,6 +131,7 @@ public static class Program
         using var trayContext = new TrayApplicationContext(
             configService,
             showEvent,
+            cts.Token,
             showQrOnStart,
             () => cts.Cancel());
 
@@ -141,5 +145,24 @@ public static class Program
         {
             // Ignore shutdown timeout
         }
+    }
+
+    public static bool IsTrustedClientOrigin(string? origin)
+    {
+        if (string.IsNullOrWhiteSpace(origin)) return false;
+        if (origin.Equals("capacitor://localhost", StringComparison.OrdinalIgnoreCase) ||
+            origin.Equals("ionic://localhost", StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        if (Uri.TryCreate(origin, UriKind.Absolute, out var uri) &&
+            (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps))
+        {
+            return uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase) ||
+                   uri.Host.Equals("127.0.0.1", StringComparison.Ordinal);
+        }
+
+        return false;
     }
 }

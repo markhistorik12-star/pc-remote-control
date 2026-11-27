@@ -12,6 +12,18 @@ public class ProcessControlService
         "steam", "spotify", "discord", "cmd", "powershell", "pwsh", "riotclientservices", "battle.net"
     };
 
+    private static readonly HashSet<string> ProtectedProcessNames = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "system", "idle", "smss", "csrss", "wininit", "services", "lsass", "svchost",
+        "winlogon", "dwm", "fontdrvhost", "sihost", "taskhostw", "spoolsv",
+        "pcremote.agent", "pccontrol.api"
+    };
+
+    private static readonly HashSet<string> BrowserProcessNames = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "chrome", "msedge", "brave", "firefox", "opera", "vivaldi"
+    };
+
     [DllImport("powrprof.dll", SetLastError = true)]
     private static extern bool SetSuspendState(bool hibernate, bool forceCritical, bool disableWakeEvent);
 
@@ -58,14 +70,24 @@ public class ProcessControlService
         _ = Task.Delay(300).ContinueWith(_ => SetSuspendState(false, false, false));
     }
 
-    public (bool Success, string Message) OpenApp(string idOrName)
+    public (bool Success, string Message) OpenApp(string id)
     {
-        var app = _appsService.FindAppById(idOrName);
-        var displayName = app?.Name ?? idOrName;
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            return (false, "Aplicación requerida");
+        }
+
+        var app = _appsService.FindAppById(id.Trim());
+        if (app is null)
+        {
+            return (false, "Aplicación no registrada en el catálogo del equipo");
+        }
+
+        var displayName = app.Name;
 
         try
         {
-            if (app?.Kind == "steam")
+            if (app.Kind == "steam")
             {
                 Process.Start(new ProcessStartInfo
                 {
@@ -75,31 +97,34 @@ public class ProcessControlService
                 return (true, $"Abriendo {displayName}");
             }
 
-            if (app != null)
+            if (!string.IsNullOrWhiteSpace(app.ExePath) &&
+                app.ExePath.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) &&
+                File.Exists(app.ExePath))
             {
-                // Prefer direct ExePath when present, otherwise shell:AppsFolder / URI protocol
-                if (!string.IsNullOrWhiteSpace(app.ExePath) && File.Exists(app.ExePath))
+                Process.Start(new ProcessStartInfo
                 {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = app.ExePath,
-                        Arguments = app.Arguments ?? "",
-                        UseShellExecute = true
-                    });
-                    return (true, $"Abriendo {displayName}");
-                }
+                    FileName = app.ExePath,
+                    Arguments = app.Arguments ?? "",
+                    UseShellExecute = true
+                });
+                return (true, $"Abriendo {displayName}");
+            }
 
-                if (app.LaunchTarget.StartsWith("shell:AppsFolder\\", StringComparison.OrdinalIgnoreCase))
+            if (app.LaunchTarget.StartsWith("shell:AppsFolder\\", StringComparison.OrdinalIgnoreCase))
+            {
+                var safeTarget = app.LaunchTarget.Replace("\"", "");
+                var psi = new ProcessStartInfo
                 {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = "explorer.exe",
-                        Arguments = $"\"{app.LaunchTarget}\"",
-                        UseShellExecute = true
-                    });
-                    return (true, $"Abriendo {displayName}");
-                }
+                    FileName = "explorer.exe",
+                    UseShellExecute = false
+                };
+                psi.ArgumentList.Add(safeTarget);
+                Process.Start(psi);
+                return (true, $"Abriendo {displayName}");
+            }
 
+            if (IsSafeAllowedLaunchUri(app.LaunchTarget))
+            {
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = app.LaunchTarget,
@@ -108,12 +133,7 @@ public class ProcessControlService
                 return (true, $"Abriendo {displayName}");
             }
 
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = idOrName,
-                UseShellExecute = true
-            });
-            return (true, $"Abriendo {displayName}");
+            return (false, $"El destino de inicio para '{displayName}' no es válido");
         }
         catch (Exception ex)
         {
@@ -121,70 +141,93 @@ public class ProcessControlService
         }
     }
 
-    public (bool Success, string Message) CloseApp(string idOrName)
+    public static bool IsSafeAllowedLaunchUri(string target)
     {
-        var app = _appsService.FindAppById(idOrName);
-        var displayName = app?.Name ?? idOrName;
+        if (string.IsNullOrWhiteSpace(target)) return false;
+        if (target.Contains('"') || target.Contains('\r') || target.Contains('\n')) return false;
 
+        if (target.StartsWith("steam://rungameid/", StringComparison.OrdinalIgnoreCase))
+        {
+            var gameId = target["steam://rungameid/".Length..].Trim();
+            return gameId.Length > 0 && gameId.All(char.IsDigit);
+        }
+
+        if (target.StartsWith("googleplaygames://", StringComparison.OrdinalIgnoreCase))
+        {
+            return Uri.TryCreate(target, UriKind.Absolute, out _);
+        }
+
+        return File.Exists(target) &&
+               (target.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) ||
+                target.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase));
+    }
+
+    public (bool Success, string Message) CloseApp(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            return (false, "Aplicación requerida");
+        }
+
+        var app = _appsService.FindAppById(id.Trim());
+        if (app is null)
+        {
+            return (false, "Aplicación no registrada en el catálogo del equipo");
+        }
+
+        var displayName = app.Name;
         var candidateNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        if (app != null)
+        if (!string.IsNullOrWhiteSpace(app.ExePath))
         {
-            if (!string.IsNullOrWhiteSpace(app.ExePath))
+            if (Path.GetFileName(app.ExePath).Equals("Update.exe", StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrWhiteSpace(app.Arguments))
             {
-                if (Path.GetFileName(app.ExePath).Equals("Update.exe", StringComparison.OrdinalIgnoreCase) &&
-                    !string.IsNullOrWhiteSpace(app.Arguments))
-                {
-                    var procArg = app.Arguments.Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                        .LastOrDefault(p => p.EndsWith(".exe", StringComparison.OrdinalIgnoreCase));
-                    if (procArg != null) candidateNames.Add(Path.GetFileNameWithoutExtension(procArg));
-                }
-                else
-                {
-                    candidateNames.Add(Path.GetFileNameWithoutExtension(app.ExePath));
-                }
+                var procArg = app.Arguments.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .LastOrDefault(p => p.EndsWith(".exe", StringComparison.OrdinalIgnoreCase));
+                if (procArg != null) candidateNames.Add(Path.GetFileNameWithoutExtension(procArg));
             }
-
-            // Well-known UWP / launcher process aliases
-            var lowerTitle = app.Name.Trim().ToLowerInvariant();
-            switch (lowerTitle)
+            else
             {
-                case "calculadora" or "calculator":
-                    candidateNames.Add("CalculatorApp");
-                    candidateNames.Add("Calculator");
-                    break;
-                case "bloc de notas" or "notepad":
-                    candidateNames.Add("Notepad");
-                    break;
-                case "spotify":
-                    candidateNames.Add("Spotify");
-                    break;
-                case "steam":
-                    candidateNames.Add("steam");
-                    break;
-                case "brave":
-                    candidateNames.Add("brave");
-                    break;
-                case "google chrome":
-                    candidateNames.Add("chrome");
-                    break;
-                case "microsoft edge":
-                    candidateNames.Add("msedge");
-                    break;
-                case "mozilla firefox":
-                    candidateNames.Add("firefox");
-                    break;
-                case "discord":
-                    candidateNames.Add("Discord");
-                    break;
-                case "explorador de archivos":
-                    candidateNames.Add("explorer");
-                    break;
+                candidateNames.Add(Path.GetFileNameWithoutExtension(app.ExePath));
             }
         }
-        else
+
+        // Well-known UWP / launcher process aliases
+        var lowerTitle = app.Name.Trim().ToLowerInvariant();
+        switch (lowerTitle)
         {
-            candidateNames.Add(Path.GetFileNameWithoutExtension(idOrName));
+            case "calculadora" or "calculator":
+                candidateNames.Add("CalculatorApp");
+                candidateNames.Add("Calculator");
+                break;
+            case "bloc de notas" or "notepad":
+                candidateNames.Add("Notepad");
+                break;
+            case "spotify":
+                candidateNames.Add("Spotify");
+                break;
+            case "steam":
+                candidateNames.Add("steam");
+                break;
+            case "brave":
+                candidateNames.Add("brave");
+                break;
+            case "google chrome":
+                candidateNames.Add("chrome");
+                break;
+            case "microsoft edge":
+                candidateNames.Add("msedge");
+                break;
+            case "mozilla firefox":
+                candidateNames.Add("firefox");
+                break;
+            case "discord":
+                candidateNames.Add("Discord");
+                break;
+            case "explorador de archivos":
+                candidateNames.Add("explorer");
+                break;
         }
 
         if (candidateNames.Contains("explorer") || candidateNames.Contains("control"))
@@ -195,24 +238,43 @@ public class ProcessControlService
                 : (false, $"No hay ventanas abiertas de {displayName}");
         }
 
+        candidateNames.RemoveWhere(ProtectedProcessNames.Contains);
+
         var matched = candidateNames
             .Where(n => !string.IsNullOrWhiteSpace(n))
             .SelectMany(Process.GetProcessesByName)
+            .Where(p =>
+            {
+                if (p.Id == Environment.ProcessId || ProtectedProcessNames.Contains(p.ProcessName))
+                {
+                    p.Dispose();
+                    return false;
+                }
+                return true;
+            })
             .ToList();
 
-        // Fallback for UWP / Store / Games without ExePath: match by visible MainWindowTitle or ProcessName!
-        if (matched.Count == 0 && app != null)
+        // Fallback for UWP / Store / Games without ExePath: match by visible MainWindowTitle or ProcessName
+        var searchTitle = app.Name.Trim();
+        if (matched.Count == 0 && searchTitle.Length >= 3)
         {
-            var searchTitle = app.Name.Trim();
+            var isClosingBrowser = app.Kind == "browser";
             foreach (var proc in Process.GetProcesses())
             {
                 try
                 {
-                    if (proc.Id == Environment.ProcessId) { proc.Dispose(); continue; }
-                    if (proc.ProcessName.Equals("explorer", StringComparison.OrdinalIgnoreCase)) { proc.Dispose(); continue; }
+                    if (proc.Id == Environment.ProcessId ||
+                        proc.ProcessName.Equals("explorer", StringComparison.OrdinalIgnoreCase) ||
+                        ProtectedProcessNames.Contains(proc.ProcessName) ||
+                        (!isClosingBrowser && BrowserProcessNames.Contains(proc.ProcessName)))
+                    {
+                        proc.Dispose();
+                        continue;
+                    }
 
                     bool nameMatch = proc.ProcessName.Equals(searchTitle.Replace(" ", ""), StringComparison.OrdinalIgnoreCase);
-                    bool titleMatch = !string.IsNullOrWhiteSpace(proc.MainWindowTitle) &&
+                    bool titleMatch = searchTitle.Length >= 4 &&
+                                      !string.IsNullOrWhiteSpace(proc.MainWindowTitle) &&
                                       proc.MainWindowTitle.Contains(searchTitle, StringComparison.OrdinalIgnoreCase);
 
                     if (nameMatch || titleMatch)

@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: InternalsVisibleTo("PCControl.Api.Tests")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
 
 namespace PCControl.Api
 {
@@ -104,7 +105,7 @@ namespace PCControl.Api
                 });
             });
 
-            app.MapGet("/api/debug/test-auth", (HttpContext context) => {
+            app.MapGet("/api/debug/test-auth", (HttpContext context, ITokenService tokenSvc) => {
                 var authHeader = context.Request.Headers.Authorization.FirstOrDefault();
                 var token = authHeader?.StartsWith("Bearer ") == true 
                     ? authHeader["Bearer ".Length..].Trim() 
@@ -115,18 +116,17 @@ namespace PCControl.Api
                     return Results.Json(new { error = "No token provided" }, statusCode: 401);
                 }
                 
-                if (token == "FKALFV")
+                if (tokenSvc.Validate(token))
                 {
                     return Results.Ok(new { 
                         status = "authenticated",
-                        token = token,
-                        user = "debug-user",
+                        user = "authorized-user",
                         timestamp = DateTime.UtcNow
                     });
                 }
                 else
                 {
-                    return Results.Json(new { error = "Invalid token", received = token }, statusCode: 401);
+                    return Results.Json(new { error = "Invalid token" }, statusCode: 401);
                 }
             });
 

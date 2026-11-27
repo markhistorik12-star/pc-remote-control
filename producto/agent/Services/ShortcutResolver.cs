@@ -39,9 +39,10 @@ public static class ShortcutResolver
 
     public static (string TargetPath, string Arguments)? Resolve(string lnkPath)
     {
+        IShellLinkW? link = null;
         try
         {
-            var link = (IShellLinkW)new ShellLink();
+            link = (IShellLinkW)new ShellLink();
             ((IPersistFile)link).Load(lnkPath, 0);
 
             var targetSb = new StringBuilder(512);
@@ -58,6 +59,13 @@ public static class ShortcutResolver
         catch
         {
             return null;
+        }
+        finally
+        {
+            if (link != null && Marshal.IsComObject(link))
+            {
+                Marshal.ReleaseComObject(link);
+            }
         }
     }
 }

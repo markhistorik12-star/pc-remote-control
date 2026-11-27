@@ -20,8 +20,26 @@ export interface AppItem {
   selected: boolean;
 }
 
+const VALID_HOST_REGEX = /^[a-zA-Z0-9.-]+$/;
+
+export function isValidTargetEndpoint(ip: string, port: number): boolean {
+  const cleanIp = ip.trim();
+  if (!cleanIp || cleanIp.length > 253 || !VALID_HOST_REGEX.test(cleanIp)) {
+    return false;
+  }
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    return false;
+  }
+  return true;
+}
+
 export function getAppIconUrl(ip: string, port: number, token: string, appId: string): string {
-  return `http://${ip}:${port}/api/apps/icon/${encodeURIComponent(appId)}?token=${encodeURIComponent(token)}`;
+  const cleanIp = ip.trim();
+  const cleanPort = Number(port);
+  if (!isValidTargetEndpoint(cleanIp, cleanPort) || !token.trim() || !appId.trim()) {
+    return '';
+  }
+  return `http://${cleanIp}:${cleanPort}/api/apps/icon/${encodeURIComponent(appId)}?token=${encodeURIComponent(token.trim())}`;
 }
 
 export interface SteamAccount {
@@ -50,18 +68,36 @@ async function requestApi<T = ApiResponse>(
   token: string,
   endpoint: string,
   method: 'GET' | 'POST' = 'POST',
-  body?: object
+  body?: object,
+  timeoutMs = 8000
 ): Promise<T & ApiResponse> {
-  const url = `http://${ip}:${port}${endpoint}`;
+  const cleanIp = ip.trim();
+  const cleanPort = Number(port);
+  if (!isValidTargetEndpoint(cleanIp, cleanPort)) {
+    return {
+      success: false,
+      message: 'Dirección IP o puerto no válidos.',
+    } as T & ApiResponse;
+  }
+
+  const url = `http://${cleanIp}:${cleanPort}${endpoint}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
   try {
-    const res = await fetch(url, {
+    const init: RequestInit = {
       method,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token.trim()}`,
       },
-      body: body ? JSON.stringify(body) : undefined,
-    });
+      signal: controller.signal,
+    };
+    if (method !== 'GET' && body !== undefined) {
+      init.body = JSON.stringify(body);
+    }
+
+    const res = await fetch(url, init);
     const data = await res.json();
     if (!res.ok) {
       return {
@@ -76,6 +112,8 @@ async function requestApi<T = ApiResponse>(
       success: false,
       message: 'No se pudo conectar con el PC. Verifica que esté encendido y en el mismo Wi-Fi.',
     } as T & ApiResponse;
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -123,7 +161,15 @@ export async function getAppCatalog(
   forceRefresh = false
 ): Promise<{ success: boolean; apps: AppItem[]; message?: string }> {
   const suffix = forceRefresh ? '?refresh=1' : '';
-  const res = await requestApi<{ apps?: AppItem[] }>(ip, port, token, `/api/apps/catalog${suffix}`, 'GET');
+  const res = await requestApi<{ apps?: AppItem[] }>(
+    ip,
+    port,
+    token,
+    `/api/apps/catalog${suffix}`,
+    'GET',
+    undefined,
+    15000
+  );
   return { success: res.success, apps: res.apps || [], message: res.message };
 }
 
@@ -188,11 +234,11 @@ export function parseQrPairingString(raw: string): { ip: string; port: number; t
     const trimmed = raw.trim();
     if (!trimmed.toLowerCase().startsWith('pcremote://')) return null;
     const url = new URL(trimmed.replace(/^pcremote:\/\//i, 'http://'));
-    const ip = url.searchParams.get('ip') || '';
+    const ip = (url.searchParams.get('ip') || '').trim();
     const port = Number(url.searchParams.get('port') || '5050');
-    const token = (url.searchParams.get('token') || '').toUpperCase();
-    const hostname = url.searchParams.get('name') || '';
-    if (!ip || !token) return null;
+    const token = (url.searchParams.get('token') || '').trim().toUpperCase();
+    const hostname = (url.searchParams.get('name') || '').trim().slice(0, 64);
+    if (!isValidTargetEndpoint(ip, port) || !/^[A-Z0-9]{6}$/.test(token)) return null;
     return { ip, port, token, hostname };
   } catch {
     return null;
