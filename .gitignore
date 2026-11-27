@@ -37,3 +37,17 @@
 *Remote.md
 *simplest_solution.md
 *TokenVerefier.cs
+# 5. Frontend (Capacitor/React): subir solo codigo fuente
+!/frontend/
+frontend/dist/
+frontend/www/
+frontend/android/build/
+frontend/android/app/build/
+frontend/android/.gradle/
+frontend/android/local.properties
+frontend/android/capacitor-cordova-android-plugins/build/
+frontend/android/app/src/main/assets/public/
+frontend/android/app/src/main/assets/capacitor.config.json
+frontend/android/app/src/main/assets/capacitor.plugins.json
+frontend/generate-keystore.sh
+
