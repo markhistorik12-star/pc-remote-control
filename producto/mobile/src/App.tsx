@@ -4,10 +4,12 @@ import PowerButtons from './components/PowerButtons';
 import AppList from './components/AppList';
 import AppCatalogModal from './components/AppCatalogModal';
 import BrowserControls from './components/BrowserControls';
+import NotepadControls from './components/NotepadControls';
 import SteamAccountModal from './components/SteamAccountModal';
 import PairingModal, { type PairingSubmitPayload } from './components/PairingModal';
 import ProfilesModal from './components/ProfilesModal';
 import ThemeModal from './components/ThemeModal';
+import DesktopViewerModal from './components/DesktopViewerModal';
 import ProfileAvatar, { ProfileIconGlyph } from './components/ProfileAvatar';
 import { useSettings, type DeviceProfile } from './hooks/useSettings';
 import { useTheme } from './hooks/useTheme';
@@ -23,10 +25,15 @@ import {
   closeApp,
   browserNavigate,
   browserAction,
+  isNotepadApp,
+  notepadSave,
+  notepadPreview,
+  notepadDiscard,
   getSteamAccounts,
   launchSteamAccount,
   type AppItem,
   type BrowserAction,
+  type NotepadSaveLocation,
   type SteamAccount,
 } from './services/api';
 import {
@@ -35,6 +42,7 @@ import {
   WifiIcon,
   PlusIcon,
   EditIcon,
+  MonitorIcon,
 } from './components/ui/Icons';
 
 export default function App() {
@@ -61,7 +69,9 @@ export default function App() {
   }>({ open: false, mode: 'add', editingProfile: null });
 
   const [showCatalog, setShowCatalog] = useState(false);
+  const [showDesktopViewer, setShowDesktopViewer] = useState(false);
   const [activeBrowser, setActiveBrowser] = useState<AppItem | null>(null);
+  const [activeNotepad, setActiveNotepad] = useState<AppItem | null>(null);
   const [activeSteamApp, setActiveSteamApp] = useState<AppItem | null>(null);
   const [pendingAction, setPendingAction] = useState<'shutdown' | 'suspend' | null>(null);
 
@@ -147,7 +157,9 @@ export default function App() {
 
   // Switch active profile cleanly without bleeding apps/modals from another PC
   useEffect(() => {
+    setShowDesktopViewer(false);
     setActiveBrowser(null);
+    setActiveNotepad(null);
     setActiveSteamApp(null);
     setPendingAction(null);
 
@@ -272,6 +284,8 @@ export default function App() {
 
     if (res.success && app.kind === 'browser') {
       setActiveBrowser(app);
+    } else if (res.success && isNotepadApp(app)) {
+      setActiveNotepad(app);
     }
   };
 
@@ -285,6 +299,35 @@ export default function App() {
     if (res.success && activeBrowser?.id === app.id) {
       setActiveBrowser(null);
     }
+    if (res.success && activeNotepad?.id === app.id) {
+      setActiveNotepad(null);
+    }
+  };
+
+  const handleNotepadSave = async (payload: {
+    fileName: string;
+    content: string;
+    location: NotepadSaveLocation;
+    openInNotepad: boolean;
+  }): Promise<boolean> => {
+    if (!activeProfile) return false;
+    const res = await notepadSave(activeProfile.ip, activeProfile.port, activeProfile.token, payload);
+    showToast(res.message, res.success ? 'success' : 'error');
+    return res.success;
+  };
+
+  const handleNotepadPreview = async (content: string): Promise<boolean> => {
+    if (!activeProfile) return false;
+    const res = await notepadPreview(activeProfile.ip, activeProfile.port, activeProfile.token, content);
+    showToast(res.message, res.success ? 'success' : 'error');
+    return res.success;
+  };
+
+  const handleNotepadDiscard = async (): Promise<boolean> => {
+    if (!activeProfile) return false;
+    const res = await notepadDiscard(activeProfile.ip, activeProfile.port, activeProfile.token);
+    showToast(res.message, res.success ? 'success' : 'error');
+    return res.success;
   };
 
   const handleBrowserNavigate = async (query: string, browserId?: string) => {
@@ -467,8 +510,45 @@ export default function App() {
           </button>
         )}
 
-        <main className="space-y-6">
+        <main className="space-y-5">
           <PowerButtons onAction={handlePowerAction} disabled={!isConfigured} />
+
+          {/* Live Interactive Desktop Card */}
+          <button
+            type="button"
+            onClick={() => {
+              if (!activeProfile) {
+                openAddDeviceModal();
+                return;
+              }
+              setShowDesktopViewer(true);
+            }}
+            disabled={!isConfigured}
+            className="w-full p-3.5 rounded-2xl bg-card border border-border flex items-center justify-between gap-3 text-left active:bg-muted transition-colors disabled:opacity-35 disabled:cursor-not-allowed"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 text-primary flex items-center justify-center flex-shrink-0">
+                <MonitorIcon className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-foreground truncate">
+                    Escritorio en Vivo
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary/15 text-primary border border-primary/30">
+                    Interactivo
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground truncate mt-0.5">
+                  Ver tu pantalla en tiempo real, mover ratón, hacer zoom y escribir
+                </p>
+              </div>
+            </div>
+            <span className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-primary text-primary-foreground flex-shrink-0">
+              Abrir
+            </span>
+          </button>
+
           <AppList
             apps={apps}
             ip={activeProfile?.ip || ''}
@@ -479,9 +559,19 @@ export default function App() {
             onOpenApp={handleOpenApp}
             onCloseApp={handleCloseApp}
             onOpenBrowserRemote={(browser) => setActiveBrowser(browser)}
+            onOpenNotepadRemote={(notepad) => setActiveNotepad(notepad)}
             onOpenCatalog={() => setShowCatalog(true)}
           />
         </main>
+
+        <DesktopViewerModal
+          isOpen={showDesktopViewer}
+          onClose={() => setShowDesktopViewer(false)}
+          ip={activeProfile?.ip || ''}
+          port={activeProfile?.port || 5050}
+          token={activeProfile?.token || ''}
+          pcName={activeProfile?.name}
+        />
 
         <ThemeModal
           isOpen={showThemes}
@@ -538,6 +628,19 @@ export default function App() {
           onNavigate={handleBrowserNavigate}
           onAction={handleBrowserAction}
           disabled={!isConfigured}
+        />
+
+        <NotepadControls
+          isOpen={Boolean(activeNotepad)}
+          notepadApp={activeNotepad}
+          ip={activeProfile?.ip || ''}
+          port={activeProfile?.port || 5050}
+          token={activeProfile?.token || ''}
+          disabled={!isConfigured}
+          onClose={() => setActiveNotepad(null)}
+          onSave={handleNotepadSave}
+          onPreview={handleNotepadPreview}
+          onDiscard={handleNotepadDiscard}
         />
 
         <SteamAccountModal

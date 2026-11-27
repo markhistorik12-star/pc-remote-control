@@ -1,4 +1,4 @@
-import { getAppIconUrl, type AppItem } from '../services/api';
+import { getAppIconUrl, isNotepadApp, type AppItem } from '../services/api';
 import AppAvatar from './AppAvatar';
 import { PlusIcon } from './ui/Icons';
 
@@ -12,6 +12,7 @@ interface AppListProps {
   onOpenApp: (app: AppItem) => void;
   onCloseApp: (app: AppItem) => void;
   onOpenBrowserRemote: (app: AppItem) => void;
+  onOpenNotepadRemote?: (app: AppItem) => void;
   onOpenCatalog: () => void;
 }
 
@@ -25,6 +26,7 @@ export default function AppList({
   onOpenApp,
   onCloseApp,
   onOpenBrowserRemote,
+  onOpenNotepadRemote,
   onOpenCatalog,
 }: AppListProps) {
   return (
@@ -82,6 +84,9 @@ export default function AppList({
                   {app.kind === 'game' && (
                     <span className="text-[10px] text-emerald-400 font-medium block">Juego / Launcher</span>
                   )}
+                  {isNotepadApp(app) && (
+                    <span className="text-[10px] text-amber-400 font-medium block">Editor de notas remoto</span>
+                  )}
                 </div>
 
                 {app.kind === 'browser' && (
@@ -93,6 +98,18 @@ export default function AppList({
                     className="px-2.5 h-9 rounded-lg text-xs font-medium border border-border bg-muted/50 text-foreground/90 active:bg-muted disabled:opacity-30"
                   >
                     Control
+                  </button>
+                )}
+
+                {isNotepadApp(app) && onOpenNotepadRemote && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenNotepadRemote(app)}
+                    disabled={disabled}
+                    aria-label={`Escribir en ${app.name}`}
+                    className="px-2.5 h-9 rounded-lg text-xs font-medium border border-border bg-muted/50 text-foreground/90 active:bg-muted disabled:opacity-30"
+                  >
+                    Escribir
                   </button>
                 )}
 

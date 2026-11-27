@@ -19,6 +19,9 @@ public static class Program
     [DllImport("psapi.dll")]
     private static extern int EmptyWorkingSet(IntPtr hwProc);
 
+    [DllImport("user32.dll")]
+    private static extern bool SetProcessDpiAwarenessContext(IntPtr value);
+
     public static void TrimMemory()
     {
         try
@@ -59,11 +62,15 @@ public static class Program
         }
         var showQrOnStart = isFirstGuiRun || args.Any(a => a.Equals("--show-qr", StringComparison.OrdinalIgnoreCase));
 
+        try { SetProcessDpiAwarenessContext(new IntPtr(-4)); } catch { }
+
         var configService = new AgentConfigService();
         var appsService = new InstalledAppsService(configService);
         var processService = new ProcessControlService(appsService);
         var browserService = new UniversalBrowserService(appsService);
+        var notepadService = new NotepadService();
         var steamService = new SteamService();
+        var desktopService = new RemoteDesktopService();
 
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
@@ -76,7 +83,9 @@ public static class Program
         builder.Services.AddSingleton(appsService);
         builder.Services.AddSingleton(processService);
         builder.Services.AddSingleton(browserService);
+        builder.Services.AddSingleton(notepadService);
         builder.Services.AddSingleton(steamService);
+        builder.Services.AddSingleton(desktopService);
 
         builder.Services.AddCors(options =>
         {
@@ -89,6 +98,10 @@ public static class Program
 
         var webApp = builder.Build();
         webApp.UseCors();
+        webApp.UseWebSockets(new WebSocketOptions
+        {
+            KeepAliveInterval = TimeSpan.FromSeconds(20)
+        });
         webApp.UseMiddleware<TokenAuthMiddleware>();
         webApp.MapAgentEndpoints();
         webApp.Urls.Add($"http://0.0.0.0:{configService.GetPort()}");
@@ -124,7 +137,7 @@ public static class Program
             return;
         }
 
-        System.Windows.Forms.Application.SetHighDpiMode(System.Windows.Forms.HighDpiMode.SystemAware);
+        System.Windows.Forms.Application.SetHighDpiMode(System.Windows.Forms.HighDpiMode.PerMonitorV2);
         System.Windows.Forms.Application.EnableVisualStyles();
         System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 

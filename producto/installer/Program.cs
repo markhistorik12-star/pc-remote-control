@@ -407,7 +407,7 @@ internal sealed class InstallerForm : Form
         {
             g.FillPath(verFill, verPath);
             g.DrawPath(verBorder, verPath);
-            g.DrawString("v1.3", verFont, verText, verRect.X + 11, verRect.Y + 3);
+            g.DrawString("v1.4", verFont, verText, verRect.X + 11, verRect.Y + 3);
         }
 
         using (var subFont = new Font("Segoe UI", 9f))

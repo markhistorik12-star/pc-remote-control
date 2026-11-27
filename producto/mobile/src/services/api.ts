@@ -16,8 +16,18 @@ export interface AppItem {
   launchTarget?: string;
   exePath: string;
   arguments: string;
-  kind: 'browser' | 'steam' | 'game' | 'standard';
+  kind: 'browser' | 'steam' | 'game' | 'notepad' | 'standard';
   selected: boolean;
+}
+
+export type NotepadSaveLocation = 'desktop' | 'documents';
+
+export function isNotepadApp(app: AppItem): boolean {
+  if (app.kind === 'notepad') return true;
+  const cleanName = app.name.trim().toLowerCase();
+  if (cleanName === 'bloc de notas' || cleanName === 'notepad') return true;
+  const target = `${app.exePath || ''} ${app.launchTarget || ''}`.toLowerCase();
+  return target.includes('notepad.exe') || target.includes('windowsnotepad');
 }
 
 const VALID_HOST_REGEX = /^[a-zA-Z0-9.-]+$/;
@@ -61,6 +71,54 @@ export type BrowserAction =
   | 'zoom-reset'
   | 'back'
   | 'forward';
+
+export interface MonitorInfo {
+  index: number;
+  name: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  isPrimary: boolean;
+}
+
+export interface DesktopInputPayload {
+  type: 'move' | 'click' | 'double-click' | 'down' | 'up' | 'scroll' | 'text' | 'key' | 'config';
+  monitorIndex?: number;
+  x?: number;
+  y?: number;
+  deltaX?: number;
+  deltaY?: number;
+  relative?: boolean;
+  button?: 'left' | 'right' | 'middle';
+  key?: string;
+  text?: string;
+  quality?: number;
+  maxWidth?: number;
+  fps?: number;
+}
+
+export function getDesktopWsUrl(
+  ip: string,
+  port: number,
+  token: string,
+  options?: { monitor?: number; quality?: number; maxWidth?: number; fps?: number }
+): string {
+  const cleanIp = ip.trim();
+  const cleanPort = Number(port);
+  const cleanToken = token.trim();
+  if (!isValidTargetEndpoint(cleanIp, cleanPort) || !cleanToken) {
+    return '';
+  }
+  const params = new URLSearchParams({
+    token: cleanToken,
+    monitor: String(options?.monitor ?? 0),
+    quality: String(options?.quality ?? 58),
+    maxWidth: String(options?.maxWidth ?? 1280),
+    fps: String(options?.fps ?? 15),
+  });
+  return `ws://${cleanIp}:${cleanPort}/api/desktop/ws?${params.toString()}`;
+}
 
 async function requestApi<T = ApiResponse>(
   ip: string,
@@ -217,6 +275,25 @@ export const browserAction = (
   action: BrowserAction
 ) => requestApi(ip, port, token, '/api/browser/action', 'POST', { browserId, action });
 
+export const notepadSave = (
+  ip: string,
+  port: number,
+  token: string,
+  payload: {
+    fileName?: string;
+    content: string;
+    location?: NotepadSaveLocation;
+    openInNotepad?: boolean;
+  }
+) =>
+  requestApi<{ savedPath?: string }>(ip, port, token, '/api/notepad/save', 'POST', payload);
+
+export const notepadPreview = (ip: string, port: number, token: string, content: string) =>
+  requestApi(ip, port, token, '/api/notepad/preview', 'POST', { content });
+
+export const notepadDiscard = (ip: string, port: number, token: string) =>
+  requestApi(ip, port, token, '/api/notepad/discard', 'POST', {});
+
 export async function getSteamAccounts(
   ip: string,
   port: number,
@@ -228,6 +305,28 @@ export async function getSteamAccounts(
 
 export const launchSteamAccount = (ip: string, port: number, token: string, accountName: string) =>
   requestApi(ip, port, token, '/api/steam/launch', 'POST', { accountName });
+
+export async function getDesktopMonitors(
+  ip: string,
+  port: number,
+  token: string
+): Promise<{ success: boolean; monitors: MonitorInfo[]; message?: string }> {
+  const res = await requestApi<{ monitors?: MonitorInfo[] }>(
+    ip,
+    port,
+    token,
+    '/api/desktop/monitors',
+    'GET'
+  );
+  return { success: res.success, monitors: res.monitors || [], message: res.message };
+}
+
+export const sendDesktopInput = (
+  ip: string,
+  port: number,
+  token: string,
+  payload: DesktopInputPayload
+) => requestApi(ip, port, token, '/api/desktop/input', 'POST', payload);
 
 export function parseQrPairingString(raw: string): { ip: string; port: number; token: string; hostname?: string } | null {
   try {

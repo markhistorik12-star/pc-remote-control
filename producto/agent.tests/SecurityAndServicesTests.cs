@@ -158,6 +158,59 @@ public sealed class SecurityAndServicesTests : IDisposable
         Assert.False(Program.IsTrustedClientOrigin(null));
     }
 
+    [Fact]
+    public void RemoteDesktopService_MapsMultiMonitorCoordinatesAccuratelyAndClampsBounds()
+    {
+        var primary = new MonitorInfoDto(0, "Pantalla 1", 0, 0, 1920, 1080, true);
+        Assert.Equal((0, 0), RemoteDesktopService.MapNormalizedCoordinates(primary, 0.0, 0.0));
+        Assert.Equal((1919, 1079), RemoteDesktopService.MapNormalizedCoordinates(primary, 1.0, 1.0));
+        Assert.Equal((960, 540), RemoteDesktopService.MapNormalizedCoordinates(primary, 0.5, 0.5));
+        // Out-of-bounds normalized coordinates are safely clamped to monitor edges
+        Assert.Equal((0, 1079), RemoteDesktopService.MapNormalizedCoordinates(primary, -2.5, 4.0));
+
+        // Left-side secondary monitor with negative X coordinates
+        var leftMonitor = new MonitorInfoDto(1, "Pantalla 2", -1920, 0, 1920, 1080, false);
+        Assert.Equal((-1920, 0), RemoteDesktopService.MapNormalizedCoordinates(leftMonitor, 0.0, 0.0));
+        Assert.Equal((-1, 1079), RemoteDesktopService.MapNormalizedCoordinates(leftMonitor, 1.0, 1.0));
+    }
+
+    [Fact]
+    public void RemoteDesktopService_ValidatesInputs_Monitors_AndBlocksDisallowedKeys()
+    {
+        var svc = new RemoteDesktopService();
+        var monitors = svc.GetMonitors();
+        Assert.NotEmpty(monitors);
+        Assert.All(monitors, m =>
+        {
+            Assert.True(m.Width > 0);
+            Assert.True(m.Height > 0);
+        });
+
+        Assert.False(svc.ExecuteInput(null).Success);
+        Assert.False(svc.ExecuteInput(new DesktopInputCommand("")).Success);
+        Assert.False(svc.ExecuteInput(new DesktopInputCommand("exec-shell")).Success);
+        Assert.False(svc.ExecuteInput(new DesktopInputCommand("text", Text: "")).Success);
+        Assert.False(svc.ExecuteInput(new DesktopInputCommand("key", Key: "format-disk")).Success);
+
+        Assert.True(RemoteDesktopService.IsAllowedSpecialKey("win"));
+        Assert.True(RemoteDesktopService.IsAllowedSpecialKey("show-desktop"));
+        Assert.True(RemoteDesktopService.IsAllowedSpecialKey("enter"));
+        Assert.False(RemoteDesktopService.IsAllowedSpecialKey("powershell"));
+    }
+
+    [Fact]
+    public async Task TokenAuthMiddleware_DesktopWs_RequiresRealWebSocketUpgrade_AndBlocksEvilOrigin()
+    {
+        var cfg = new AgentConfigService(_tempDir);
+        var validToken = cfg.GetToken();
+        var middleware = new TokenAuthMiddleware(_ => Task.CompletedTask, cfg);
+
+        // Plain HTTP GET (not a WebSocket upgrade) with ?token= on /api/desktop/ws must be rejected with 401
+        var nonWsCtx = CreateHttpContext("GET", "/api/desktop/ws", "192.168.0.70", queryToken: validToken);
+        await middleware.InvokeAsync(nonWsCtx);
+        Assert.Equal(StatusCodes.Status401Unauthorized, nonWsCtx.Response.StatusCode);
+    }
+
     private static DefaultHttpContext CreateHttpContext(
         string method,
         string path,

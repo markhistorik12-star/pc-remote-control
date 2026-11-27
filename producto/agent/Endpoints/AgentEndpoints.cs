@@ -12,6 +12,8 @@ public static class AgentEndpoints
     public record AddCustomAppRequest(string Name, string ExePath);
     public record BrowserNavigateRequest(string? BrowserId, string Query);
     public record BrowserActionRequest(string? BrowserId, string Action);
+    public record NotepadSaveRequest(string? FileName, string? Content, string? Location, bool? OpenInNotepad);
+    public record NotepadPreviewRequest(string? Content);
     public record SteamLaunchRequest(string AccountName);
 
     public static void MapAgentEndpoints(this WebApplication app)
@@ -32,7 +34,7 @@ public static class AgentEndpoints
             Results.Ok(new
             {
                 product = "PCRemoteHub",
-                version = "1.3.0",
+                version = "1.5.0",
                 hostname = Environment.MachineName,
                 ip = AgentConfigService.GetPrimaryLanIp(),
                 port = cfg.GetPort()
@@ -169,6 +171,42 @@ public static class AgentEndpoints
                 : Results.BadRequest(new ApiResponse(false, msg));
         });
 
+        // Notepad remote editor endpoints
+        app.MapPost("/api/notepad/save", (NotepadSaveRequest req, NotepadService notepadSvc) =>
+        {
+            if (string.IsNullOrWhiteSpace(req.Content))
+                return Results.BadRequest(new ApiResponse(false, "Escribe contenido antes de guardar"));
+
+            var (ok, msg, savedPath) = notepadSvc.SaveNote(
+                req.FileName,
+                req.Content,
+                req.Location,
+                req.OpenInNotepad ?? true);
+
+            return ok
+                ? Results.Ok(new { success = true, message = msg, savedPath })
+                : Results.BadRequest(new ApiResponse(false, msg));
+        });
+
+        app.MapPost("/api/notepad/preview", (NotepadPreviewRequest req, NotepadService notepadSvc) =>
+        {
+            if (string.IsNullOrWhiteSpace(req.Content))
+                return Results.BadRequest(new ApiResponse(false, "Escribe contenido para mostrar en el PC"));
+
+            var (ok, msg) = notepadSvc.WritePreview(req.Content);
+            return ok
+                ? Results.Ok(new ApiResponse(true, msg))
+                : Results.BadRequest(new ApiResponse(false, msg));
+        });
+
+        app.MapPost("/api/notepad/discard", (NotepadService notepadSvc) =>
+        {
+            var (ok, msg) = notepadSvc.DiscardNote();
+            return ok
+                ? Results.Ok(new ApiResponse(true, msg))
+                : Results.BadRequest(new ApiResponse(false, msg));
+        });
+
         // Dynamic Steam endpoints
         app.MapGet("/api/steam/accounts", (SteamService steamSvc) =>
         {
@@ -185,6 +223,41 @@ public static class AgentEndpoints
             return ok
                 ? Results.Ok(new ApiResponse(true, msg))
                 : Results.BadRequest(new ApiResponse(false, msg));
+        });
+
+        // Live Interactive Desktop endpoints
+        app.MapGet("/api/desktop/monitors", (RemoteDesktopService desktopSvc) =>
+        {
+            var monitors = desktopSvc.GetMonitors();
+            return Results.Ok(new { success = true, monitors });
+        });
+
+        app.MapPost("/api/desktop/input", (DesktopInputCommand cmd, RemoteDesktopService desktopSvc) =>
+        {
+            var (ok, msg) = desktopSvc.ExecuteInput(cmd);
+            return ok
+                ? Results.Ok(new ApiResponse(true, msg))
+                : Results.BadRequest(new ApiResponse(false, msg));
+        });
+
+        app.Map("/api/desktop/ws", async (
+            HttpContext ctx,
+            RemoteDesktopService desktopSvc,
+            Microsoft.Extensions.Hosting.IHostApplicationLifetime lifetime) =>
+        {
+            if (!ctx.WebSockets.IsWebSocketRequest)
+            {
+                ctx.Response.StatusCode = StatusCodes.Status400BadRequest;
+                return;
+            }
+
+            int monitor = int.TryParse(ctx.Request.Query["monitor"], out var m) ? m : 0;
+            int quality = int.TryParse(ctx.Request.Query["quality"], out var q) ? q : 60;
+            int maxWidth = int.TryParse(ctx.Request.Query["maxWidth"], out var w) ? w : 1280;
+            int fps = int.TryParse(ctx.Request.Query["fps"], out var f) ? f : 15;
+
+            using var ws = await ctx.WebSockets.AcceptWebSocketAsync();
+            await desktopSvc.HandleWebSocketSessionAsync(ws, monitor, quality, maxWidth, fps, lifetime.ApplicationStopping);
         });
     }
 }

@@ -145,7 +145,11 @@ public class InstalledAppsService
     {
         var saved = _config.GetSelectedApps();
         return saved
-            .Select(s => new AppCatalogItem(s.Id, s.Name, s.LaunchTarget, s.ExePath, s.Arguments, s.Kind, true))
+            .Select(s =>
+            {
+                var kind = s.Kind == "standard" ? ClassifyKind(s.Name, s.LaunchTarget, s.ExePath) : s.Kind;
+                return new AppCatalogItem(s.Id, s.Name, s.LaunchTarget, s.ExePath, s.Arguments, kind, true);
+            })
             .ToList();
     }
 
@@ -562,6 +566,12 @@ public class InstalledAppsService
         var exeName = Path.GetFileName(exePath);
         if (BrowserExes.Contains(exeName) || BrowserNames.Contains(name.Trim()))
             return "browser";
+
+        if (exeName.Equals("notepad.exe", StringComparison.OrdinalIgnoreCase) ||
+            launchTarget.Contains("Microsoft.WindowsNotepad", StringComparison.OrdinalIgnoreCase) ||
+            name.Trim().Equals("Bloc de notas", StringComparison.OrdinalIgnoreCase) ||
+            name.Trim().Equals("Notepad", StringComparison.OrdinalIgnoreCase))
+            return "notepad";
 
         if (exeName.Equals("steam.exe", StringComparison.OrdinalIgnoreCase) ||
             name.Equals("Steam", StringComparison.OrdinalIgnoreCase))

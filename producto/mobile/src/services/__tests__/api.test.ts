@@ -3,6 +3,7 @@ import {
   isValidTargetEndpoint,
   parseQrPairingString,
   getAppIconUrl,
+  getDesktopWsUrl,
   checkHealth,
   openApp,
 } from '../api';
@@ -46,11 +47,23 @@ describe('API Security & Validation', () => {
     expect(parseQrPairingString('pcremote://pair?ip=192.168.1.25&port=5050&token=SHORT')).toBeNull();
   });
 
-  it('builds encoded icon URLs safely and returns empty string for invalid hosts', () => {
+  it('builds encoded icon and desktop WebSocket URLs safely and rejects invalid hosts', () => {
     expect(getAppIconUrl('192.168.0.10', 5050, 'ABC234', 'steam_1')).toBe(
       'http://192.168.0.10:5050/api/apps/icon/steam_1?token=ABC234'
     );
     expect(getAppIconUrl('192.168.0.10/bad', 5050, 'ABC234', 'steam_1')).toBe('');
+
+    const wsUrl = getDesktopWsUrl('192.168.0.10', 5050, 'ABC234', {
+      monitor: 1,
+      quality: 72,
+      maxWidth: 1920,
+      fps: 12,
+    });
+    expect(wsUrl).toBe(
+      'ws://192.168.0.10:5050/api/desktop/ws?token=ABC234&monitor=1&quality=72&maxWidth=1920&fps=12'
+    );
+    expect(getDesktopWsUrl('192.168.0.10/evil', 5050, 'ABC234')).toBe('');
+    expect(getDesktopWsUrl('192.168.0.10', 5050, '')).toBe('');
   });
 
   it('sends GET requests without body and attaches Bearer header', async () => {

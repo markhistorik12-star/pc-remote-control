@@ -66,9 +66,18 @@ public class TokenAuthMiddleware
         {
             token = authHeader["Bearer ".Length..].Trim();
         }
-        else if (path.StartsWith("/api/apps/icon/", StringComparison.Ordinal) &&
+        else if ((path.StartsWith("/api/apps/icon/", StringComparison.Ordinal) ||
+                  (path == "/api/desktop/ws" && context.WebSockets.IsWebSocketRequest)) &&
                  context.Request.Query.TryGetValue("token", out var qToken))
         {
+            if (path == "/api/desktop/ws" &&
+                context.Request.Headers.TryGetValue("Origin", out var originVal) &&
+                !string.IsNullOrWhiteSpace(originVal.ToString()) &&
+                !Program.IsTrustedClientOrigin(originVal.ToString()))
+            {
+                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                return;
+            }
             token = qToken.ToString().Trim();
         }
 

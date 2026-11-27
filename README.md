@@ -6,6 +6,9 @@ Controla tu PC con Windows desde tu teléfono Android a través de tu red Wi-Fi 
 
 ## ✨ Características Principales
 
+- **🖥️ Escritorio Interactivo en Vivo (*Nuevo en v1.4*):**
+  - Visualiza la pantalla de tu PC en tiempo real desde el teléfono con soporte **multimonitor**, **zoom táctil** (`100%`–`350%`) y dos modos de control (*Toque Directo* y *Modo Trackpad*).
+  - Haz clic izquierdo/derecho, doble clic para abrir carpetas o programas, arrastra ventanas, haz scroll, escribe con el teclado del móvil y ejecuta atajos rápidos de Windows (*Inicio, Mostrar Escritorio, Alt+Tab, Copiar/Pegar*) manteniendo **0% de uso de CPU** cuando cierras la ventana.
 - **⚡ Control de Energía:** Apagar, Reiniciar, Suspender (con confirmación de seguridad) y Bloquear sesión con un toque.
 - **🖥️ Perfiles Multi-Dispositivo:**
   - Guarda y personaliza varios equipos (nombre propio e icono por tipo: *Escritorio, Portátil, Gaming o Trabajo*) y cambia entre ellos con un toque desde la pantalla principal.
@@ -15,6 +18,8 @@ Controla tu PC con Windows desde tu teléfono Android a través de tu red Wi-Fi 
 - **🌐 Control Universal del Navegador:**
   - Compatible con **Google Chrome, Microsoft Edge, Brave, Mozilla Firefox y Opera**.
   - Incluye barra para abrir URLs o buscar en Google, accesos rápidos (*YouTube, Google, Twitch, Netflix*), navegación (*Atrás, Recargar, Adelante*), gestión de pestañas (*Anterior, Siguiente, Reabrir cerrada, Cerrar*) y *Zoom*.
+- **📝 Editor Remoto de Bloc de Notas:**
+  - Ventana dedicada desde el teléfono para escribir notas completas, previsualizarlas en tiempo real en la pantalla del PC, guardarlas como archivo `.txt` en **Escritorio** o **Documentos** y descartar borradores cerrando el Bloc de notas sin dejar cambios pendientes.
 - **🎮 Selector Dinámico de Cuentas de Steam:**
   - Si tienes Steam instalado con varias sesiones guardadas, permite elegir directamente desde el teléfono con qué perfil iniciar sin pasar por la pantalla *"¿Quién está jugando?"*.
 - **📱 Vinculación Instantánea (Cero Consola):**
