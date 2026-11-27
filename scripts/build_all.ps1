@@ -1,4 +1,4 @@
-# ===========================================
+﻿# ===========================================
 # BUILD COMPLETO: Backend + Android APK
 # ===========================================
 
@@ -17,8 +17,8 @@ Write-Host "\n--- 2. Construyendo APK Android ---" -ForegroundColor Yellow
 Set-Location "../frontend/android"
 Remove-Item -Recurse -Force "app/build" -ErrorAction SilentlyContinue
 ./gradlew --stop
-$env:KEYSTORE_PASSWORD = "marciogonzalez1"
-$env:KEY_PASSWORD = "marciogonzalez1"
+if (-not $env:KEYSTORE_PASSWORD) { $env:KEYSTORE_PASSWORD = Read-Host 'Clave del keystore' }
+if (-not $env:KEY_PASSWORD) { $env:KEY_PASSWORD = $env:KEYSTORE_PASSWORD }
 ./gradlew clean
 ./gradlew assembleRelease --stacktrace
 

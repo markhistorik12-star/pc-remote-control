@@ -1,4 +1,4 @@
-# 📱 APK Build Final - PC Remote
+﻿# 📱 APK Build Final - PC Remote
 
 ## 🚀 Requisitos Previos
 - [ ] Java 17+ instalado (verificado)
@@ -8,8 +8,8 @@
 ## 🔧 Paso 1: Configurar Entorno
 ```powershell
 # 1. Setear variables de entorno (PowerShell)
-$env:KEYSTORE_PASSWORD = "marciogonzalez1"
-$env:KEY_PASSWORD = "marciogonzalez1"
+$env:KEYSTORE_PASSWORD = "<TU_CLAVE>"
+$env:KEY_PASSWORD = "<TU_CLAVE>"
 
 # 2. Verificar variables
 sete | findstr KEYSTORE_PASSWORD
