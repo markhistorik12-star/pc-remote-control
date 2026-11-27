@@ -7,6 +7,8 @@ Controla tu PC con Windows desde tu teléfono Android a través de tu red Wi-Fi 
 ## ✨ Características Principales
 
 - **⚡ Control de Energía:** Apagar, Reiniciar, Suspender (con confirmación de seguridad) y Bloquear sesión con un toque.
+- **🖥️ Perfiles Multi-Dispositivo:**
+  - Guarda y personaliza varios equipos (nombre propio e icono por tipo: *Escritorio, Portátil, Gaming o Trabajo*) y cambia entre ellos con un toque desde la pantalla principal.
 - **🧩 Detección Automática de Programas e Iconos Reales:**
   - Escanea automáticamente las aplicaciones instaladas en tu PC (escritorio, Microsoft Store y juegos de bibliotecas como Steam) y muestra sus **iconos originales** en alta definición en el teléfono.
   - Catálogo interactivo con buscador, filtros por categoría (*Apps, Juegos, Navegadores*) y soporte para añadir ejecutables portables (`.exe`) manualmente.
@@ -18,6 +20,8 @@ Controla tu PC con Windows desde tu teléfono Android a través de tu red Wi-Fi 
 - **📱 Vinculación Instantánea (Cero Consola):**
   - **Autodescubrimiento en Wi-Fi:** detecta automáticamente los equipos con *PC Remote Hub* activos en tu red local.
   - **Código QR:** escanea el QR desde el icono junto al reloj de Windows para vincular IP, puerto y Token en segundos.
+- **🎨 9 Temas de Colores Personalizables:**
+  - Personaliza la apariencia de la app al instante eligiendo entre 9 paletas (*Ámbar Original, Océano Cian, Esmeralda, Amatista, Carmesí, Neón Cyberpunk, Atardecer, Nórdico Ártico* y modo claro *Marfil*).
 - **🪶 Ultraligero y Silencioso:**
   - Se ejecuta en segundo plano en la bandeja del sistema de Windows (*System Tray*) con optimización automática de memoria y **0% de uso de CPU** en reposo.
 

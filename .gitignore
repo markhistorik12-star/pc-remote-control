@@ -37,17 +37,41 @@
 *Remote.md
 *simplest_solution.md
 *TokenVerefier.cs
-# 5. Frontend (Capacitor/React): subir solo codigo fuente
-!/frontend/
-frontend/dist/
-frontend/www/
-frontend/android/build/
-frontend/android/app/build/
-frontend/android/.gradle/
-frontend/android/local.properties
-frontend/android/capacitor-cordova-android-plugins/build/
-frontend/android/app/src/main/assets/public/
-frontend/android/app/src/main/assets/capacitor.config.json
-frontend/android/app/src/main/assets/capacitor.plugins.json
-frontend/generate-keystore.sh
+# 5. Producto Global (PC Remote Hub): subir solo código fuente (ocultando frontend personal)
+!/producto/
+producto/dist-release/
+producto/**/publish/
+producto/**/payload/
+producto/mobile/node_modules
+producto/mobile/node_modules/
+producto/mobile/dist/
+producto/mobile/www/
+producto/mobile/android/build/
+producto/mobile/android/app/build/
+producto/mobile/android/.gradle/
+producto/mobile/android/local.properties
+producto/mobile/android/keystore.properties
+producto/mobile/android/capacitor-cordova-android-plugins/build/
+producto/mobile/android/app/src/main/assets/public/
+producto/mobile/android/app/src/main/assets/capacitor.config.json
+producto/mobile/android/app/src/main/assets/capacitor.plugins.json
+producto/mobile/generate-keystore.sh
 
+
+
+# 6. Edicion Producto / APK Global (PCRemote Hub): subir solo codigo fuente
+!/producto/
+producto/dist-release/
+producto/agent/publish/
+producto/installer/publish/
+producto/installer/payload/
+producto/mobile/dist/
+producto/mobile/www/
+producto/mobile/android/build/
+producto/mobile/android/app/build/
+producto/mobile/android/.gradle/
+producto/mobile/android/local.properties
+producto/mobile/android/capacitor-cordova-android-plugins/build/
+producto/mobile/android/app/src/main/assets/public/
+producto/mobile/android/app/src/main/assets/capacitor.config.json
+producto/mobile/android/app/src/main/assets/capacitor.plugins.json

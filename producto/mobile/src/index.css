@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #131210;
+  --color-foreground: #ECE7DC;
+  --color-card: #1B1A17;
+  --color-card-foreground: #ECE7DC;
+  --color-muted: #232220;
+  --color-muted-foreground: #8F897A;
+  --color-border: #2E2C27;
+  --color-input: #0F0E0D;
+  --color-primary: #E0A339;
+  --color-primary-foreground: #1A1305;
+  --color-secondary: #2A2824;
+  --color-secondary-foreground: #ECE7DC;
+  --color-accent: #6FCF97;
+  --color-accent-foreground: #0E1A12;
+  --color-destructive: #D4574A;
+  --color-destructive-foreground: #FFFFFF;
+  --color-ring: #E0A339;
+
+  --font-heading: ui-rounded, "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 1. Ámbar Carbón (Default) */
+:root,
+:root[data-theme="amber"] {
+  --color-background: #131210;
+  --color-foreground: #ECE7DC;
+  --color-card: #1B1A17;
+  --color-card-foreground: #ECE7DC;
+  --color-muted: #232220;
+  --color-muted-foreground: #8F897A;
+  --color-border: #2E2C27;
+  --color-input: #0F0E0D;
+  --color-primary: #E0A339;
+  --color-primary-foreground: #1A1305;
+  --color-secondary: #2A2824;
+  --color-secondary-foreground: #ECE7DC;
+  --color-accent: #6FCF97;
+  --color-accent-foreground: #0E1A12;
+  --color-destructive: #D4574A;
+  --color-destructive-foreground: #FFFFFF;
+  --color-ring: #E0A339;
+  --dot-grid-color: rgb(255 255 255 / 0.035);
+}
+
+/* 2. Océano Cian */
+:root[data-theme="ocean"] {
+  --color-background: #090E1A;
+  --color-foreground: #F1F5F9;
+  --color-card: #111827;
+  --color-card-foreground: #F1F5F9;
+  --color-muted: #1E293B;
+  --color-muted-foreground: #94A3B8;
+  --color-border: #26354D;
+  --color-input: #070B14;
+  --color-primary: #38BDF8;
+  --color-primary-foreground: #061826;
+  --color-secondary: #1E293B;
+  --color-secondary-foreground: #F1F5F9;
+  --color-accent: #34D399;
+  --color-accent-foreground: #041E14;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #FFFFFF;
+  --color-ring: #38BDF8;
+  --dot-grid-color: rgb(56 189 248 / 0.045);
+}
+
+/* 3. Bosque Esmeralda */
+:root[data-theme="emerald"] {
+  --color-background: #081410;
+  --color-foreground: #ECFDF5;
+  --color-card: #0F201A;
+  --color-card-foreground: #ECFDF5;
+  --color-muted: #162E25;
+  --color-muted-foreground: #84A99A;
+  --color-border: #214236;
+  --color-input: #060F0C;
+  --color-primary: #10B981;
+  --color-primary-foreground: #031B12;
+  --color-secondary: #162E25;
+  --color-secondary-foreground: #ECFDF5;
+  --color-accent: #6EE7B7;
+  --color-accent-foreground: #052016;
+  --color-destructive: #F87171;
+  --color-destructive-foreground: #2A0606;
+  --color-ring: #10B981;
+  --dot-grid-color: rgb(16 185 129 / 0.045);
+}
+
+/* 4. Amatista Real */
+:root[data-theme="amethyst"] {
+  --color-background: #0E0A1A;
+  --color-foreground: #F5F3FF;
+  --color-card: #17112B;
+  --color-card-foreground: #F5F3FF;
+  --color-muted: #221A3D;
+  --color-muted-foreground: #A39BBF;
+  --color-border: #312556;
+  --color-input: #090612;
+  --color-primary: #A855F7;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #221A3D;
+  --color-secondary-foreground: #F5F3FF;
+  --color-accent: #38BDF8;
+  --color-accent-foreground: #061826;
+  --color-destructive: #F43F5E;
+  --color-destructive-foreground: #FFFFFF;
+  --color-ring: #A855F7;
+  --dot-grid-color: rgb(168 85 247 / 0.05);
+}
+
+/* 5. Carmesí Gaming */
+:root[data-theme="crimson"] {
+  --color-background: #120A0C;
+  --color-foreground: #FFF1F2;
+  --color-card: #1C1014;
+  --color-card-foreground: #FFF1F2;
+  --color-muted: #29171D;
+  --color-muted-foreground: #B39298;
+  --color-border: #3D222B;
+  --color-input: #0C0608;
+  --color-primary: #F43F5E;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #29171D;
+  --color-secondary-foreground: #FFF1F2;
+  --color-accent: #FB923C;
+  --color-accent-foreground: #230E03;
+  --color-destructive: #FB7185;
+  --color-destructive-foreground: #2A040B;
+  --color-ring: #F43F5E;
+  --dot-grid-color: rgb(244 63 94 / 0.045);
+}
+
+/* 6. Neón Cyberpunk */
+:root[data-theme="cyberpunk"] {
+  --color-background: #0B0719;
+  --color-foreground: #FDF2F8;
+  --color-card: #150E2E;
+  --color-card-foreground: #FDF2F8;
+  --color-muted: #211745;
+  --color-muted-foreground: #A99AC9;
+  --color-border: #382673;
+  --color-input: #070412;
+  --color-primary: #EC4899;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #211745;
+  --color-secondary-foreground: #FDF2F8;
+  --color-accent: #22D3EE;
+  --color-accent-foreground: #041E24;
+  --color-destructive: #FB7185;
+  --color-destructive-foreground: #2A040B;
+  --color-ring: #EC4899;
+  --dot-grid-color: rgb(34 211 238 / 0.055);
+}
+
+/* 7. Atardecer Coral */
+:root[data-theme="sunset"] {
+  --color-background: #160E0C;
+  --color-foreground: #FFF7ED;
+  --color-card: #221613;
+  --color-card-foreground: #FFF7ED;
+  --color-muted: #30201C;
+  --color-muted-foreground: #B59B90;
+  --color-border: #452E28;
+  --color-input: #100908;
+  --color-primary: #F97316;
+  --color-primary-foreground: #1F0B02;
+  --color-secondary: #30201C;
+  --color-secondary-foreground: #FFF7ED;
+  --color-accent: #FACC15;
+  --color-accent-foreground: #211902;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #FFFFFF;
+  --color-ring: #F97316;
+  --dot-grid-color: rgb(249 115 22 / 0.045);
+}
+
+/* 8. Ártico Nord */
+:root[data-theme="nord"] {
+  --color-background: #1E2430;
+  --color-foreground: #ECEFF4;
+  --color-card: #272F3F;
+  --color-card-foreground: #ECEFF4;
+  --color-muted: #323C50;
+  --color-muted-foreground: #9AA5B8;
+  --color-border: #3E4A63;
+  --color-input: #181D27;
+  --color-primary: #88C0D0;
+  --color-primary-foreground: #122026;
+  --color-secondary: #323C50;
+  --color-secondary-foreground: #ECEFF4;
+  --color-accent: #A3BE8C;
+  --color-accent-foreground: #141E0F;
+  --color-destructive: #BF616A;
+  --color-destructive-foreground: #FFFFFF;
+  --color-ring: #88C0D0;
+  --dot-grid-color: rgb(236 239 244 / 0.04);
+}
+
+/* 9. Claro Marfil */
+:root[data-theme="latte"] {
+  --color-background: #F5F3EE;
+  --color-foreground: #1C1917;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1C1917;
+  --color-muted: #EAE6DD;
+  --color-muted-foreground: #6B665E;
+  --color-border: #D8D2C5;
+  --color-input: #FFFFFF;
+  --color-primary: #2563EB;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #EAE6DD;
+  --color-secondary-foreground: #1C1917;
+  --color-accent: #059669;
+  --color-accent-foreground: #FFFFFF;
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+  --color-ring: #2563EB;
+  --dot-grid-color: rgb(28 25 23 / 0.055);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-background);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  background-image: radial-gradient(circle at 1px 1px, var(--dot-grid-color, rgb(255 255 255 / 0.035)) 1px, transparent 0);
+  background-size: 22px 22px;
+  color: var(--color-foreground);
+  line-height: 1.5;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

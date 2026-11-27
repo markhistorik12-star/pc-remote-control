@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PC Remote Hub</string>
+    <string name="title_activity_main">PC Remote Hub</string>
+    <string name="package_name">com.pcremote.product</string>
+    <string name="custom_url_scheme">com.pcremote.product</string>
+</resources>

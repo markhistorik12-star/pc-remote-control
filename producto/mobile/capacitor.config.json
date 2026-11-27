@@ -1,0 +1,13 @@
+{
+  "appId": "com.pcremote.product",
+  "appName": "PC Remote Hub",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true
+  },
+  "android": {
+    "backgroundColor": "#090D16",
+    "allowMixedContent": true
+  }
+}
