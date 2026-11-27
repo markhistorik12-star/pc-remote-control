@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import type { AppItem } from '../services/api';
 
 export type ProfileIconKey = 'desktop' | 'laptop' | 'gaming' | 'work';
@@ -122,42 +122,49 @@ export interface UpsertProfileInput {
 
 export function useSettings() {
   const [state, setState] = useState<StoredProfilesState>(() => loadInitialState());
+  const stateRef = useRef<StoredProfilesState>(state);
+  stateRef.current = state;
+
+  const commit = useCallback((next: StoredProfilesState) => {
+    stateRef.current = next;
+    persistState(next);
+    setState(next);
+  }, []);
 
   const activeProfile =
     state.profiles.find((p) => p.id === state.activeProfileId) ?? state.profiles[0] ?? null;
 
-  const selectProfile = useCallback((id: string) => {
-    setState((prev) => {
-      if (!prev.profiles.some((p) => p.id === id)) return prev;
-      const next: StoredProfilesState = { ...prev, activeProfileId: id };
-      persistState(next);
-      return next;
-    });
-  }, []);
+  const selectProfile = useCallback(
+    (id: string) => {
+      const prev = stateRef.current;
+      if (!prev.profiles.some((p) => p.id === id)) return;
+      commit({ ...prev, activeProfileId: id });
+    },
+    [commit]
+  );
 
-  const upsertProfile = useCallback((input: UpsertProfileInput): DeviceProfile => {
-    const cleanIp = input.ip.trim();
-    const cleanPort = Number(input.port) || 5050;
-    const cleanToken = input.token.trim().toUpperCase();
-    const cleanHostname = (input.hostname || '').trim();
-    const customName = (input.name || '').trim();
-    const chosenIcon = normalizeIcon(input.icon);
+  const upsertProfile = useCallback(
+    (input: UpsertProfileInput): DeviceProfile => {
+      const prev = stateRef.current;
+      const cleanIp = input.ip.trim();
+      const cleanPort = Number(input.port) || 5050;
+      const cleanToken = input.token.trim().toUpperCase();
+      const cleanHostname = (input.hostname || '').trim();
+      const customName = (input.name || '').trim();
+      const chosenIcon = normalizeIcon(input.icon);
 
-    let savedProfile!: DeviceProfile;
-
-    setState((prev) => {
       // Edit mode by explicit ID, or deduplicate if adding an already-saved IP:port
       const existingIndex = input.id
         ? prev.profiles.findIndex((p) => p.id === input.id)
         : prev.profiles.findIndex((p) => p.ip === cleanIp && p.port === cleanPort);
 
+      let savedProfile: DeviceProfile;
       let nextProfiles: DeviceProfile[];
 
       if (existingIndex >= 0) {
         const existing = prev.profiles[existingIndex];
         const resolvedHost = cleanHostname || existing.hostname || '';
-        const resolvedName =
-          customName || existing.name || resolvedHost || cleanIp;
+        const resolvedName = customName || existing.name || resolvedHost || cleanIp;
 
         savedProfile = {
           ...existing,
@@ -187,16 +194,15 @@ export function useSettings() {
         nextProfiles = [...prev.profiles, savedProfile];
       }
 
-      const next: StoredProfilesState = {
+      commit({
         profiles: nextProfiles,
         activeProfileId: savedProfile.id,
-      };
-      persistState(next);
-      return next;
-    });
+      });
 
-    return savedProfile;
-  }, []);
+      return savedProfile;
+    },
+    [commit]
+  );
 
   const updateProfileMeta = useCallback(
     (
@@ -205,51 +211,48 @@ export function useSettings() {
         Pick<DeviceProfile, 'name' | 'icon' | 'hostname' | 'cachedApps' | 'lastConnectedAt'>
       >
     ) => {
-      setState((prev) => {
-        const idx = prev.profiles.findIndex((p) => p.id === id);
-        if (idx < 0) return prev;
-        const current = prev.profiles[idx];
-        // If user hadn't set a custom name (name matched old hostname or IP), update name to new hostname too
-        let nextName = patch.name !== undefined ? patch.name.trim() : current.name;
-        if (
-          patch.name === undefined &&
-          patch.hostname &&
-          (current.name === current.ip || current.name === current.hostname)
-        ) {
-          nextName = patch.hostname;
-        }
-        if (!nextName) {
-          nextName = patch.hostname || current.hostname || current.ip;
-        }
+      const prev = stateRef.current;
+      const idx = prev.profiles.findIndex((p) => p.id === id);
+      if (idx < 0) return;
+      const current = prev.profiles[idx];
 
-        const updated: DeviceProfile = {
-          ...current,
-          ...patch,
-          name: nextName,
-        };
-        const nextProfiles = [...prev.profiles];
-        nextProfiles[idx] = updated;
-        const next: StoredProfilesState = { ...prev, profiles: nextProfiles };
-        persistState(next);
-        return next;
-      });
+      let nextName = patch.name !== undefined ? patch.name.trim() : current.name;
+      if (
+        patch.name === undefined &&
+        patch.hostname &&
+        (current.name === current.ip || current.name === current.hostname)
+      ) {
+        nextName = patch.hostname;
+      }
+      if (!nextName) {
+        nextName = patch.hostname || current.hostname || current.ip;
+      }
+
+      const updated: DeviceProfile = {
+        ...current,
+        ...patch,
+        name: nextName,
+      };
+      const nextProfiles = [...prev.profiles];
+      nextProfiles[idx] = updated;
+      commit({ ...prev, profiles: nextProfiles });
     },
-    []
+    [commit]
   );
 
-  const deleteProfile = useCallback((id: string) => {
-    setState((prev) => {
+  const deleteProfile = useCallback(
+    (id: string) => {
+      const prev = stateRef.current;
       const remaining = prev.profiles.filter((p) => p.id !== id);
       const nextActive =
         prev.activeProfileId === id ? remaining[0]?.id ?? null : prev.activeProfileId;
-      const next: StoredProfilesState = {
+      commit({
         profiles: remaining,
         activeProfileId: nextActive,
-      };
-      persistState(next);
-      return next;
-    });
-  }, []);
+      });
+    },
+    [commit]
+  );
 
   const settings: Settings = activeProfile
     ? {

@@ -7,8 +7,10 @@ import BrowserControls from './components/BrowserControls';
 import SteamAccountModal from './components/SteamAccountModal';
 import PairingModal, { type PairingSubmitPayload } from './components/PairingModal';
 import ProfilesModal from './components/ProfilesModal';
+import ThemeModal from './components/ThemeModal';
 import ProfileAvatar, { ProfileIconGlyph } from './components/ProfileAvatar';
 import { useSettings, type DeviceProfile } from './hooks/useSettings';
+import { useTheme } from './hooks/useTheme';
 import {
   checkHealth,
   verifyConnection,
@@ -46,9 +48,11 @@ export default function App() {
     deleteProfile,
   } = useSettings();
 
+  const { theme, setTheme, themes } = useTheme();
   const [apps, setApps] = useState<AppItem[]>(() => activeProfile?.cachedApps ?? []);
   const [loadingApps, setLoadingApps] = useState(false);
 
+  const [showThemes, setShowThemes] = useState(false);
   const [showProfiles, setShowProfiles] = useState(false);
   const [pairingState, setPairingState] = useState<{
     open: boolean;
@@ -322,6 +326,7 @@ export default function App() {
         <Header
           activeProfileName={activeProfile?.name}
           profileCount={profiles.length}
+          onOpenThemes={() => setShowThemes(true)}
           onOpenProfiles={() => setShowProfiles(true)}
           onAddDevice={openAddDeviceModal}
         />
@@ -462,6 +467,14 @@ export default function App() {
             onOpenCatalog={() => setShowCatalog(true)}
           />
         </main>
+
+        <ThemeModal
+          isOpen={showThemes}
+          onClose={() => setShowThemes(false)}
+          currentTheme={theme}
+          themes={themes}
+          onSelectTheme={(id) => setTheme(id)}
+        />
 
         <ProfilesModal
           isOpen={showProfiles}
