@@ -26,8 +26,20 @@ public class TokenAuthMiddleware
             return;
         }
 
+        string? token = null;
         var authHeader = context.Request.Headers.Authorization.FirstOrDefault();
-        if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+        if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
+        {
+            token = authHeader["Bearer ".Length..].Trim();
+        }
+        else if (path == "/api/desktop/ws" &&
+                 context.WebSockets.IsWebSocketRequest &&
+                 context.Request.Query.TryGetValue("token", out var qToken))
+        {
+            token = qToken.ToString().Trim();
+        }
+
+        if (string.IsNullOrEmpty(token))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             context.Response.ContentType = "application/json";
@@ -42,7 +54,6 @@ public class TokenAuthMiddleware
             return;
         }
 
-        var token = authHeader["Bearer ".Length..].Trim();
         if (!_tokenService.Validate(token))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;

@@ -55,6 +55,8 @@ namespace PCControl.Api
             builder.Services.AddSingleton<IProcessService, ProcessService>();
             builder.Services.AddSingleton<IBrowserService, BrowserService>();
             builder.Services.AddSingleton<ISteamService, SteamService>();
+            builder.Services.AddSingleton<INotepadService, NotepadService>();
+            builder.Services.AddSingleton<RemoteDesktopService>();
 
             builder.Services.AddCors(options =>
             {
@@ -69,6 +71,10 @@ namespace PCControl.Api
             var app = builder.Build();
 
             app.UseCors("AllowFrontend");
+            app.UseWebSockets(new WebSocketOptions
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(20)
+            });
 
             app.UseMiddleware<TokenAuthMiddleware>();
 
@@ -79,6 +85,8 @@ namespace PCControl.Api
             app.MapAppEndpoints();
             app.MapBrowserEndpoints();
             app.MapSteamEndpoints();
+            app.MapNotepadEndpoints();
+            app.MapDesktopEndpoints();
 
             // Endpoints de debug
             app.MapGet("/api/debug/health", () => {
